@@ -1,0 +1,396 @@
+package com.msquared.stairs.screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.msquared.stairs.Stairs;
+import com.msquared.stairs.profile.Profile;
+import com.msquared.stairs.utils.DefaultActorListener;
+import com.msquared.stairs.view.WorldRenderer;
+
+/**
+ * A simple options screen.
+ */
+public class SettingsScreen extends AbstractScreen {
+	Table table;
+	Texture musicTexOn;
+	Texture musicTexChecked;
+	ImageButton musicToggle;
+	Texture soundTexOn;
+	Texture soundTexChecked;
+	ImageButton soundToggle;
+	Texture earlyTexOn;
+	Texture earlyTexChecked;
+	ImageButton earlyToggle;
+	Texture songTexOn;
+	Texture songTexChecked;
+	ImageButton songToggle;
+	Texture invincTexOn;
+	Texture invincTexChecked;
+	ImageButton invincToggle;
+	Profile profile;
+	Preferences prefs;
+	int insaneHighScoreLevels;
+	int insaneHighScoreClassic;
+
+	public SettingsScreen(Stairs game) {
+		super(game);
+	}
+
+	@Override
+	public void render(float delta) {
+		Gdx.gl.glClearColor(.02f, .02f, .02f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		stage.draw();
+		// Table.drawDebug(stage);
+	}
+
+	@Override
+	public void show() {
+		Gdx.input.setInputProcessor(stage);
+		// Show ads
+		profile = game.getProfileManager().retrieveProfile();
+		game.myRequestHandler.showAds(true);
+		stage.clear();
+		
+		prefs = Gdx.app.getPreferences("Preferences");
+
+		table = new Table(getSkin());
+		table.defaults().spaceBottom(20);
+
+		this.width = Gdx.graphics.getWidth();
+		this.height = Gdx.graphics.getHeight();
+		float heightRatio = this.height / WorldRenderer.CAMERA_HEIGHT;
+		float widthRatio = this.width / WorldRenderer.CAMERA_WIDTH;
+
+		Float imagWidthOrig = 100f;
+		Float imagHeightOrig = 100f;
+		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
+		final Float imagHeight = imagHeightOrig;
+
+		
+		Float settingWidthOrig = 65f;
+		Float settingHeightOrig = 65f;
+		final Float settingWidth = settingWidthOrig * heightRatio * (1 / widthRatio);
+		final Float settingHeight = settingHeightOrig;
+		Float settingPadding = 80 - (settingWidth - settingWidthOrig);
+		Float padBtwn = 30 - (settingWidth - settingWidthOrig);
+
+		Gdx.app.log(Stairs.LOG, "Settings Screen");
+		
+		
+		// Invincible toggle (only display if score above 50 on either insane level)
+		insaneHighScoreLevels = profile.getHighScore(10);
+		insaneHighScoreClassic = profile.getHighScore(22);
+		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50;
+		if (showInvinc) {
+			table.row().expandX().fillX();
+			// Early toggle
+			invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
+			invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
+			TextureRegionDrawable invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
+			TextureRegionDrawable invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
+			final ImageButtonStyle invincStyleOn = new ImageButtonStyle();
+			invincStyleOn.up = invincUp;
+			invincStyleOn.down = invincChecked;
+			invincStyleOn.checked = invincChecked;
+			final ImageButtonStyle invincStyleOff = new ImageButtonStyle();
+			invincStyleOff.up = invincUp;
+			invincStyleOff.down = invincUp;
+			invincStyleOff.checked = invincChecked;                                     
+			invincToggle = new ImageButton(invincStyleOn);
+			if (prefs.getBoolean("invincOn", false)) {
+				invincToggle.setChecked(false);
+				invincToggle.setStyle(invincStyleOn);
+			} else {
+				invincToggle.setChecked(true);
+				invincToggle.setStyle(invincStyleOff);
+			}
+			invincToggle.addListener(new DefaultActorListener() {
+				@Override
+				public void touchUp(InputEvent event, float x, float y,
+						int pointer, int button) {
+					if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+						super.touchUp(event, x, y, pointer, button);
+						boolean invincOn = prefs.getBoolean("invincOn", false);
+						if (invincOn) {
+							prefs.putBoolean("invincOn", false);
+							prefs.flush();
+							invincToggle.setChecked(true);
+							// Sleep for a little so that clicking really fast
+							// doesn't cause the button to bug out
+							sleep(200);
+							invincToggle.setStyle(invincStyleOff);
+						} else {
+							prefs.putBoolean("invincOn", true);
+							prefs.flush();
+							invincToggle.setChecked(false);
+							// Sleep for a little so that clicking really fast
+							// doesn't cause the button to bug out
+							sleep(200);
+							invincToggle.setStyle(invincStyleOn);
+						}
+					}
+				}
+			});
+			table.add(invincToggle).size(settingWidth, settingHeight).colspan(4)
+					.align(Align.center);
+		}
+
+		table.row().expandX().fillX().padTop(50f);
+		
+		// Early toggle
+		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");
+		earlyTexChecked = new Texture("images/buttons/toggles/btn_early_off.png");
+		TextureRegionDrawable earlyUp = new TextureRegionDrawable(new TextureRegion(earlyTexOn));
+		TextureRegionDrawable earlyChecked = new TextureRegionDrawable(new TextureRegion(earlyTexChecked));
+		final ImageButtonStyle earlyStyleOn = new ImageButtonStyle();
+		earlyStyleOn.up = earlyUp;
+		earlyStyleOn.down = earlyChecked;
+		earlyStyleOn.checked = earlyChecked;
+		final ImageButtonStyle earlyStyleOff = new ImageButtonStyle();
+		earlyStyleOff.up = earlyUp;
+		earlyStyleOff.down = earlyUp;
+		earlyStyleOff.checked = earlyChecked;                                     
+		earlyToggle = new ImageButton(earlyStyleOn);
+		if (prefs.getBoolean("earlyOn", true)) {
+			earlyToggle.setChecked(false);
+			earlyToggle.setStyle(earlyStyleOn);
+		} else {
+			earlyToggle.setChecked(true);
+			earlyToggle.setStyle(earlyStyleOff);
+		}
+		earlyToggle.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+					super.touchUp(event, x, y, pointer, button);
+					boolean earlyOn = prefs.getBoolean("earlyOn", true);
+					if (earlyOn) {
+						prefs.putBoolean("earlyOn", false);
+						prefs.flush();
+						earlyToggle.setChecked(true);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						earlyToggle.setStyle(earlyStyleOff);
+					} else {
+						prefs.putBoolean("earlyOn", true);
+						prefs.flush();
+						earlyToggle.setChecked(false);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						earlyToggle.setStyle(earlyStyleOn);
+					}
+				}
+			}
+		});
+		table.add(earlyToggle).size(settingWidth, settingHeight)
+				.align(Align.left).padLeft(settingPadding);
+
+		// Song toggle
+		songTexOn = new Texture("images/buttons/toggles/btn_song1.png");
+		songTexChecked = new Texture("images/buttons/toggles/btn_song2.png");
+		TextureRegionDrawable songUp = new TextureRegionDrawable(
+				new TextureRegion(songTexOn));
+		TextureRegionDrawable songChecked = new TextureRegionDrawable(
+				new TextureRegion(songTexChecked));
+		final ImageButtonStyle songStyleOn = new ImageButtonStyle();
+		songStyleOn.up = songUp;
+		songStyleOn.down = songChecked;
+		songStyleOn.checked = songChecked;
+		final ImageButtonStyle songStyleOff = new ImageButtonStyle();
+		songStyleOff.up = songUp;
+		songStyleOff.down = songUp;
+		songStyleOff.checked = songChecked;
+		songToggle = new ImageButton(songStyleOn);
+		if (prefs.getBoolean("songFirst", true)) {
+			songToggle.setChecked(false);
+			songToggle.setStyle(songStyleOn);
+		} else {
+			songToggle.setChecked(true);
+			songToggle.setStyle(songStyleOff);
+		}
+		songToggle.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+					super.touchUp(event, x, y, pointer, button);
+					boolean songOn = prefs.getBoolean("songFirst", true);
+					if (songOn) {
+						prefs.putBoolean("songFirst", false);
+						prefs.flush();
+						songToggle.setChecked(true);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						songToggle.setStyle(songStyleOff);
+					} else {
+						prefs.putBoolean("songFirst", true);
+						prefs.flush();
+						songToggle.setChecked(false);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						songToggle.setStyle(songStyleOn);
+					}
+				}
+			}
+		});
+		table.add(songToggle).size(settingWidth, settingHeight).padLeft(padBtwn).padRight(padBtwn/2);
+
+		// Music toggle 
+		musicTexOn = new Texture("images/buttons/toggles/btn_music_on.png");
+		musicTexChecked = new Texture("images/buttons/toggles/btn_music_off.png");
+		TextureRegionDrawable musicUp = new TextureRegionDrawable(new TextureRegion(musicTexOn));
+		TextureRegionDrawable musicChecked = new TextureRegionDrawable(new TextureRegion(musicTexChecked));
+		final ImageButtonStyle musicStyleOn = new ImageButtonStyle();
+		musicStyleOn.up = musicUp;
+		musicStyleOn.down = musicChecked;
+		musicStyleOn.checked = musicChecked;
+		final ImageButtonStyle musicStyleOff = new ImageButtonStyle();
+		musicStyleOff.up = musicUp;
+		musicStyleOff.down = musicUp;
+		musicStyleOff.checked = musicChecked;
+		musicToggle = new ImageButton(musicStyleOn);
+		if (prefs.getBoolean("musicOn", true)) {
+			musicToggle.setChecked(false);
+			musicToggle.setStyle(musicStyleOn);
+		} else {
+			musicToggle.setChecked(true);
+			musicToggle.setStyle(musicStyleOff);
+		}
+		musicToggle.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+					super.touchUp(event, x, y, pointer, button);
+					boolean musicOn = prefs.getBoolean("musicOn", true);
+					if (musicOn) {
+						prefs.putBoolean("musicOn", false);
+						prefs.flush();
+						musicToggle.setChecked(true);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						musicToggle.setStyle(musicStyleOff);
+					} else {
+						prefs.putBoolean("musicOn", true);
+						prefs.flush();
+						musicToggle.setChecked(false);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						musicToggle.setStyle(musicStyleOn);
+					}
+				}
+			}
+		});
+		table.add(musicToggle).size(settingWidth, settingHeight).padLeft(padBtwn/2).padRight(padBtwn);
+
+
+		// Sound of feet toggle
+		soundTexOn = new Texture("images/buttons/toggles/btn_sound_on.png");
+		soundTexChecked = new Texture("images/buttons/toggles/btn_sound_off.png");
+		TextureRegionDrawable soundUp = new TextureRegionDrawable(new TextureRegion(soundTexOn));
+		TextureRegionDrawable soundChecked = new TextureRegionDrawable(new TextureRegion(soundTexChecked));
+		final ImageButtonStyle soundStyleOn = new ImageButtonStyle();
+		soundStyleOn.up = soundUp;
+		soundStyleOn.down = soundChecked;
+		soundStyleOn.checked = soundChecked;
+		final ImageButtonStyle soundStyleOff = new ImageButtonStyle();
+		soundStyleOff.up = soundUp;
+		soundStyleOff.down = soundUp;
+		soundStyleOff.checked = soundChecked;
+		soundToggle = new ImageButton(soundStyleOn);
+		if (prefs.getBoolean("soundsOn", true)) {
+			soundToggle.setChecked(false);
+			soundToggle.setStyle(soundStyleOn);
+		} else {
+			soundToggle.setChecked(true);
+			soundToggle.setStyle(soundStyleOff);
+		}
+		soundToggle.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+					super.touchUp(event, x, y, pointer, button);
+					boolean soundsOn = prefs.getBoolean("soundsOn", true);
+					if (soundsOn) {
+						prefs.putBoolean("soundsOn", false);
+						prefs.flush();
+						soundToggle.setChecked(true);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						soundToggle.setStyle(soundStyleOff);
+					} else {
+						prefs.putBoolean("soundsOn", true);
+						prefs.flush();
+						soundToggle.setChecked(false);
+						// Sleep for a little so that clicking really fast
+						// doesn't cause the button to bug out
+						sleep(200);
+						soundToggle.setStyle(soundStyleOn);
+					}
+				}
+			}
+		});
+		table.add(soundToggle).size(settingWidth, settingHeight)
+				.align(Align.right).padRight(settingPadding);
+		table.row();
+
+		// Main menu button
+		Texture menuTex = new Texture("images/buttons/misc/btn_menu.png");
+		Texture menuTexDown = new Texture("images/buttons/misc/btn_menu_down.png");
+		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(menuTex));
+		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(menuTexDown));
+		ImageButtonStyle menuStyle = new ImageButtonStyle();
+		menuStyle.up = menuUp;
+		menuStyle.down = menuDown;
+		ImageButton menuImagButton = new ImageButton(menuStyle);
+		menuImagButton.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > imagWidth || y < 0 || y > imagWidth)) {
+					super.touchUp(event, x, y, pointer, button);
+					game.setScreen(game.menuScreen);
+				}
+			}
+		});
+		table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4).spaceTop(50f);
+
+		table.setFillParent(true);
+		table.debug();
+		stage.addActor(table);
+	}
+	
+	public  void sleep(int time) {
+		// Sleep for a little so that clicking really fast
+		// doesn't cause the button to bug out
+		try {
+		    Thread.sleep(time);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
+	}
+}

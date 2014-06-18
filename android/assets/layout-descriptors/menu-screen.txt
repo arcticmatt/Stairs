@@ -1,0 +1,9 @@
+debug
+* spacing:10 padding:0 align:center
+'Stairs' spacingBottom:20
+---
+[easyButton] width:300 height:60
+---
+[mediumButton] width:300 height:60
+---
+[hardButton] width:300 height:60
