@@ -330,7 +330,7 @@ public class HighScoresScreen extends AbstractScreen {
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		super.hide();
 	}
 
 	@Override

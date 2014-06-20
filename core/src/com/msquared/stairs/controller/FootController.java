@@ -107,7 +107,7 @@ public class FootController {
 			leftFoot.state = State.IDLE;
 			leftFoot.grounded = true;
 			if (prefs.getBoolean("soundsOn", true)) {
-				long id = stepSound.play(.5f);
+				long id = stepSound.play(1f);
 				//stepSound.setVolume(id, 1f);
 			}
 		}
@@ -117,7 +117,7 @@ public class FootController {
 			rightFoot.state = State.IDLE;
 			rightFoot.grounded = true;
 			if (prefs.getBoolean("soundsOn", true)) {
-				long id = stepSound.play(.5f);
+				long id = stepSound.play(1f);
 				//stepSound.setVolume(id, 1f);
 			}
 		}

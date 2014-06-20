@@ -52,10 +52,10 @@ public class AbstractScreen implements Screen {
 	}
 	
 	public Camera getCamera() {
-		if (camera == null) {
-			camera = new OrthographicCamera(WorldRenderer.CAMERA_WIDTH,
-					WorldRenderer.CAMERA_HEIGHT);
-		}
+		camera = new OrthographicCamera(WorldRenderer.CAMERA_WIDTH,
+				WorldRenderer.CAMERA_HEIGHT);
+		camera.position.set(270f, 430f, 0);
+		camera.update();
 		return camera;
 	}
 
@@ -99,7 +99,7 @@ public class AbstractScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		// TODO Auto-generated method stub
-		cam.update();
+		camera.update();
 	}
 
 	@Override
@@ -108,10 +108,10 @@ public class AbstractScreen implements Screen {
 		this.height = height;
 		// Changed jars, this became necessary (along with the new
 		// stage constructor with the stretch viewport)
-		cam = new OrthographicCamera(width, height);                // #6
-	    cam.position.set(width / 2, height / 2, 0); 
+		camera = new OrthographicCamera(width, height);
+	    camera.position.set(width / 2, height / 2, 0); 
+	    camera.update();
 		stage.getViewport().update(width, height, true);
-		
 	}
 
 	@Override
@@ -123,6 +123,8 @@ public class AbstractScreen implements Screen {
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
+		Gdx.input.setInputProcessor(null);
+		stage.clear();
 		
 	}
 

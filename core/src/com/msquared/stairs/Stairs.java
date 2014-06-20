@@ -2,6 +2,7 @@ package com.msquared.stairs;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.msquared.stairs.profile.ProfileManager;
 import com.msquared.stairs.screens.ClassicScreen;
@@ -50,7 +51,8 @@ public class Stairs extends Game {
 	public static final int INSANE_CLASSIC = 8;
 	public boolean paused;
 	public IActivityRequestHandler myRequestHandler;
-
+	
+	public AssetManager assetManager;
 	private ProfileManager profileManager;
 	
 	public Stairs(boolean html, boolean iphone, IActivityRequestHandler handler) {
@@ -58,6 +60,7 @@ public class Stairs extends Game {
 		htmlGame = html;
 		iphoneGame = iphone;
 		paused = false;
+		assetManager = new AssetManager();
 	}
 	
 	@Override
@@ -65,10 +68,6 @@ public class Stairs extends Game {
 		splashScreen = new SplashScreen(this);
 		menuScreen = new MenuScreen(this);
 		highScoresScreen = new HighScoresScreen(this);
-		easyScreen = new GameScreen(this, MenuScreen.EASY);
-		mediumScreen = new GameScreen(this, MenuScreen.MEDIUM);
-		hardScreen = new GameScreen(this, MenuScreen.HARD);
-		insaneScreen = new GameScreen(this, MenuScreen.INSANE);
 		classicScreen = new ClassicScreen(this);
 		levelsScreen = new LevelsScreen(this);
 		settingsScreen = new SettingsScreen(this);
@@ -79,7 +78,7 @@ public class Stairs extends Game {
 			profileManager.retrieveProfile();
 		}
 		
-		setScreen(menuScreen);
+		setScreen(splashScreen);
 	}
 	
 	public ProfileManager getProfileManager() {

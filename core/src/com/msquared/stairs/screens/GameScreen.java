@@ -320,25 +320,26 @@ public class GameScreen extends AbstractScreen implements Screen {
 		Gdx.app.log(Stairs.LOG, "Music on " + prefs.getBoolean("musicOn", true));
 		// Play the right music
 		if (prefs.getBoolean("musicOn", true)) {
-			if (difficulty == MenuScreen.EASY) {
+			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
 				if (prefs.getBoolean("songFirst", true)) {
+					Gdx.app.log(Stairs.LOG, "playing first song");
 					game.musicManager.play(MUSIC_EASY, true);
 				} else if (!prefs.getBoolean("songFirst", false) ) {
 					game.musicManager.play(MUSIC_EASY_ALT, false);
 				}
-			} else if (difficulty == MenuScreen.MEDIUM) {
+			} else if (difficulty == MenuScreen.MEDIUM || difficulty == MenuScreen.MEDIUM + 4) {
 				if (prefs.getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_MEDIUM, true);
 				} else if (!prefs.getBoolean("songFirst", false)){
 					game.musicManager.play(MUSIC_MEDIUM_ALT, false);
 				}
-			} else if (difficulty == MenuScreen.HARD) {
+			} else if (difficulty == MenuScreen.HARD || difficulty == MenuScreen.HARD + 4) {
 				if (prefs.getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_HARD, true);
 				} else if (!prefs.getBoolean("songFirst", false)){
 					game.musicManager.play(MUSIC_HARD_ALT, false);
 				}
-			} else if (difficulty == MenuScreen.INSANE) {
+			} else if (difficulty == MenuScreen.INSANE || difficulty == MenuScreen.INSANE + 4) {
 				Gdx.app.log(Stairs.LOG, "Insane level");
 				if (prefs.getBoolean("songFirst", true) ) {
 					Gdx.app.log(Stairs.LOG, "Play main song");
@@ -353,7 +354,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		super.hide();
 	}
 
 	@Override

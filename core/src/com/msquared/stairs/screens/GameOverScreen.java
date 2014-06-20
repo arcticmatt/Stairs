@@ -410,7 +410,7 @@ public class GameOverScreen extends AbstractScreen{
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		super.hide();
 	}
 
 	@Override

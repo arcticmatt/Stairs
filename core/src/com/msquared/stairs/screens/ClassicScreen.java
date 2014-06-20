@@ -287,7 +287,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		super.hide();
 	}
 
 	@Override

@@ -7,8 +7,10 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -61,22 +63,52 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	Texture settingsTexDown;
 	TextureAtlas atlas;
 	
+	SpriteBatch spriteBatch;
+	
 	// Constructor to keep a reference to the main Game class
 	public MenuScreen(Stairs game) {
 		super(game);
-		camera = getCamera();
 		font = getFont();
 		stateTime = 0f;
-		//loadTextures();
 		prefs = Gdx.app.getPreferences("Preferences");
 		heightRatio = 1;
 		widthRatio = 1;
 	}
 	
 	private void loadTextures() {
-		atlas = new TextureAtlas(Gdx.files.internal("images/anis/menu_ani/menuani.pack"));
+		atlas = game.assetManager.get("images/anis/menu_ani2/menu_ani.pack", TextureAtlas.class);
+		//Gdx.app.log(Stairs.LOG, "texture width: " + currentFrame.getRegionWidth() + " texture height: " + currentFrame.getRegionHeight());
 		TextureRegion[] frames = new TextureRegion[96];
 		for (int i = 1; i <= 96; i++) {
+			frames[i-1] = atlas.findRegion("ani" + i);
+			//Gdx.app.log(Stairs.LOG, "ani " + i + " retrieved");
+		}
+		stairsAnimation = new Animation(FRAME_DURATION, frames);
+	}
+	
+	private void loadTextures2() {
+		atlas = new TextureAtlas(Gdx.files.internal("images/anis/stairsani/textures.pack"));
+		TextureRegion[] frames = new TextureRegion[35];
+		for (int i = 0; i < 35; i++) {
+			frames[i] = atlas.findRegion("stairs_ani" + i);
+		}
+		stairsAnimation = new Animation(FRAME_DURATION, frames);
+	}
+	
+	private void loadTextures3() {
+		atlas = new TextureAtlas(Gdx.files.internal("images/anis/old_ani/old_ani.pack"));
+		TextureRegion[] frames = new TextureRegion[35];
+		for (int i = 0; i < 35; i++) {
+			frames[i] = atlas.findRegion("stairs_ani" + i);
+		}
+		stairsAnimation = new Animation(FRAME_DURATION, frames);
+	}
+	
+	private void loadTextures4() {
+		int num = 96;
+		atlas = game.assetManager.get("images/anis/menu_ani/menu_ani.pack", TextureAtlas.class);
+		TextureRegion[] frames = new TextureRegion[num];
+		for (int i = 1; i <= num; i++) {
 			frames[i-1] = atlas.findRegion("ani" + i);
 		}
 		stairsAnimation = new Animation(FRAME_DURATION, frames);
@@ -87,34 +119,33 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		super.render(delta);
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.input.setInputProcessor(stage);
-		
 
-//		Float imagWidthOrig = 65f;
-//		Float imagHeightOrig = 65f;
-//		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
-//		final Float imagHeight = imagHeightOrig;
-//		Float imagPadding = 180f - (imagWidth - imagWidthOrig);
-//
-//		stateTime += delta;
-//		currentFrame = stairsAnimation.getKeyFrame(stateTime, true);
-//		Image image = new Image(currentFrame);
-//		image.setWidth(361.5f * (this.height / WorldRenderer.CAMERA_HEIGHT)
-//				* (WorldRenderer.CAMERA_WIDTH / this.width));
-//		image.setHeight(482f);
-//		image.setPosition((WorldRenderer.CAMERA_WIDTH - image.getWidth()) / 2, 450);
-//		table.debug();
-//		//Table.drawDebug(stage);
-//		stage.addActor(image);
+		stateTime += delta;
+		currentFrame = stairsAnimation.getKeyFrame(stateTime, true);
+		//currentFrame = atlas.findRegion("ani1");
+		float width = 361.5f * (this.height / WorldRenderer.CAMERA_HEIGHT)
+				* (WorldRenderer.CAMERA_WIDTH / this.width);
+		float height = 482f;
+		float xPos = (WorldRenderer.CAMERA_WIDTH - width) / 2;
+		float yPos = 410;
+		//Gdx.app.log(Stairs.LOG, "xPos: " + xPos + " yPos: " + yPos);
+		spriteBatch.begin();
+		spriteBatch.draw(currentFrame, xPos, yPos, width, height);
+     	spriteBatch.end();
 		stage.draw();
-
-		// table.clearChildren();
 	}
 
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-
+		
+		loadTextures4();
+		camera = getCamera();
+		spriteBatch = new SpriteBatch();
+		spriteBatch.setProjectionMatrix(camera.combined);
+		spriteBatch.disableBlending();
+		
+		
 		table = new Table(getSkin());
 
 		this.width = Gdx.graphics.getWidth();
@@ -287,7 +318,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		stage.addActor(table);
 		// Show ads
-		game.myRequestHandler.showAds(true);
+		game.myRequestHandler.showAds(false);
 
 	}
 	
@@ -353,7 +384,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		super.hide();
 		/*levelsTex.dispose();
 		levelsTexDown.dispose();
 		classicTex.dispose();

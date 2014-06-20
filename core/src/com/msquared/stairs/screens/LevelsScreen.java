@@ -27,7 +27,7 @@ import com.msquared.stairs.profile.Profile;
 import com.msquared.stairs.utils.DefaultActorListener;
 import com.msquared.stairs.view.WorldRenderer;
 
-public class LevelsScreen extends AbstractScreen implements Screen, InputProcessor {
+public class LevelsScreen extends AbstractScreen implements Screen {
 	private int score = 0;
 	CharSequence gameScore;
 	private static final float FRAME_DURATION = 0.1f;
@@ -284,7 +284,7 @@ public class LevelsScreen extends AbstractScreen implements Screen, InputProcess
 
 	@Override
 	public void hide() {
-		Gdx.input.setInputProcessor(null);
+		super.hide();
 	}
 
 	@Override
@@ -303,51 +303,6 @@ public class LevelsScreen extends AbstractScreen implements Screen, InputProcess
 	public void dispose() {
 		Gdx.input.setInputProcessor(null);
 	}
-	
-	// ----- InputProcessor Methods -----
 
-	@Override
-	public boolean keyDown(int keycode) {
-		return true;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		return true;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		return true;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		return true;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
