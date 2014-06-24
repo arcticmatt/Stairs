@@ -1,0 +1,370 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 176 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 46845 0 -1
+ciMethod java/lang/CharSequence length ()I 0 0 1 0 -1
+ciMethod java/lang/String length ()I 4097 1 36975 0 -1
+ciMethodData java/lang/Object <init> ()V 2 46845 orig 144 80 247 100 11 1 0 0 0 136 36 231 36 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 233 167 5 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/lang/String length ()I 2 36975 orig 144 80 247 100 11 1 0 0 0 48 92 231 36 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 121 115 4 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont getBounds (Ljava/lang/CharSequence;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 0 0 1 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont getBounds (Ljava/lang/CharSequence;IILcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1313 16849 1132 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont computeVisibleGlyphs (Ljava/lang/CharSequence;IIF)I 1281 16641 976 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont setScale (FF)V 0 0 1 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont getScaleX ()F 2049 1 405 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont getScaleY ()F 2065 1 405 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont getDescent ()F 2057 1 423 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFont isFlipped ()Z 1033 1 129 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/Actor getParent ()Lcom/badlogic/gdx/scenes/scene2d/Group; 1033 1 129 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/Actor getWidth ()F 897 1 1726 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/Actor getHeight ()F 889 1 1515 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/Drawable getLeftWidth ()F 0 0 1 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/Drawable getRightWidth ()F 0 0 1 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/Drawable getTopHeight ()F 0 0 1 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/Drawable getBottomHeight ()F 0 0 1 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/Layout invalidateHierarchy ()V 0 0 1 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/ui/Label invalidate ()V 2057 1 769 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/ui/Label computeSize ()V 2049 1 395 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/ui/Label layout ()V 2057 1 257 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/ui/Label getPrefHeight ()F 2057 1 423 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/ui/Widget invalidate ()V 2057 1 773 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/ui/Widget invalidateHierarchy ()V 2049 1 381 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFontCache clear ()V 2057 2057 257 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFontCache setWrappedText (Ljava/lang/CharSequence;FFFLcom/badlogic/gdx/graphics/g2d/BitmapFont$HAlignment;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1953 1 244 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFontCache addWrappedText (Ljava/lang/CharSequence;FFFLcom/badlogic/gdx/graphics/g2d/BitmapFont$HAlignment;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1953 5857 244 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFontCache getBounds ()Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1113 1 139 0 -1
+ciMethod com/badlogic/gdx/graphics/g2d/BitmapFontCache getFont ()Lcom/badlogic/gdx/graphics/g2d/BitmapFont; 1065 1 133 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getLeftWidth ()F 81 1 18 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getRightWidth ()F 81 1 18 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getTopHeight ()F 81 1 18 0 -1
+ciMethod com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getBottomHeight ()F 81 1 18 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder <init> ()V 1081 1 135 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder appendNull ()V 0 0 1 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder append0 ([CII)V 0 0 1 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder append0 (Ljava/lang/String;)V 1081 1 135 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder setLength (I)V 0 0 1 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder append (Ljava/lang/String;)Lcom/badlogic/gdx/utils/StringBuilder; 0 0 1 0 -1
+ciMethod com/badlogic/gdx/utils/StringBuilder append (Lcom/badlogic/gdx/utils/StringBuilder;II)Lcom/badlogic/gdx/utils/StringBuilder; 0 0 1 0 -1
+ciMethodData com/badlogic/gdx/scenes/scene2d/Actor getWidth ()F 2 1726 orig 144 80 247 100 11 1 0 0 0 72 169 66 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 112 0 0 0 113 50 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/Actor getHeight ()F 2 1515 orig 144 80 247 100 11 1 0 0 0 208 170 66 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 111 0 0 0 225 43 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getTopHeight ()F 1 18 orig 144 80 247 100 11 1 0 0 0 128 156 98 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 65 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getLeftWidth ()F 1 18 orig 144 80 247 100 11 1 0 0 0 224 153 98 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 65 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getBottomHeight ()F 1 18 orig 144 80 247 100 11 1 0 0 0 208 157 98 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 65 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable getRightWidth ()F 1 18 orig 144 80 247 100 11 1 0 0 0 48 155 98 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 65 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont getBounds (Ljava/lang/CharSequence;IILcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 2 15448 orig 144 80 247 100 11 1 0 0 0 88 123 42 37 1 0 0 0 112 2 0 0 160 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 58 8 0 0 65 30 0 0 241 160 1 0 0 0 0 0 0 0 0 0 2 0 26 0 3 0 1 0 160 1 0 0 255 255 255 255 0 0 0 0 7 0 14 0 0 0 0 0 data 52 0xe0007 0x0 0xb8 0x3c8 0x180005 0x0 0x7f90b4a61860 0x3c8 0x0 0x0 0x1d0005 0x0 0x7f90b61a4590 0x3c8 0x0 0x0 0x240007 0x0 0xffffffffffffff80 0x3c8 0x2e0003 0x3c8 0x18 0x330007 0x3c8 0xe8 0x3056 0x3b0005 0x0 0x7f90b4a61860 0x3056 0x0 0x0 0x460005 0x0 0x7f90b61a4590 0x3056 0x0 0x0 0x4d0007 0x0 0x50 0x3056 0x560005 0x0 0x7f90b4a61910 0x3056 0x0 0x0 0x6a0003 0x3056 0xffffffffffffff30 oops 5 6 com/badlogic/gdx/utils/StringBuilder 12 com/badlogic/gdx/graphics/g2d/BitmapFont$BitmapFontData 29 com/badlogic/gdx/utils/StringBuilder 35 com/badlogic/gdx/graphics/g2d/BitmapFont$BitmapFontData 45 com/badlogic/gdx/graphics/g2d/BitmapFont$Glyph
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont computeVisibleGlyphs (Ljava/lang/CharSequence;IIF)I 2 12688 orig 144 80 247 100 11 1 0 0 0 88 133 42 37 1 0 0 0 16 2 0 0 16 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 32 8 0 0 129 25 0 0 129 75 1 0 0 0 0 0 0 0 0 0 1 0 24 0 3 0 1 0 64 1 0 0 255 255 255 255 0 0 0 0 7 0 28 0 0 0 0 0 data 40 0x1c0007 0x198 0x140 0x2b08 0x220005 0x0 0x7f90b4a61860 0x2b08 0x0 0x0 0x2d0005 0x0 0x7f90b61a4590 0x2b08 0x0 0x0 0x340007 0x0 0xa8 0x2b08 0x390007 0x330 0x50 0x27d8 0x420005 0x0 0x7f90b4a61910 0x27d8 0x0 0x0 0x580007 0x2970 0x38 0x198 0x5b0003 0x198 0x30 0x700003 0x2970 0xfffffffffffffed8 oops 3 6 com/badlogic/gdx/utils/StringBuilder 12 com/badlogic/gdx/graphics/g2d/BitmapFont$BitmapFontData 26 com/badlogic/gdx/graphics/g2d/BitmapFont$Glyph
+ciMethodData com/badlogic/gdx/scenes/scene2d/ui/Widget invalidate ()V 2 773 orig 144 80 247 100 11 1 0 0 0 216 36 94 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 33 16 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/ui/Label invalidate ()V 1 769 orig 144 80 247 100 11 1 0 0 0 56 4 94 37 1 0 0 0 184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 16 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 1 0 16 0 0 0 255 255 255 255 0 0 0 0 2 0 1 0 0 0 0 0 data 2 0x10002 0x200 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/ui/Label getPrefHeight ()F 1 423 orig 144 80 247 100 11 1 0 0 0 104 14 94 37 1 0 0 0 136 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 49 5 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 9 0 3 0 1 0 224 0 0 0 255 255 255 255 0 0 0 0 7 0 4 0 0 0 0 0 data 28 0x40007 0xa6 0x30 0x0 0x80002 0x0 0x190005 0x0 0x7f90b61a2740 0xa6 0x0 0x0 0x290007 0xa6 0x80 0x0 0x2e0005 0x0 0x0 0x0 0x0 0x0 0x340005 0x0 0x0 0x0 0x0 0x0 oops 1 8 com/badlogic/gdx/graphics/g2d/BitmapFont
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont getDescent ()F 2 423 orig 144 80 247 100 11 1 0 0 0 168 146 42 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 49 5 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont getScaleX ()F 2 405 orig 144 80 247 100 11 1 0 0 0 24 140 42 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 169 4 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont getScaleY ()F 2 405 orig 144 80 247 100 11 1 0 0 0 192 140 42 37 1 0 0 0 168 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 0 0 153 4 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/ui/Label computeSize ()V 1 395 orig 144 80 247 100 11 1 0 0 0 128 6 94 37 1 0 0 0 176 2 0 0 160 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 89 4 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 9 0 3 0 1 0 8 2 0 0 255 255 255 255 0 0 0 0 7 0 9 0 0 0 0 0 data 65 0x90007 0x35 0x178 0x56 0xd0005 0x0 0x7f90b61a5880 0x56 0x0 0x0 0x180007 0x56 0x80 0x0 0x230005 0x0 0x0 0x0 0x0 0x0 0x2f0005 0x0 0x0 0x0 0x0 0x0 0x3f0005 0x0 0x7f90b61a24d0 0x56 0x0 0x0 0x470005 0x0 0x7f90b61a2740 0x56 0x0 0x0 0x4a0005 0x0 0x7f90b61a5930 0x56 0x0 0x0 0x4d0003 0x56 0xa8 0x580005 0x0 0x7f90b61a24d0 0x35 0x0 0x0 0x5f0005 0x0 0x7f90b61a2740 0x35 0x0 0x0 0x620005 0x0 0x7f90b61a5930 0x35 0x0 0x0 oops 7 6 com/badlogic/gdx/scenes/scene2d/Actor 28 com/badlogic/gdx/graphics/g2d/BitmapFontCache 34 com/badlogic/gdx/graphics/g2d/BitmapFont 40 com/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds 49 com/badlogic/gdx/graphics/g2d/BitmapFontCache 55 com/badlogic/gdx/graphics/g2d/BitmapFont 61 com/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds
+ciMethodData com/badlogic/gdx/scenes/scene2d/ui/Widget invalidateHierarchy ()V 1 381 orig 144 80 247 100 11 1 0 0 0 168 37 94 37 1 0 0 0 216 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 233 3 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0 3 0 1 0 48 1 0 0 255 255 255 255 0 0 0 0 7 0 4 0 0 0 0 0 data 38 0x40007 0x7d 0x20 0x0 0x90005 0x0 0x7f90b49044d0 0x7d 0x0 0x0 0xd0005 0x0 0x7f90b61a5880 0x7d 0x0 0x0 0x120104 0x0 0x7f90b4a5b210 0x28 0x0 0x0 0x150007 0x55 0x80 0x28 0x190004 0x0 0x7f90b4a5b210 0x28 0x0 0x0 0x1c0005 0x0 0x7f90b4a5b210 0x28 0x0 0x0 oops 5 6 com/badlogic/gdx/scenes/scene2d/ui/Label 12 com/badlogic/gdx/scenes/scene2d/Actor 18 com/badlogic/gdx/scenes/scene2d/ui/Table 28 com/badlogic/gdx/scenes/scene2d/ui/Table 34 com/badlogic/gdx/scenes/scene2d/ui/Table
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFontCache clear ()V 1 257 orig 144 80 247 100 11 1 0 0 0 40 78 98 37 1 0 0 0 48 1 0 0 64 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 9 0 3 0 1 0 136 0 0 0 255 255 255 255 0 0 0 0 7 0 25 0 0 0 0 0 data 17 0x190007 0x0 0x88 0x0 0x200007 0x0 0x50 0x0 0x290005 0x0 0x0 0x0 0x0 0x0 0x360003 0x0 0xffffffffffffff90 oops 0
+ciMethodData com/badlogic/gdx/scenes/scene2d/ui/Label layout ()V 1 257 orig 144 80 247 100 11 1 0 0 0 88 10 94 37 1 0 0 0 208 9 0 0 176 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 9 0 0 255 255 255 255 0 0 0 0 5 0 4 0 0 0 0 0 data 288 0x40005 0x0 0x0 0x0 0x0 0x0 0x90005 0x0 0x0 0x0 0x0 0x0 0xe0005 0x0 0x0 0x0 0x0 0x0 0x180007 0x0 0x40 0x0 0x210007 0x0 0x50 0x0 0x2d0005 0x0 0x0 0x0 0x0 0x0 0x340007 0x0 0x30 0x0 0x380002 0x0 0x3f0007 0x0 0xa0 0x0 0x430005 0x0 0x0 0x0 0x0 0x0 0x4f0007 0x0 0x50 0x0 0x590005 0x0 0x0 0x0 0x0 0x0 0x5d0005 0x0 0x0 0x0 0x0 0x0 0x630005 0x0 0x0 0x0 0x0 0x0 0x6c0007 0x0 0x1b0 0x0 0x790007 0x0 0x190 0x0 0x7f0005 0x0 0x0 0x0 0x0 0x0 0x8b0007 0x0 0x38 0x0 0x920003 0x0 0x28 0x9a0002 0x0 0xa60005 0x0 0x0 0x0 0x0 0x0 0xae0007 0x0 0xb0 0x0 0xca0005 0x0 0x0 0x0 0x0 0x0 0xcd0005 0x0 0x0 0x0 0x0 0x0 0xd50005 0x0 0x0 0x0 0x0 0x0 0xd90003 0x0 0x18 0xf30007 0x0 0x140 0x0 0xf80005 0x0 0x0 0x0 0x0 0x0 0x1010005 0x0 0x0 0x0 0x0 0x0 0x10c0005 0x0 0x0 0x0 0x0 0x0 0x1130005 0x0 0x0 0x0 0x0 0x0 0x1200005 0x0 0x0 0x0 0x0 0x0 0x1270005 0x0 0x0 0x0 0x0 0x0 0x1360007 0x0 0x100 0x0 0x13f0005 0x0 0x0 0x0 0x0 0x0 0x1420005 0x0 0x0 0x0 0x0 0x0 0x1450007 0x0 0x38 0x0 0x1490003 0x0 0x18 0x1620005 0x0 0x0 0x0 0x0 0x0 0x1680003 0x0 0x118 0x1710007 0x0 0x100 0x0 0x17a0005 0x0 0x0 0x0 0x0 0x0 0x17d0005 0x0 0x0 0x0 0x0 0x0 0x1800007 0x0 0x38 0x0 0x18d0003 0x0 0x18 0x19d0005 0x0 0x0 0x0 0x0 0x0 0x1a30003 0x0 0x18 0x1bd0005 0x0 0x0 0x0 0x0 0x0 0x1c00005 0x0 0x0 0x0 0x0 0x0 0x1c30007 0x0 0x20 0x0 0x1d90007 0x0 0x58 0x0 0x1e30007 0x0 0x38 0x0 0x1f50003 0x0 0x18 0x20f0007 0x0 0x68 0x0 0x2270005 0x0 0x0 0x0 0x0 0x0 0x22b0003 0x0 0x48 0x2430005 0x0 0x0 0x0 0x0 0x0 0x24d0007 0x0 0x40 0x0 0x2560007 0x0 0x50 0x0 0x25c0005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont setScale (FF)V 1 0 orig 144 80 247 100 11 1 0 0 0 232 137 42 37 1 0 0 0 16 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 80 0 0 0 255 255 255 255 0 0 0 0 7 0 3 0 0 0 0 0 data 10 0x30007 0x0 0x40 0x0 0x90007 0x0 0x30 0x0 0x120002 0x0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFont getBounds (Ljava/lang/CharSequence;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1 0 orig 144 80 247 100 11 1 0 0 0 24 120 42 37 1 0 0 0 64 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 144 0 0 0 255 255 255 255 0 0 0 0 5 0 4 0 0 0 0 0 data 18 0x40005 0x0 0x0 0x0 0x0 0x0 0xd0005 0x0 0x0 0x0 0x0 0x0 0x100005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder <init> ()V 1 135 orig 144 80 247 100 11 1 0 0 0 40 151 83 47 1 0 0 0 184 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 135 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 16 0 0 0 255 255 255 255 0 0 0 0 2 0 1 0 0 0 0 0 data 2 0x10002 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder setLength (I)V 1 0 orig 144 80 247 100 11 1 0 0 0 136 182 83 47 1 0 0 0 88 1 0 0 96 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 168 0 0 0 255 255 255 255 0 0 0 0 7 0 1 0 0 0 0 0 data 21 0x10007 0x0 0x30 0x0 0x90002 0x0 0x130007 0x0 0x48 0x0 0x180002 0x0 0x1b0003 0x0 0x48 0x230007 0x0 0x30 0x0 0x300002 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder append (Lcom/badlogic/gdx/utils/StringBuilder;II)Lcom/badlogic/gdx/utils/StringBuilder; 1 0 orig 144 80 247 100 11 1 0 0 0 152 213 83 47 1 0 0 0 88 1 0 0 80 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 152 0 0 0 255 255 255 255 0 0 0 0 7 0 1 0 0 0 0 0 data 19 0x10007 0x0 0x68 0x0 0x50005 0x0 0x0 0x0 0x0 0x0 0x80003 0x0 0x48 0x120005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder appendNull ()V 1 0 orig 144 80 247 100 11 1 0 0 0 136 156 83 47 1 0 0 0 224 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 48 0 0 0 255 255 255 255 0 0 0 0 7 0 13 0 0 0 0 0 data 6 0xd0007 0x0 0x30 0x0 0x120002 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder append0 ([CII)V 1 0 orig 144 80 247 100 11 1 0 0 0 240 158 83 47 1 0 0 0 232 2 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 32 2 0 0 255 255 255 255 0 0 0 0 7 0 3 0 0 0 0 0 data 68 0x30007 0x0 0x40 0x0 0x70007 0x0 0xd0 0x0 0x120002 0x0 0x170005 0x0 0x0 0x0 0x0 0x0 0x1b0005 0x0 0x0 0x0 0x0 0x0 0x1e0005 0x0 0x0 0x0 0x0 0x0 0x210002 0x0 0x260007 0x0 0x40 0x0 0x2e0007 0x0 0xd0 0x0 0x390002 0x0 0x3e0005 0x0 0x0 0x0 0x0 0x0 0x420005 0x0 0x0 0x0 0x0 0x0 0x450005 0x0 0x0 0x0 0x0 0x0 0x480002 0x0 0x5b0007 0x0 0x30 0x0 0x610002 0x0 0x6f0002 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder append (Ljava/lang/String;)Lcom/badlogic/gdx/utils/StringBuilder; 1 0 orig 144 80 247 100 11 1 0 0 0 176 208 83 47 1 0 0 0 224 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 48 0 0 0 255 255 255 255 0 0 0 0 5 0 2 0 0 0 0 0 data 6 0x20005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData com/badlogic/gdx/utils/StringBuilder append0 (Ljava/lang/String;)V 1 135 orig 144 80 247 100 11 1 0 0 0 248 160 83 47 1 0 0 0 144 1 0 0 160 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 135 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 224 0 0 0 255 255 255 255 0 0 0 0 7 0 1 0 0 0 0 0 data 28 0x10007 0x0 0x50 0x0 0x50005 0x0 0x0 0x0 0x0 0x0 0xa0005 0x0 0x0 0x0 0x0 0x0 0x1b0007 0x0 0x30 0x0 0x200002 0x0 0x2e0005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFontCache setWrappedText (Ljava/lang/CharSequence;FFFLcom/badlogic/gdx/graphics/g2d/BitmapFont$HAlignment;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1 244 orig 144 80 247 100 11 1 0 0 0 80 98 98 37 1 0 0 0 48 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 244 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 96 0 0 0 255 255 255 255 0 0 0 0 5 0 1 0 0 0 0 0 data 12 0x10005 0x0 0x0 0x0 0x0 0x0 0xc0005 0x0 0x0 0x0 0x0 0x0 oops 0
+ciMethodData com/badlogic/gdx/graphics/g2d/BitmapFontCache addWrappedText (Ljava/lang/CharSequence;FFFLcom/badlogic/gdx/graphics/g2d/BitmapFont$HAlignment;)Lcom/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds; 1 732 orig 144 80 247 100 11 1 0 0 0 48 102 98 37 1 0 0 0 248 4 0 0 64 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 220 2 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 16 4 0 0 255 255 255 255 0 0 0 0 5 0 7 0 0 0 0 0 data 130 0x70005 0x0 0x0 0x0 0x0 0x0 0x130002 0x0 0x2f0007 0x0 0x20 0x0 0x430007 0x0 0x3b0 0x0 0x4b0002 0x0 0x540007 0x0 0xb0 0x0 0x5a0005 0x0 0x0 0x0 0x0 0x0 0x5f0002 0x0 0x620007 0x0 0x38 0x0 0x650003 0x0 0x30 0x6b0003 0x0 0xffffffffffffff68 0x790005 0x0 0x0 0x0 0x0 0x0 0x890007 0x0 0x1d8 0x0 0x900007 0x0 0xb0 0x0 0x960005 0x0 0x0 0x0 0x0 0x0 0x9b0002 0x0 0x9e0007 0x0 0x38 0x0 0xa10003 0x0 0x30 0xa70003 0x0 0xffffffffffffff68 0xae0007 0x0 0x58 0x0 0xb70007 0x0 0x20 0x0 0xc10003 0x0 0xc8 0xcc0007 0x0 0xb0 0x0 0xd40005 0x0 0x0 0x0 0x0 0x0 0xd90002 0x0 0xdc0007 0x0 0x38 0x0 0xdf0003 0x0 0x30 0xe50003 0x0 0xffffffffffffff68 0xec0007 0x0 0xb0 0x0 0xf70007 0x0 0x70 0x0 0x1010005 0x0 0x0 0x0 0x0 0x0 0x1150007 0x0 0x20 0x0 0x1290002 0x0 0x1320002 0x0 0x1430003 0x0 0xfffffffffffffc68 oops 0
+instanceKlass com/badlogic/gdx/math/Rectangle
+instanceKlass sun/reflect/ClassDefiner$1
+instanceKlass sun/reflect/ClassDefiner
+instanceKlass sun/reflect/MethodAccessorGenerator$1
+instanceKlass sun/reflect/Label$PatchInfo
+instanceKlass sun/reflect/Label
+instanceKlass sun/reflect/UTF8
+instanceKlass sun/reflect/ClassFileAssembler
+instanceKlass sun/reflect/ByteVectorImpl
+instanceKlass sun/reflect/ByteVector
+instanceKlass sun/reflect/ByteVectorFactory
+instanceKlass sun/reflect/AccessorGenerator
+instanceKlass sun/reflect/ClassFileConstants
+instanceKlass com/badlogic/gdx/utils/ObjectSet$SetIterator
+instanceKlass java/util/IdentityHashMap$IdentityHashMapIterator
+instanceKlass sun/awt/AppContext$6
+instanceKlass sun/misc/JavaAWTAccess
+instanceKlass sun/awt/AppContext$GetAppContextLock
+instanceKlass sun/awt/AppContext
+instanceKlass java/util/LinkedList$ListItr
+instanceKlass com/msquared/stairs/view/WorldRenderer
+instanceKlass com/msquared/stairs/model/Foot
+instanceKlass com/msquared/stairs/model/World
+instanceKlass com/msquared/stairs/controller/FootController
+instanceKlass com/msquared/stairs/model/Stair
+instanceKlass com/msquared/stairs/controller/StairController
+instanceKlass com/badlogic/gdx/scenes/scene2d/InputListener$1
+instanceKlass com/badlogic/gdx/utils/reflect/Constructor
+instanceKlass com/badlogic/gdx/utils/Pools
+instanceKlass com/badlogic/gdx/graphics/g2d/Animation$1
+instanceKlass com/badlogic/gdx/scenes/scene2d/InputListener
+instanceKlass com/badlogic/gdx/utils/StringBuilder
+instanceKlass com/esotericsoftware/tablelayout/Cell
+instanceKlass com/badlogic/gdx/graphics/glutils/ImmediateModeRenderer
+instanceKlass com/esotericsoftware/tablelayout/Value
+instanceKlass com/esotericsoftware/tablelayout/BaseTableLayout
+instanceKlass com/esotericsoftware/tablelayout/Toolkit
+instanceKlass com/badlogic/gdx/graphics/g2d/Animation
+instanceKlass com/badlogic/gdx/backends/lwjgl/LwjglInput$TouchEvent
+instanceKlass com/badlogic/gdx/utils/TimeUtils
+instanceKlass com/badlogic/gdx/assets/RefCountedContainer
+instanceKlass sun/nio/ch/Interruptible
+instanceKlass java/util/concurrent/locks/LockSupport
+instanceKlass java/util/concurrent/FutureTask$WaitNode
+instanceKlass java/util/concurrent/FutureTask
+instanceKlass java/util/concurrent/RunnableFuture
+instanceKlass java/util/concurrent/Future
+instanceKlass com/badlogic/gdx/utils/async/AsyncExecutor$2
+instanceKlass com/badlogic/gdx/utils/async/AsyncResult
+instanceKlass org/lwjgl/opengl/Sync$RunningAvg
+instanceKlass org/lwjgl/opengl/Sync
+instanceKlass com/badlogic/gdx/assets/AssetLoadingTask
+instanceKlass com/badlogic/gdx/utils/async/AsyncTask
+instanceKlass com/msquared/stairs/profile/Profile
+instanceKlass com/badlogic/gdx/utils/Base64Coder
+instanceKlass com/msquared/stairs/profile/ProfileManager
+instanceKlass com/msquared/stairs/utils/MusicManager
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/Tree$TreeStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/Touchpad$TouchpadStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/TextField$TextFieldStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/Label$LabelStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/ProgressBar$ProgressBarStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/Window$WindowStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/SplitPane$SplitPaneStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/List$ListStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/SelectBox$SelectBoxStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/ScrollPane$ScrollPaneStyle
+instanceKlass com/badlogic/gdx/graphics/g2d/NinePatch
+instanceKlass java/lang/reflect/ParameterizedType
+instanceKlass com/badlogic/gdx/utils/Json$FieldMetadata
+instanceKlass com/badlogic/gdx/utils/reflect/Field
+instanceKlass com/badlogic/gdx/utils/Json$Serializable
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/Button$ButtonStyle
+instanceKlass com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable
+instanceKlass com/badlogic/gdx/scenes/scene2d/utils/TransformDrawable
+instanceKlass com/badlogic/gdx/graphics/g2d/BitmapFont$TextBounds
+instanceKlass com/badlogic/gdx/graphics/g2d/BitmapFontCache
+instanceKlass com/badlogic/gdx/graphics/g2d/BitmapFont$Glyph
+instanceKlass com/badlogic/gdx/graphics/g2d/BitmapFont$BitmapFontData
+instanceKlass com/badlogic/gdx/utils/JsonValue$1
+instanceKlass sun/misc/FloatingDecimal$ASCIIToBinaryBuffer
+instanceKlass com/badlogic/gdx/utils/JsonValue
+instanceKlass com/badlogic/gdx/scenes/scene2d/ui/Skin$TintedDrawable
+instanceKlass com/badlogic/gdx/utils/Json$ReadOnlySerializer
+instanceKlass com/badlogic/gdx/utils/Array$ArrayIterator
+instanceKlass com/badlogic/gdx/utils/Array$ArrayIterable
+instanceKlass com/badlogic/gdx/utils/TimSort
+instanceKlass com/badlogic/gdx/utils/Sort
+instanceKlass com/badlogic/gdx/graphics/g2d/TextureAtlas$TextureAtlasData$Region
+instanceKlass com/badlogic/gdx/graphics/g2d/TextureAtlas$TextureAtlasData$Page
+instanceKlass java/lang/Class$4
+instanceKlass com/badlogic/gdx/graphics/g2d/TextureAtlas$TextureAtlasData
+instanceKlass com/badlogic/gdx/graphics/g2d/TextureAtlas$1
+instanceKlass com/badlogic/gdx/utils/Json$Serializer
+instanceKlass com/badlogic/gdx/utils/Json
+instanceKlass com/badlogic/gdx/graphics/g2d/TextureRegion
+instanceKlass com/sun/org/apache/xerces/internal/dom/CharacterDataImpl$1
+instanceKlass org/w3c/dom/Text
+instanceKlass org/w3c/dom/CharacterData
+instanceKlass com/sun/org/apache/xerces/internal/dom/NodeListCache
+instanceKlass org/w3c/dom/Attr
+instanceKlass com/sun/org/apache/xerces/internal/dom/NamedNodeMapImpl
+instanceKlass org/w3c/dom/NamedNodeMap
+instanceKlass org/w3c/dom/DocumentType
+instanceKlass org/w3c/dom/TypeInfo
+instanceKlass org/w3c/dom/Element
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/models/CMStateSet
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/models/DFAContentModel
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/models/CMNode
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/models/MixedContentModel
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/DTDGrammar$ChildrenList
+instanceKlass com/sun/org/apache/xerces/internal/impl/Constants$ArrayEnumeration
+instanceKlass java/util/ArrayList$SubList$1
+instanceKlass java/util/ListIterator
+instanceKlass com/sun/org/apache/xerces/internal/impl/Constants
+instanceKlass com/sun/xml/internal/stream/StaxXMLInputSource
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentScannerImpl$DTDDriver
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLContentSpec
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/DTDGrammar$QNameHashtable
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/models/ContentModelValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/DTDGrammar
+instanceKlass com/sun/org/apache/xerces/internal/xni/grammars/Grammar
+instanceKlass com/sun/org/apache/xerces/internal/impl/validation/EntityState
+instanceKlass com/sun/org/apache/xerces/internal/util/URI
+instanceKlass com/sun/org/apache/xerces/internal/dom/DeferredDocumentImpl$RefCount
+instanceKlass com/sun/org/apache/xerces/internal/dom/NodeImpl
+instanceKlass org/w3c/dom/events/EventTarget
+instanceKlass org/w3c/dom/NodeList
+instanceKlass org/w3c/dom/Document
+instanceKlass org/w3c/dom/ranges/DocumentRange
+instanceKlass org/w3c/dom/events/DocumentEvent
+instanceKlass org/w3c/dom/traversal/DocumentTraversal
+instanceKlass com/sun/org/apache/xerces/internal/dom/DeferredNode
+instanceKlass org/w3c/dom/Node
+instanceKlass com/sun/org/apache/xerces/internal/util/XMLSymbols
+instanceKlass com/sun/org/apache/xerces/internal/utils/XMLLimitAnalyzer
+instanceKlass com/sun/org/apache/xerces/internal/util/XMLChar
+instanceKlass com/sun/xml/internal/stream/Entity
+instanceKlass com/sun/xml/internal/stream/util/BufferAllocator
+instanceKlass com/sun/xml/internal/stream/util/ThreadLocalBufferAllocator
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLInputSource
+instanceKlass org/xml/sax/InputSource
+instanceKlass sun/util/xml/PlatformXmlPropertiesProvider$EH
+instanceKlass com/sun/org/apache/xerces/internal/impl/ExternalSubsetResolver
+instanceKlass com/sun/org/apache/xerces/internal/util/EntityResolverWrapper
+instanceKlass org/xml/sax/ext/EntityResolver2
+instanceKlass sun/util/xml/PlatformXmlPropertiesProvider$Resolver
+instanceKlass com/sun/org/apache/xerces/internal/utils/XMLSecurityManager
+instanceKlass com/sun/org/apache/xerces/internal/utils/SecuritySupport$8
+instanceKlass com/sun/org/apache/xerces/internal/utils/XMLSecurityPropertyManager
+instanceKlass com/sun/org/apache/xerces/internal/util/ErrorHandlerWrapper
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLErrorHandler
+instanceKlass org/xml/sax/helpers/DefaultHandler
+instanceKlass org/xml/sax/ErrorHandler
+instanceKlass org/xml/sax/ContentHandler
+instanceKlass org/xml/sax/DTDHandler
+instanceKlass org/xml/sax/EntityResolver
+instanceKlass com/sun/org/apache/xerces/internal/util/PropertyState
+instanceKlass com/sun/org/apache/xerces/internal/util/FeatureState
+instanceKlass com/sun/org/apache/xerces/internal/impl/msg/XMLMessageFormatter
+instanceKlass com/sun/org/apache/xerces/internal/util/MessageFormatter
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLVersionDetector
+instanceKlass com/sun/org/apache/xerces/internal/impl/validation/ValidationManager
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/NMTOKENDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/NOTATIONDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/ENTITYDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/ListDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/IDREFDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/IDDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/dtd/StringDatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/DatatypeValidator
+instanceKlass com/sun/org/apache/xerces/internal/utils/SecuritySupport$3
+instanceKlass com/sun/org/apache/xerces/internal/utils/SecuritySupport$2
+instanceKlass com/sun/org/apache/xerces/internal/utils/SecuritySupport$1
+instanceKlass com/sun/org/apache/xerces/internal/utils/SecuritySupport$4
+instanceKlass com/sun/org/apache/xerces/internal/utils/SecuritySupport
+instanceKlass com/sun/org/apache/xerces/internal/utils/ObjectFactory
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/DTDDVFactory
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/DTDGrammarBucket
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLAttributeDecl
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLSimpleType
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLElementDecl
+instanceKlass com/sun/org/apache/xerces/internal/impl/validation/ValidationState
+instanceKlass com/sun/org/apache/xerces/internal/impl/dv/ValidationContext
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLDTDValidator
+instanceKlass com/sun/org/apache/xerces/internal/impl/RevalidationHandler
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLDTDValidatorFilter
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDocumentFilter
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLEntityDecl
+instanceKlass com/sun/org/apache/xerces/internal/impl/dtd/XMLDTDProcessor
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDTDContentModelFilter
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDTDFilter
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDTDScanner
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDTDContentModelSource
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDTDSource
+instanceKlass com/sun/org/apache/xerces/internal/xni/grammars/XMLDTDDescription
+instanceKlass com/sun/org/apache/xerces/internal/xni/grammars/XMLGrammarDescription
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentScannerImpl$TrailingMiscDriver
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentScannerImpl$PrologDriver
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentScannerImpl$XMLDeclDriver
+instanceKlass com/sun/org/apache/xerces/internal/util/NamespaceSupport
+instanceKlass com/sun/org/apache/xerces/internal/xni/NamespaceContext
+instanceKlass com/sun/org/apache/xerces/internal/util/XMLAttributesImpl$Attribute
+instanceKlass com/sun/org/apache/xerces/internal/util/XMLAttributesImpl
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLAttributes
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentFragmentScannerImpl$FragmentContentDriver
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentFragmentScannerImpl$Driver
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentFragmentScannerImpl$ElementStack2
+instanceKlass com/sun/org/apache/xerces/internal/xni/QName
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLDocumentFragmentScannerImpl$ElementStack
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLString
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLScanner
+instanceKlass com/sun/xml/internal/stream/XMLBufferListener
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLEntityHandler
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDocumentScanner
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLDocumentSource
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLErrorReporter
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLEntityScanner
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLLocator
+instanceKlass com/sun/xml/internal/stream/XMLEntityStorage
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLEntityManager$CharacterBuffer
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLEntityManager$CharacterBufferPool
+instanceKlass com/sun/org/apache/xerces/internal/util/AugmentationsImpl$AugmentationsItemsContainer
+instanceKlass com/sun/org/apache/xerces/internal/util/AugmentationsImpl
+instanceKlass com/sun/org/apache/xerces/internal/xni/Augmentations
+instanceKlass com/sun/org/apache/xerces/internal/util/XMLResourceIdentifierImpl
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLResourceIdentifier
+instanceKlass com/sun/org/apache/xerces/internal/impl/XMLEntityManager
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLEntityResolver
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLComponent
+instanceKlass com/sun/org/apache/xerces/internal/util/SymbolTable$Entry
+instanceKlass com/sun/org/apache/xerces/internal/util/SymbolTable
+instanceKlass com/sun/org/apache/xerces/internal/util/ParserConfigurationSettings
+instanceKlass com/sun/org/apache/xerces/internal/parsers/XML11Configurable
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLPullParserConfiguration
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLParserConfiguration
+instanceKlass com/sun/org/apache/xerces/internal/xni/parser/XMLComponentManager
+instanceKlass com/sun/org/apache/xerces/internal/parsers/XMLParser
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLDTDContentModelHandler
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLDTDHandler
+instanceKlass com/sun/org/apache/xerces/internal/xni/XMLDocumentHandler
+instanceKlass javax/xml/parsers/DocumentBuilder
+instanceKlass com/sun/org/apache/xerces/internal/jaxp/JAXPConstants
+instanceKlass javax/xml/parsers/SecuritySupport$1
+instanceKlass javax/xml/parsers/FactoryFinder$1
+instanceKlass javax/xml/parsers/SecuritySupport$5
+instanceKlass javax/xml/parsers/SecuritySupport$2
+instanceKlass javax/xml/parsers/SecuritySupport
+instanceKlass javax/xml/parsers/FactoryFinder
+instanceKlass javax/xml/parsers/DocumentBuilderFactory
+instanceKlass java/util/ArrayList$Itr
+instanceKlass sun/util/spi/XmlPropertiesProvider
+instanceKlass java/util/Properties$XmlSupport$1
+instanceKlass java/util/Properties$XmlSupport
+instanceKlass com/badlogic/gdx/files/FileHandle$1
+instanceKlass com/badlogic/gdx/backends/lwjgl/LwjglPreferences
+instanceKlass com/badlogic/gdx/scenes/scene2d/utils/Layout
+instanceKlass com/badlogic/gdx/scenes/scene2d/utils/Disableable
+instanceKlass com/badlogic/gdx/scenes/scene2d/EventListener
+instanceKlass com/badlogic/gdx/scenes/scene2d/utils/Drawable
+instanceKlass java/util/regex/Matcher
+instanceKlass java/util/regex/MatchResult
+instanceKlass java/util/regex/Pattern$TreeInfo
+instanceKlass java/util/regex/Pattern$Node
+instanceKlass java/util/regex/Pattern
+instanceKlass com/badlogic/gdx/assets/AssetDescriptor
+instanceKlass com/badlogic/gdx/utils/ObjectMap$Entry
+instanceKlass com/badlogic/gdx/utils/ObjectMap$MapIterator
+instanceKlass org/lwjgl/opengl/GLChecks
+instanceKlass com/badlogic/gdx/graphics/g2d/Gdx2DPixmap
+instanceKlass sun/net/DefaultProgressMeteringPolicy
+instanceKlass sun/net/ProgressMeteringPolicy
+instanceKlass sun/net/ProgressMonitor
+instanceKlass com/badlogic/gdx/graphics/glutils/FileTextureData
+instanceKlass com/badlogic/gdx/assets/AssetLoaderParameters$LoadedCallback
+instanceKlass com/badlogic/gdx/utils/Scaling$1
+instanceKlass com/badlogic/gdx/math/Matrix3
+instanceKlass org/lwjgl/opengl/GL20
+instanceKlass com/badlogic/gdx/utils/ObjectIntMap
+instanceKlass com/badlogic/gdx/graphics/glutils/ShaderProgram
+instanceKlass com/badlogic/gdx/graphics/glutils/IndexArray
+instanceKlass com/badlogic/gdx/utils/BufferUtils
+instanceKlass com/badlogic/gdx/graphics/VertexAttributes
+instanceKlass com/badlogic/gdx/graphics/glutils/VertexArray
+instanceKlass com/badlogic/gdx/graphics/VertexAttribute
+instanceKlass com/badlogic/gdx/graphics/glutils/IndexData
+instanceKlass com/badlogic/gdx/graphics/glutils/VertexData
+instanceKlass com/badlogic/gdx/graphics/Mesh
+instanceKlass com/badlogic/gdx/utils/NumberUtils
+instanceKlass com/badlogic/gdx/graphics/g2d/SpriteBatch
+instanceKlass com/badlogic/gdx/scenes/scene2d/Stage$TouchFocus
+instanceKlass com/badlogic/gdx/math/collision/Ray
+instanceKlass com/badlogic/gdx/math/Plane
+instanceKlass com/badlogic/gdx/math/Frustum

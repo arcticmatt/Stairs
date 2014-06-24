@@ -65,7 +65,6 @@ public class Profile implements Serializable {
 	public int isHighScore(int score, int key1, int key2, int key3) {
 		int firstPast = highScores.get(key1);
 		int secondPast = highScores.get(key2);
-		int thirdPast = highScores.get(key3);
 		if (score > highScores.get(key1)) {
 			highScores.put(key1, score);
 			highScores.put(key2, firstPast);

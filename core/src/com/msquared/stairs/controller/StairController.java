@@ -1,5 +1,7 @@
 package com.msquared.stairs.controller;
 
+import static java.util.Arrays.asList;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,8 +14,6 @@ import com.msquared.stairs.model.Foot;
 import com.msquared.stairs.model.Stair;
 import com.msquared.stairs.model.World;
 import com.msquared.stairs.view.WorldRenderer;
-
-import static java.util.Arrays.asList;
 
 public class StairController {
 	protected final int CAM_WIDTH = WorldRenderer.CAMERA_WIDTH;

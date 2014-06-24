@@ -6,15 +6,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.profile.Profile;
 import com.msquared.stairs.utils.DefaultActorListener;
@@ -47,26 +43,32 @@ public class SettingsScreen extends AbstractScreen {
 
 	public SettingsScreen(Stairs game) {
 		super(game);
+		invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
+		invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
+		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");
+		earlyTexChecked = new Texture("images/buttons/toggles/btn_early_off.png");
+		songTexOn = new Texture("images/buttons/toggles/btn_song1.png");
+		songTexChecked = new Texture("images/buttons/toggles/btn_song2.png");
+		musicTexOn = new Texture("images/buttons/toggles/btn_music_on.png");
+		musicTexChecked = new Texture("images/buttons/toggles/btn_music_off.png");
+		soundTexOn = new Texture("images/buttons/toggles/btn_sound_on.png");
+		soundTexChecked = new Texture("images/buttons/toggles/btn_sound_off.png");
 	}
 
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(.02f, .02f, .02f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		stage.draw();
-		// Table.drawDebug(stage);
 	}
 
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		// Show ads
-		profile = game.getProfileManager().retrieveProfile();
-		game.myRequestHandler.showAds(true);
-		stage.clear();
-		
+		profile = game.getProfileManager().retrieveProfile();		
 		prefs = Gdx.app.getPreferences("Preferences");
+		// Show ads
+		game.myRequestHandler.showAds(true);
 
 		table = new Table(getSkin());
 		table.defaults().spaceBottom(20);
@@ -81,26 +83,19 @@ public class SettingsScreen extends AbstractScreen {
 		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
 		final Float imagHeight = imagHeightOrig;
 
-		
 		Float settingWidthOrig = 65f;
 		Float settingHeightOrig = 65f;
 		final Float settingWidth = settingWidthOrig * heightRatio * (1 / widthRatio);
 		final Float settingHeight = settingHeightOrig;
 		Float settingPadding = 80 - (settingWidth - settingWidthOrig);
 		Float padBtwn = 30 - (settingWidth - settingWidthOrig);
-
-		Gdx.app.log(Stairs.LOG, "Settings Screen");
-		
 		
 		// Invincible toggle (only display if score above 50 on either insane level)
 		insaneHighScoreLevels = profile.getHighScore(10);
 		insaneHighScoreClassic = profile.getHighScore(22);
 		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50;
-		if (showInvinc) {
+		if (true) {
 			table.row().expandX().fillX();
-			// Early toggle
-			invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
-			invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
 			TextureRegionDrawable invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
 			TextureRegionDrawable invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
 			final ImageButtonStyle invincStyleOn = new ImageButtonStyle();
@@ -124,7 +119,6 @@ public class SettingsScreen extends AbstractScreen {
 				public void touchUp(InputEvent event, float x, float y,
 						int pointer, int button) {
 					if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-						super.touchUp(event, x, y, pointer, button);
 						boolean invincOn = prefs.getBoolean("invincOn", false);
 						if (invincOn) {
 							prefs.putBoolean("invincOn", false);
@@ -153,8 +147,6 @@ public class SettingsScreen extends AbstractScreen {
 		table.row().expandX().fillX().padTop(50f);
 		
 		// Early toggle
-		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");
-		earlyTexChecked = new Texture("images/buttons/toggles/btn_early_off.png");
 		TextureRegionDrawable earlyUp = new TextureRegionDrawable(new TextureRegion(earlyTexOn));
 		TextureRegionDrawable earlyChecked = new TextureRegionDrawable(new TextureRegion(earlyTexChecked));
 		final ImageButtonStyle earlyStyleOn = new ImageButtonStyle();
@@ -178,7 +170,6 @@ public class SettingsScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					boolean earlyOn = prefs.getBoolean("earlyOn", true);
 					if (earlyOn) {
 						prefs.putBoolean("earlyOn", false);
@@ -204,8 +195,6 @@ public class SettingsScreen extends AbstractScreen {
 				.align(Align.left).padLeft(settingPadding);
 
 		// Song toggle
-		songTexOn = new Texture("images/buttons/toggles/btn_song1.png");
-		songTexChecked = new Texture("images/buttons/toggles/btn_song2.png");
 		TextureRegionDrawable songUp = new TextureRegionDrawable(
 				new TextureRegion(songTexOn));
 		TextureRegionDrawable songChecked = new TextureRegionDrawable(
@@ -231,7 +220,6 @@ public class SettingsScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					boolean songOn = prefs.getBoolean("songFirst", true);
 					if (songOn) {
 						prefs.putBoolean("songFirst", false);
@@ -255,9 +243,7 @@ public class SettingsScreen extends AbstractScreen {
 		});
 		table.add(songToggle).size(settingWidth, settingHeight).padLeft(padBtwn).padRight(padBtwn/2);
 
-		// Music toggle 
-		musicTexOn = new Texture("images/buttons/toggles/btn_music_on.png");
-		musicTexChecked = new Texture("images/buttons/toggles/btn_music_off.png");
+		// Music toggle
 		TextureRegionDrawable musicUp = new TextureRegionDrawable(new TextureRegion(musicTexOn));
 		TextureRegionDrawable musicChecked = new TextureRegionDrawable(new TextureRegion(musicTexChecked));
 		final ImageButtonStyle musicStyleOn = new ImageButtonStyle();
@@ -281,7 +267,6 @@ public class SettingsScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					boolean musicOn = prefs.getBoolean("musicOn", true);
 					if (musicOn) {
 						prefs.putBoolean("musicOn", false);
@@ -307,8 +292,6 @@ public class SettingsScreen extends AbstractScreen {
 
 
 		// Sound of feet toggle
-		soundTexOn = new Texture("images/buttons/toggles/btn_sound_on.png");
-		soundTexChecked = new Texture("images/buttons/toggles/btn_sound_off.png");
 		TextureRegionDrawable soundUp = new TextureRegionDrawable(new TextureRegion(soundTexOn));
 		TextureRegionDrawable soundChecked = new TextureRegionDrawable(new TextureRegion(soundTexChecked));
 		final ImageButtonStyle soundStyleOn = new ImageButtonStyle();
@@ -332,7 +315,6 @@ public class SettingsScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					boolean soundsOn = prefs.getBoolean("soundsOn", true);
 					if (soundsOn) {
 						prefs.putBoolean("soundsOn", false);
@@ -359,10 +341,8 @@ public class SettingsScreen extends AbstractScreen {
 		table.row();
 
 		// Main menu button
-		Texture menuTex = new Texture("images/buttons/misc/btn_menu.png");
-		Texture menuTexDown = new Texture("images/buttons/misc/btn_menu_down.png");
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(menuTexDown));
+		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -372,21 +352,17 @@ public class SettingsScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagWidth)) {
-					super.touchUp(event, x, y, pointer, button);
 					game.setScreen(game.menuScreen);
 				}
 			}
 		});
 		table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4).spaceTop(50f);
-
 		table.setFillParent(true);
-		table.debug();
 		stage.addActor(table);
 	}
 	
 	public  void sleep(int time) {
-		// Sleep for a little so that clicking really fast
-		// doesn't cause the button to bug out
+		// Causes thread to sleep
 		try {
 		    Thread.sleep(time);
 		} catch(InterruptedException ex) {

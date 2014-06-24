@@ -2,32 +2,22 @@ package com.msquared.stairs.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.msquared.stairs.Stairs;
-import com.msquared.stairs.controller.FootController;
-import com.msquared.stairs.model.World;
 import com.msquared.stairs.profile.Profile;
 import com.msquared.stairs.utils.DefaultActorListener;
 import com.msquared.stairs.view.WorldRenderer;
@@ -38,21 +28,24 @@ public class GameOverScreen extends AbstractScreen{
 	Color winningColor = new Color(0, 255, 0, 1);
 	Color scoreColor = new Color(255, 0, 0, 1);
 	int difficulty;
-	Table table;
 	Preferences prefs;
+	Stage stageDispose;
+	Texture restartTex;
+	Texture restartTexDown;
+	
 	// Constructor to keep a reference to the main Game class
-	public GameOverScreen(final Stairs game, final int difficulty) {
+	// Also keeps a reference to the Stage from the GameScreen to dispose.
+	public GameOverScreen(final Stairs game, final int difficulty, Stage stageToDispose) {
 		super(game);
+		stageDispose = stageToDispose;
 		this.difficulty = difficulty;
-		spriteBatch = new SpriteBatch();
-		font = new BitmapFont();
 		prefs = Gdx.app.getPreferences("Preferences");
 		
 		stage.addListener(new InputListener() {
 	        @Override
 	    	public boolean keyDown(InputEvent event, int keycode) {
 	    		if (keycode == Keys.SPACE)
-	    			game.setScreen(new GameScreen(game, difficulty));
+	    			game.setScreen(new GameScreen(game, difficulty, stage));
 					return false;
 	    	}
 	    });
@@ -62,16 +55,14 @@ public class GameOverScreen extends AbstractScreen{
 	public void render(float delta) {
 		Gdx.gl.glClearColor(.02f, .02f, .02f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		stage.draw();
-        //Table.drawDebug(stage);
 	}
 	
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
 		// Don't show ads
-		game.myRequestHandler.showAds(false);
+		game.myRequestHandler.showAds(true);
 		
 		this.width = Gdx.graphics.getWidth();
 		this.height = Gdx.graphics.getHeight();
@@ -84,8 +75,6 @@ public class GameOverScreen extends AbstractScreen{
 		final Float imagHeight = imagHeightOrig;
 		Float imagPadding = 140f - (imagWidth - imagWidthOrig);
 		
-		Gdx.app.log(Stairs.LOG, "Height " + this.height + " Width " + this.width + " Imag height " + imagHeight + " Imag width " + imagWidth + " Imag padding " + imagPadding);
-		
 		table = super.getTable();
 		table.defaults().spaceBottom(20);
 		if (!game.htmlGame) {
@@ -95,8 +84,8 @@ public class GameOverScreen extends AbstractScreen{
 		}
 			
 		table.row();
-		Texture restartTex = new Texture("images/buttons/misc/btn_restart.png");
-		Texture restartTexDown = new Texture("images/buttons/misc/btn_restart_down.png");
+		restartTex = new Texture("images/buttons/misc/btn_restart.png");
+		restartTexDown = new Texture("images/buttons/misc/btn_restart_down.png");
 		TextureRegionDrawable restartUp = new TextureRegionDrawable(new TextureRegion(restartTex));
 		TextureRegionDrawable restartDown = new TextureRegionDrawable(new TextureRegion(restartTexDown));
 		ImageButtonStyle restartStyle = new ImageButtonStyle();
@@ -108,17 +97,14 @@ public class GameOverScreen extends AbstractScreen{
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagHeight)) {
-					super.touchUp(event, x, y, pointer, button);
-					game.setScreen(new GameScreen(game, difficulty));
+					game.setScreen(new GameScreen(game, difficulty, stage));
 				}
 			}
 		});
 		table.add(restartImagButton).size(imagWidth, imagHeight).align(Align.left).padLeft(imagPadding);;
 		
-		Texture menuTex = new Texture("images/buttons/misc/btn_menu.png");
-		Texture menuTexDown = new Texture("images/buttons/misc/btn_menu_down.png");
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(menuTexDown));
+		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -128,24 +114,21 @@ public class GameOverScreen extends AbstractScreen{
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					// Stop and dispose of the current music
 					game.musicManager.stop();
 					game.setScreen(game.menuScreen);
+					stage.dispose();
 				}
 			}
 		});
 		table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.right).padRight(imagPadding);
-		
         table.setFillParent(true);
-        table.debug();
         stage.addActor(table);
-        
 	}
 	
 	// Show score using highscores from profile
 	public void showScoreProfile(int difficulty) {
-		int levelNum = prefs.getInteger("mostRecent", game.EASY_LEVELS);
+		int levelNum = prefs.getInteger("mostRecent", Stairs.EASY_LEVELS);
 		boolean levels;
 		if (levelNum <= 4) {
 			levels = true;
@@ -156,7 +139,7 @@ public class GameOverScreen extends AbstractScreen{
 		String highScoresString = "";
 		int[] places = new int[3];
 		int place = 0;
-		if (difficulty == game.EASY_LEVELS || difficulty == game.EASY_CLASSIC) {
+		if (difficulty == Stairs.EASY_LEVELS || difficulty == Stairs.EASY_CLASSIC) {
 			if (levels) {
 				highScoresString = "Easy Levels";
 				place = profile.isEasyHighScore(score);
@@ -171,7 +154,7 @@ public class GameOverScreen extends AbstractScreen{
 				places[2] = 15;
 			}
 		}
-		else if (difficulty == game.MEDIUM_LEVELS || difficulty == game.MEDIUM_CLASSIC) {
+		else if (difficulty == Stairs.MEDIUM_LEVELS || difficulty == Stairs.MEDIUM_CLASSIC) {
 			if (levels) {
 				highScoresString = "Medium Levels";
 				place = profile.isMediumHighScore(score);
@@ -186,7 +169,7 @@ public class GameOverScreen extends AbstractScreen{
 				places[2] = 18;
 			}
 		}
-		else if (difficulty == game.HARD_LEVELS || difficulty == game.HARD_CLASSIC) {
+		else if (difficulty == Stairs.HARD_LEVELS || difficulty == Stairs.HARD_CLASSIC) {
 			if (levels) {
 				highScoresString = "Hard Levels";
 				place = profile.isHardHighScore(score);
@@ -200,7 +183,7 @@ public class GameOverScreen extends AbstractScreen{
 				places[1] = 20;
 				places[2] = 21;
 			}
-		} else if (difficulty == game.INSANE_LEVELS || difficulty == game.INSANE_CLASSIC){
+		} else if (difficulty == Stairs.INSANE_LEVELS || difficulty == Stairs.INSANE_CLASSIC){
 			if (levels) {
 				highScoresString = "Insane Levels";
 				place = profile.isInsaneHighScore(score);
@@ -360,8 +343,7 @@ public class GameOverScreen extends AbstractScreen{
 		}
 		
 		if (place != 0) {
-			Skin skin = getSkin();
-			LabelStyle labelStyle = skin.get("highscore", LabelStyle.class);
+			LabelStyle labelStyle = getSkin().get("highscore", LabelStyle.class);
 			Label scoreLabel = new Label("NEW HIGH SCORE!", labelStyle);
 			scoreLabel.setAlignment(Align.center, Align.center);
 			table.add(scoreLabel).colspan(2).center().expandX().fillX();
@@ -410,23 +392,16 @@ public class GameOverScreen extends AbstractScreen{
 
 	@Override
 	public void hide() {
-		super.hide();
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-		
+		if (stageDispose != null) {
+			stageDispose.dispose();
+		}
+		restartTex.dispose();
+		restartTexDown.dispose();
+		dispose();
 	}
 
 	@Override
 	public void dispose() {
-		Gdx.input.setInputProcessor(null);
+		super.dispose();
 	}
 }

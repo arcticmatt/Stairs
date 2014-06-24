@@ -5,9 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -19,14 +17,11 @@ import com.msquared.stairs.view.WorldRenderer;
 public class AbstractScreen implements Screen {
 
 	Stairs game;
-
 	protected float width, height;
-	protected BitmapFont font;
 	protected SpriteBatch spriteBatch;
 	protected Rectangle viewport;
 	protected Camera camera;
 	protected Skin skin;
-	protected TextureAtlas atlas;
 	protected Table table;
 	protected Stage stage;
 	protected OrthographicCamera cam;
@@ -35,13 +30,6 @@ public class AbstractScreen implements Screen {
 		this.game = game;
 		stage = new Stage(new StretchViewport(WorldRenderer.CAMERA_WIDTH, 
 				WorldRenderer.CAMERA_HEIGHT));
-	}
-
-	public BitmapFont getFont() {
-		if (font == null) {
-			font = new BitmapFont();
-		}
-		return font;
 	}
 
 	public SpriteBatch getBatch() {
@@ -57,14 +45,6 @@ public class AbstractScreen implements Screen {
 		camera.position.set(270f, 430f, 0);
 		camera.update();
 		return camera;
-	}
-
-	public TextureAtlas getAtlas() {
-		if (atlas == null) {
-			atlas = new TextureAtlas(
-					Gdx.files.internal("image-atlases/pages.atlas"));
-		}
-		return atlas;
 	}
 
 	protected Skin getSkin() {
@@ -116,35 +96,29 @@ public class AbstractScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
 		Gdx.input.setInputProcessor(null);
-		stage.clear();
-		
+		stage.clear();	
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		if (spriteBatch != null) {
 			spriteBatch.dispose();
+		}
+		if (skin != null) {
+			skin.dispose();
 		}
 	}
 

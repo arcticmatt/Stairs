@@ -23,7 +23,8 @@ public class MusicManager
     /**
      * The volume to be set on the music.
      */
-    private float volume = 1f;
+    @SuppressWarnings("unused")
+	private float volume = 1f;
 
     /**
      * Whether the music is enabled.

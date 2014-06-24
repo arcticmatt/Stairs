@@ -5,9 +5,7 @@ import static java.util.Arrays.asList;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.msquared.stairs.Stairs;
-import com.msquared.stairs.model.Foot;
 import com.msquared.stairs.model.Stair;
 import com.msquared.stairs.model.World;
 

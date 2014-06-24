@@ -35,8 +35,8 @@ public class Foot {
 		this.width = footSize;
 		this.left = isLeftFoot;
 
-		this.footGravity = -400;
-		this.jumpVelo = 500;
+		Foot.footGravity = -400;
+		Foot.jumpVelo = 500;
 		color = new Color(0, 1, 0, 1);
 	}
 

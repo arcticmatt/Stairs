@@ -2,7 +2,6 @@ package com.msquared.stairs.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -16,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.controller.FootController;
 import com.msquared.stairs.controller.StairController;
@@ -26,7 +24,6 @@ import com.msquared.stairs.controller.StairControllerInsane;
 import com.msquared.stairs.model.Stair;
 import com.msquared.stairs.model.World;
 import com.msquared.stairs.utils.DefaultActorListener;
-import com.msquared.stairs.utils.MusicManager;
 import com.msquared.stairs.view.WorldRenderer;
 
 public class GameScreen extends AbstractScreen implements Screen {
@@ -37,7 +34,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 	private StairController stairsController;
 	boolean leftPressed = false;
 	boolean rightPressed = false;
-	private int width, height;
 	public static final String TRIP = "You tripped on the stairs!";
 	public static final String LEFT_FELL = "Your left foot fell off the stairs!";
 	public static final String RIGHT_FELL = "Your right foot fell off the stairs!";
@@ -56,15 +52,13 @@ public class GameScreen extends AbstractScreen implements Screen {
 	public static final String MUSIC_MEDIUM_ALT = "sounds/stairs_alt_medium.mp3";
 	public static final String MUSIC_HARD_ALT = "sounds/stairs_alt_hard.mp3";
 	public static final String MUSIC_INSANE_ALT = "sounds/stairs_alt_insane.mp3";
-	private long touchTime;
-	private boolean touched;
-	private final long MAX_TOUCH_TIME = 400l;
 	public static final int GAME_OVER_TIME = 1000;
 	Music music;
 	public int screenWidth;
 	public int screenHeight;
 	Preferences prefs;
-
+	Stage stageDispose;
+	Texture pauseTex;
 
 	int prevScore;
 	int score;
@@ -72,10 +66,13 @@ public class GameScreen extends AbstractScreen implements Screen {
 	Label scoreLabel;
 	int difficulty;
 
-	// Constructor to keep a reference to the main Game class
-	public GameScreen(Stairs game, int diff) {
+	// Constructor to keep a reference to the main Game class.
+	// Also keeps a reference to the Stage from the GameOverScreen to dispose.
+	public GameScreen(Stairs game, int diff, Stage stageToDispose) {
 		super(game);
-
+		
+		// Initialize Stair vars
+		stageDispose = stageToDispose;
 		Stair.gameOver = false;
 		Stair.movingLeft = false;
 		Stair.movingRight = false;
@@ -86,10 +83,10 @@ public class GameScreen extends AbstractScreen implements Screen {
 		difficulty = diff;
 		prefs = Gdx.app.getPreferences("Preferences");
 
+		// Initialize world, renderer, controllers
 		world = new World();
 		renderer = new WorldRenderer(world);
-		
-		world.difficulty = difficulty;
+		World.difficulty = difficulty;
 		switch (difficulty % 4) {
 		case MenuScreen.EASY:
 			stairsController = new StairControllerEasy(world, true);
@@ -105,10 +102,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 			break;
 		}
 		world.createDemoWorld();
-
-		
 		feetController = new FootController(world);
-
 		prevScore = 0;
 
 		/* Set up score label */
@@ -116,14 +110,11 @@ public class GameScreen extends AbstractScreen implements Screen {
 		scoreLabel = new Label(scoreString, getSkin(), "mscore");
 		float labelHeight = scoreLabel.getTextBounds().height;
 		float xPos = 12;
-		float yPos;
-		if (true) {
-			yPos = WorldRenderer.CAMERA_HEIGHT - 18;
-		} else {
-			yPos = WorldRenderer.CAMERA_HEIGHT - 38;
-		}
+		float yPos = WorldRenderer.CAMERA_HEIGHT - 21;
 		scoreLabel.setPosition(xPos, yPos - labelHeight);
 		stage.addActor(scoreLabel);
+		
+		// Add controls to stage
 		stage.addListener(new InputListener() {
 	        public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 	    		if (x < 540 / 2 && !rightPressed && y < (860 - 860/9)) {
@@ -179,9 +170,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 	    	}
 	        
 	    });
-
-		touchTime = 0;
-		touched = false;
 	}
 
 	@Override
@@ -191,14 +179,11 @@ public class GameScreen extends AbstractScreen implements Screen {
 				Gdx.input.setInputProcessor(null);
 				if (System.currentTimeMillis() - world.gameOverTime > GAME_OVER_TIME) {
 					GameOverScreen gameOverScreen = new GameOverScreen(game,
-							difficulty);
+							difficulty, stage);
 					gameOverScreen.setScore(world.score);
 					game.setScreen(gameOverScreen);
+					renderer.off = true;
 				}
-			}
-
-			if (delta > .020f && !world.gameOver) {
-				Gdx.app.log(Stairs.LOG, "Delta time: " + delta);
 			}
 
 			Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -216,6 +201,8 @@ public class GameScreen extends AbstractScreen implements Screen {
 				renderGameOver();
 			}
 		} else {
+			// If game is paused, have to make sure the stairs controller
+			// doesn't spawn the next stair right on top of the current one
 			long change = (long) (delta * 1000);
 			stairsController.levelChangeTime += change;
 			stairsController.roundChangeTime += change;
@@ -224,7 +211,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 			stage.draw();
 			renderer.render();
-			
 		}
 	}
 
@@ -250,10 +236,9 @@ public class GameScreen extends AbstractScreen implements Screen {
 				|| gameOverType == FootController.SKIPPED_STEP_RIGHT) {
 			gameOverText = SKIP;
 		}
-		// gameOverText = SKIP;
 
 		Table table = new Table(getSkin());
-		Label gameOverLabel = new Label(gameOverText, getSkin());
+		Label gameOverLabel = new Label(gameOverText, getSkin(), "mscore");
 		gameOverLabel.setWrap(true);
 		gameOverLabel.setAlignment(Align.center, Align.center);
 		gameOverLabel.setColor(new Color(255, 0, 102, 1));
@@ -267,38 +252,30 @@ public class GameScreen extends AbstractScreen implements Screen {
 		float xPos = (WorldRenderer.CAMERA_WIDTH - labelWidth) / 2;
 		float yPos = (WorldRenderer.CAMERA_HEIGHT - labelHeight) / 2;
 		table.setPosition(xPos + labelWidth / 2, yPos + labelHeight / 2);
-		// table.debug();
 		stage.addActor(table);
 		stage.draw();
-		// Table.drawDebug(stage);
 		table.clearChildren();
 	}
 
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		
 		// NO ADS!
 		game.myRequestHandler.showAds(false);
 		
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 		
-		Texture levelsTex;
+		// Pause button/kill button
 		if (!prefs.getBoolean("invincOn", false)) {
-			levelsTex = new Texture("images/buttons/misc/pause1.png");
+			pauseTex = new Texture("images/buttons/misc/pause1.png");
 		} else {
-			levelsTex = new Texture("images/buttons/misc/btn_stop.png");
+			pauseTex = new Texture("images/buttons/misc/btn_stop.png");
 		}
-		Image pauseButton = new Image(levelsTex);
+		Image pauseButton = new Image(pauseTex);
 		float labelHeight = pauseButton.getHeight();
 		float xPos = 485;
-		float yPos;
-		if (true) {
-			yPos = WorldRenderer.CAMERA_HEIGHT - 14;
-		} else {
-			yPos = WorldRenderer.CAMERA_HEIGHT - 38;
-		}
+		float yPos = WorldRenderer.CAMERA_HEIGHT - 14;
 		pauseButton.setPosition(xPos, yPos - labelHeight);
 		pauseButton.addListener(new DefaultActorListener() {
 			@Override
@@ -306,10 +283,9 @@ public class GameScreen extends AbstractScreen implements Screen {
 					int pointer, int button) {
 				if (!prefs.getBoolean("invincOn", false)) {
 					game.paused = !game.paused;
-					Gdx.app.log(Stairs.LOG, "PAUSE");
 				} else {
 					GameOverScreen gameOverScreen = new GameOverScreen(game,
-							difficulty);
+							difficulty, stage);
 					gameOverScreen.setScore(world.score);
 					game.setScreen(gameOverScreen);
 				}
@@ -317,12 +293,10 @@ public class GameScreen extends AbstractScreen implements Screen {
 		});
 		stage.addActor(pauseButton);
 		
-		Gdx.app.log(Stairs.LOG, "Music on " + prefs.getBoolean("musicOn", true));
 		// Play the right music
 		if (prefs.getBoolean("musicOn", true)) {
 			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
 				if (prefs.getBoolean("songFirst", true)) {
-					Gdx.app.log(Stairs.LOG, "playing first song");
 					game.musicManager.play(MUSIC_EASY, true);
 				} else if (!prefs.getBoolean("songFirst", false) ) {
 					game.musicManager.play(MUSIC_EASY_ALT, false);
@@ -340,39 +314,27 @@ public class GameScreen extends AbstractScreen implements Screen {
 					game.musicManager.play(MUSIC_HARD_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.INSANE || difficulty == MenuScreen.INSANE + 4) {
-				Gdx.app.log(Stairs.LOG, "Insane level");
 				if (prefs.getBoolean("songFirst", true) ) {
-					Gdx.app.log(Stairs.LOG, "Play main song");
 					game.musicManager.play(MUSIC_INSANE, true);
 				} else if (!prefs.getBoolean("songFirst", false)) {
-					Gdx.app.log(Stairs.LOG, "Play alt song");
 					game.musicManager.play(MUSIC_INSANE_ALT, false);
 				}
 			}
 		}
 	}
-
+	
 	@Override
 	public void hide() {
-		super.hide();
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
+		if (stageDispose != null) {
+			stageDispose.dispose();
+		}
+		dispose();
 	}
 
 	@Override
 	public void dispose() {
-		Gdx.input.setInputProcessor(null);
+		super.dispose();
+		renderer.dispose();
+		pauseTex.dispose();
 	}
-
-
 }

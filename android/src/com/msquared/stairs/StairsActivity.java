@@ -86,7 +86,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 		adParams = 
 				new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
 						RelativeLayout.LayoutParams.WRAP_CONTENT);
-		adParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		
 		layout.addView(adView, adParams);

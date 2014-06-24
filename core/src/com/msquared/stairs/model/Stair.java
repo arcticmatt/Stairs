@@ -1,9 +1,6 @@
 package com.msquared.stairs.model;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.msquared.stairs.Stairs;
-import com.msquared.stairs.screens.MenuScreen;
 import com.msquared.stairs.view.WorldRenderer;
 
 public class Stair {

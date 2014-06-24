@@ -8,8 +8,6 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Pool;
 import com.msquared.stairs.Stairs;
-import com.msquared.stairs.screens.GameScreen;
-import com.msquared.stairs.screens.MenuScreen;
 
 public class World {
 	
@@ -97,10 +95,6 @@ public class World {
 		stairs.add(stair);
 		numStairs++;
 		lastStair = stair;
-		if (stairs.getFirst().yPos <= 550) {
-			String blah = "l";
-			int five = blah.length();
-		}
 	}
 	
 	
@@ -132,6 +126,7 @@ public class World {
 		final Preferences prefs = Gdx.app.getPreferences("Preferences");
 		boolean earlyOn = prefs.getBoolean("earlyOn", true);
 		if (earlyOn) {
+			Gdx.app.log(Stairs.LOG, "earlyOn");
 			if (difficulty == Stairs.EASY_LEVELS) {
 				addStair(187, 510, 1000 / 6, 5, white);
 				addStair(187, 620, 1000 / 6, 5, white);
@@ -139,7 +134,7 @@ public class World {
 				addStair(187, 734, 1000 / 6, 4, white);
 				addStair(187, 784, 1000 / 6, 2, white);
 				addStair(187, 834, 1000 / 6, 2, white);
-				addStair(187, 870, 1000 / 6, 2, white);
+				addStair(187, 880, 1000 / 6, 2, white);
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
@@ -154,15 +149,6 @@ public class World {
 				addInsaneClassic();
 			} else if (difficulty == Stairs.HARD_CLASSIC) {
 				addHardClassic();
-			} else if (false) {
-				// addStair(210, 100, 120, 6, white);
-				addStair(218, 684, 105, 5, white);
-				addStair(225, 709, 90, 4, white);
-				addStair(228, 734, 83, 4, white);
-				addStair(228, 759, 83, 3, white);
-				addStair(228, 784, 83, 2, white);
-				addStair(228, 809, 83, 2, white);
-				addStair(228, 834, 83, 2, white);
 			}
 		}
 

@@ -19,11 +19,7 @@ public class WorldRenderer {
 	private OrthographicCamera cam;
 	Foot leftFoot;
 	Foot rightFoot;
-
-	private int width;
-	private int height;
-	private float ppuX; // pixels per unit on the X axis
-	private float ppuY; // pixels per unit on the Y axis
+	public boolean off = false;
 
 	SpriteBatch batch;
 	Texture tex;
@@ -46,35 +42,42 @@ public class WorldRenderer {
 	}
 
 	public void render() {
-		// render blocks
-		batch.begin();
-		batch.setColor(white);
-		float x1, y1;
-		for (Stair stair : world.stairs) {
-			batch.setColor(stair.color);
-			x1 = stair.xPos;
-			y1 = stair.yPos;
-			batch.draw(rectTex, x1, y1, stair.width, stair.height);
+		if (!off) {
+			// render blocks
+			batch.begin();
+			batch.setColor(white);
+			float x1, y1;
+			for (Stair stair : world.stairs) {
+				batch.setColor(stair.color);
+				x1 = stair.xPos;
+				y1 = stair.yPos;
+				batch.draw(rectTex, x1, y1, stair.width, stair.height);
+			}
+			// render feet
+			leftFoot = world.leftFoot;
+			batch.setColor(leftFoot.color);
+			float xLeft = leftFoot.xPos;
+			float yLeft = leftFoot.yPos;
+			batch.draw(rectTex, xLeft, yLeft, leftFoot.width, leftFoot.height);
+	
+			rightFoot = world.rightFoot;
+			batch.setColor(rightFoot.color);
+			float xRight = rightFoot.xPos;
+			float yRight = rightFoot.yPos;
+			batch.draw(rectTex, xRight, yRight, rightFoot.width, rightFoot.height);
+			batch.end();
 		}
-		// render feet
-		leftFoot = world.leftFoot;
-		batch.setColor(leftFoot.color);
-		float xLeft = leftFoot.xPos;
-		float yLeft = leftFoot.yPos;
-		batch.draw(rectTex, xLeft, yLeft, leftFoot.width, leftFoot.height);
-
-		rightFoot = world.rightFoot;
-		batch.setColor(rightFoot.color);
-		float xRight = rightFoot.xPos;
-		float yRight = rightFoot.yPos;
-		batch.draw(rectTex, xRight, yRight, rightFoot.width, rightFoot.height);
-		batch.end();
 	}
 
 	public void setSize(int w, int h) {
-		this.width = w;
-		this.height = h;
-		ppuX = (float) width / CAMERA_WIDTH;
-		ppuY = (float) height / CAMERA_HEIGHT;
+	}
+	
+	public void dispose() {
+		if (batch != null) {
+			batch.dispose();
+		}
+		if (tex != null) {
+			tex.dispose();
+		}
 	}
 }

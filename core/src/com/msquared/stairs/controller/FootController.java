@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Pool;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.model.Foot;
 import com.msquared.stairs.model.Foot.State;
@@ -14,8 +12,6 @@ import com.msquared.stairs.model.World;
 import com.msquared.stairs.screens.GameScreen;
 
 public class FootController {
-	private static long LONG_JUMP_PRESS = 400l;
-
 	private static final int ALIVE = 0;
 	public static final int TRIPPED = 1;
 	public static final int FELL_OFF_LEFT = 2;
@@ -25,11 +21,6 @@ public class FootController {
 	public static final int SKIPPED_STEP_LEFT = 6;
 	public static final int SKIPPED_STEP_RIGHT = 7;
 
-	private static CharSequence tripped = "You tripped on the stairs!";
-	private static CharSequence fellOff = "You fell off of the stairs!";
-	private static CharSequence steppedOff = "You stepped off of the stairs!";
-	private static CharSequence skippedStep = "You skipped a step!";
-	
 	public static boolean jump_left = false;
 	public static boolean jump_right = false;
 	public static boolean dead_flag_left;
@@ -42,7 +33,6 @@ public class FootController {
 	private World world;
 	private Foot leftFoot;
 	private Foot rightFoot;
-	private boolean jumpingPressed;
 	float secondStairTop = 0;
 	Stair secondStair = null;
 	Stair firstStair = null;
@@ -51,15 +41,6 @@ public class FootController {
 	Preferences prefs;
 	Sound stepSound;
 	boolean invincOn;
-
-	// This is the rectangle pool used in collision detection.
-	// Good to avoid instantiation each frame
-	private Pool<Rectangle> rectPool = new Pool<Rectangle>() {
-		@Override
-		protected Rectangle newObject() {
-			return new Rectangle();
-		}
-	};
 
 	public FootController(World world) {
 		this.world = world;
@@ -107,8 +88,7 @@ public class FootController {
 			leftFoot.state = State.IDLE;
 			leftFoot.grounded = true;
 			if (prefs.getBoolean("soundsOn", true)) {
-				long id = stepSound.play(1f);
-				//stepSound.setVolume(id, 1f);
+				stepSound.play(1f);
 			}
 		}
 		if (rightFoot.yPos < 0 && !world.gameOver) {
@@ -117,8 +97,7 @@ public class FootController {
 			rightFoot.state = State.IDLE;
 			rightFoot.grounded = true;
 			if (prefs.getBoolean("soundsOn", true)) {
-				long id = stepSound.play(1f);
-				//stepSound.setVolume(id, 1f);
+				stepSound.play(1f);
 			}
 		}
 

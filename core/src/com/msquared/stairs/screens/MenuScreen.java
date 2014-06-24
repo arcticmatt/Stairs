@@ -3,35 +3,25 @@ package com.msquared.stairs.screens;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Scaling;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.utils.DefaultActorListener;
 import com.msquared.stairs.view.WorldRenderer;
 
 public class MenuScreen extends AbstractScreen implements Screen {
-	private int score = 0;
 	CharSequence gameScore;
 	private static final float FRAME_DURATION = 0.05f;
 	private Animation stairsAnimation;
@@ -49,6 +39,10 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	Preferences prefs;
 	float heightRatio;
 	float widthRatio;
+	float aniWidth;
+	float aniHeight;
+	float aniXPos;
+	float aniYPos;
 	
 	// Textures
 	Texture levelsTex;
@@ -64,49 +58,39 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	TextureAtlas atlas;
 	
 	SpriteBatch spriteBatch;
+	boolean loaded;
 	
 	// Constructor to keep a reference to the main Game class
 	public MenuScreen(Stairs game) {
 		super(game);
-		font = getFont();
 		stateTime = 0f;
-		prefs = Gdx.app.getPreferences("Preferences");
 		heightRatio = 1;
 		widthRatio = 1;
+		loaded = false;
+		levelsTex = new Texture("images/buttons/levels/btn_levels.png");
+		levelsTexDown = new Texture(
+				"images/buttons/levels/btn_levels_down.png");
+		classicTex = new Texture(
+				"images/buttons/classic/btn_classic.png");
+		classicTexDown = new Texture(
+				"images/buttons/classic/btn_classic_down.png");
+		highScoresTex = new Texture(
+				"images/buttons/misc/btn_highscores.png");
+		highScoresTexDown = new Texture(
+				"images/buttons/misc/btn_highscores_down.png");
+		settingsTex = new Texture(
+				"images/buttons/misc/btn_settings.png");
+		settingsTexDown = new Texture(
+				"images/buttons/misc/btn_settings_down.png");
 	}
 	
 	private void loadTextures() {
-		atlas = game.assetManager.get("images/anis/menu_ani2/menu_ani.pack", TextureAtlas.class);
-		//Gdx.app.log(Stairs.LOG, "texture width: " + currentFrame.getRegionWidth() + " texture height: " + currentFrame.getRegionHeight());
-		TextureRegion[] frames = new TextureRegion[96];
-		for (int i = 1; i <= 96; i++) {
-			frames[i-1] = atlas.findRegion("ani" + i);
-			//Gdx.app.log(Stairs.LOG, "ani " + i + " retrieved");
-		}
-		stairsAnimation = new Animation(FRAME_DURATION, frames);
-	}
-	
-	private void loadTextures2() {
-		atlas = new TextureAtlas(Gdx.files.internal("images/anis/stairsani/textures.pack"));
-		TextureRegion[] frames = new TextureRegion[35];
-		for (int i = 0; i < 35; i++) {
-			frames[i] = atlas.findRegion("stairs_ani" + i);
-		}
-		stairsAnimation = new Animation(FRAME_DURATION, frames);
-	}
-	
-	private void loadTextures3() {
-		atlas = new TextureAtlas(Gdx.files.internal("images/anis/old_ani/old_ani.pack"));
-		TextureRegion[] frames = new TextureRegion[35];
-		for (int i = 0; i < 35; i++) {
-			frames[i] = atlas.findRegion("stairs_ani" + i);
-		}
-		stairsAnimation = new Animation(FRAME_DURATION, frames);
-	}
-	
-	private void loadTextures4() {
 		int num = 96;
-		atlas = game.assetManager.get("images/anis/menu_ani/menu_ani.pack", TextureAtlas.class);
+		if (!game.iphoneGame) { 
+			atlas = game.assetManager.get("images/anis/menu_ani/menu_ani.pack", TextureAtlas.class);
+		} else {
+			atlas = new TextureAtlas(Gdx.files.internal("images/anis/menu_ani/menu_ani.pack"));
+		}
 		TextureRegion[] frames = new TextureRegion[num];
 		for (int i = 1; i <= num; i++) {
 			frames[i-1] = atlas.findRegion("ani" + i);
@@ -116,21 +100,13 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
-		super.render(delta);
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		stateTime += delta;
 		currentFrame = stairsAnimation.getKeyFrame(stateTime, true);
-		//currentFrame = atlas.findRegion("ani1");
-		float width = 361.5f * (this.height / WorldRenderer.CAMERA_HEIGHT)
-				* (WorldRenderer.CAMERA_WIDTH / this.width);
-		float height = 482f;
-		float xPos = (WorldRenderer.CAMERA_WIDTH - width) / 2;
-		float yPos = 410;
-		//Gdx.app.log(Stairs.LOG, "xPos: " + xPos + " yPos: " + yPos);
 		spriteBatch.begin();
-		spriteBatch.draw(currentFrame, xPos, yPos, width, height);
+		spriteBatch.draw(currentFrame, aniXPos, aniYPos, aniWidth, aniHeight);
      	spriteBatch.end();
 		stage.draw();
 	}
@@ -138,21 +114,30 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
+		prefs = Gdx.app.getPreferences("Preferences");
 		
-		loadTextures4();
+		// Show ads
+		game.myRequestHandler.showAds(true);
+		
+		if (!loaded) {
+			loadTextures();
+			loaded = true;
+		}
 		camera = getCamera();
 		spriteBatch = new SpriteBatch();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		spriteBatch.disableBlending();
 		
-		
 		table = new Table(getSkin());
 
 		this.width = Gdx.graphics.getWidth();
 		this.height = Gdx.graphics.getHeight();
-		
 		heightRatio = this.height / WorldRenderer.CAMERA_HEIGHT;
 		widthRatio = this.width / WorldRenderer.CAMERA_WIDTH;
+		aniWidth = 361.5f * heightRatio * (1 / widthRatio);
+		aniHeight = 482f;
+		aniXPos = (WorldRenderer.CAMERA_WIDTH - aniWidth) / 2;
+		aniYPos = 410;
 
 		table.setFillParent(true);
 		table.setY(-150);
@@ -164,21 +149,15 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
 		final Float imagHeight = imagHeightOrig;
 		Float imagPadding = 180f - (imagWidth - imagWidthOrig);
-		
-		Gdx.app.log(Stairs.LOG, "Height ratio: " + heightRatio + " Width ratio: " + widthRatio);
 
 		final Float buttonWidth = 400f * heightRatio * (1 / widthRatio);
 		final Float buttonHeight = 71f;
 		Float buttonSpacing = 30f;
 
-		// Texture.setEnforcePotImages(false);
 		/*
 		 * Levels buttons
 		 */
 		table.row();
-		levelsTex = new Texture("images/buttons/levels/btn_levels.png");
-		levelsTexDown = new Texture(
-				"images/buttons/levels/btn_levels_down.png");
 		TextureRegionDrawable levelsTR = new TextureRegionDrawable(
 				new TextureRegion(levelsTex));
 		TextureRegionDrawable levelsTRDown = new TextureRegionDrawable(
@@ -192,8 +171,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					super.touchUp(event, x, y, pointer, button);
-					dispose();
 					game.setScreen(game.levelsScreen);
 				}
 			}
@@ -203,10 +180,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 				.expandX().fillX();
 		table.row();
 
-		classicTex = new Texture(
-				"images/buttons/classic/btn_classic.png");
-		classicTexDown = new Texture(
-				"images/buttons/classic/btn_classic_down.png");
 		TextureRegionDrawable classicTR = new TextureRegionDrawable(
 				new TextureRegion(classicTex));
 		TextureRegionDrawable classicTRDown = new TextureRegionDrawable(
@@ -220,10 +193,8 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					game.setScreen(game.classicScreen);
 				}
-				Gdx.app.log(Stairs.LOG, "x coord: " + x + " y coord: " + y);
 			}
 		});
 		table.add(classicImagButton).size(buttonWidth, buttonHeight).uniform()
@@ -248,9 +219,8 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					int difficulty = prefs.getInteger("mostRecent", 1);
-					gameScreen = new GameScreen(game, difficulty);
+					gameScreen = new GameScreen(game, difficulty, null);
 					game.setScreen(gameScreen);
 				}
 			}
@@ -262,10 +232,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		/*
 		 * Misc buttons
 		 */
-		highScoresTex = new Texture(
-				"images/buttons/misc/btn_highscores.png");
-		highScoresTexDown = new Texture(
-				"images/buttons/misc/btn_highscores_down.png");
 		TextureRegionDrawable highScoresUp = new TextureRegionDrawable(
 				new TextureRegion(highScoresTex));
 		TextureRegionDrawable highScoresDown = new TextureRegionDrawable(
@@ -279,19 +245,13 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagHeight)) {
-					super.touchUp(event, x, y, pointer, button);
-					HighScoresScreen scoresScreen = new HighScoresScreen(game);
-					game.setScreen(scoresScreen);
+					game.setScreen(game.highScoresScreen);
 				}
 			}
 		});
 		table.add(highScoresImagButton).size(imagWidth, imagHeight)
 				.align(Align.left).padLeft(imagPadding);
 
-		settingsTex = new Texture(
-				"images/buttons/misc/btn_settings.png");
-		settingsTexDown = new Texture(
-				"images/buttons/misc/btn_settings_down.png");
 		TextureRegionDrawable settingsUp = new TextureRegionDrawable(
 				new TextureRegion(settingsTex));
 		TextureRegionDrawable settingsDown = new TextureRegionDrawable(
@@ -305,70 +265,62 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagHeight)) {
-					super.touchUp(event, x, y, pointer, button);
 					game.setScreen(game.settingsScreen);
 				}
 			}
 		});
 		table.add(settingsImagButton).size(imagWidth, imagHeight)
 				.align(Align.right).padRight(imagPadding);
-
-		Gdx.app.log(Stairs.LOG, "Imag width " + imagWidth + " Imag height "
-				+ imagHeight);
-
 		stage.addActor(table);
-		// Show ads
-		game.myRequestHandler.showAds(false);
-
 	}
 	
 	public ArrayList<String> getMostRecentLevel() {
 		ArrayList<String> mostRecentLevels = new ArrayList<String>();
 		String mostRecentUp;
 		String mostRecentDown;
-		if (prefs.getInteger("mostRecent", 1) == game.EASY_LEVELS) {
+		if (prefs.getInteger("mostRecent", 1) == Stairs.EASY_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_easy_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_easy_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.MEDIUM_LEVELS) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.MEDIUM_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_medium_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_medium_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.HARD_LEVELS) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.HARD_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_hard_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_hard_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.INSANE_LEVELS) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.INSANE_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_insane_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_insane_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.EASY_CLASSIC) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.EASY_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_easy_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_easy_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.MEDIUM_CLASSIC) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.MEDIUM_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_medium_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_medium_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.HARD_CLASSIC) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.HARD_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_hard_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_hard_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == game.INSANE_CLASSIC) {
+		} else if (prefs.getInteger("mostRecent", 1) == Stairs.INSANE_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_insane_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_insane_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
@@ -377,44 +329,11 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		}
 		return mostRecentLevels;
 	}
-	
-	public void setScore(int gameScore) {
-		score = gameScore;
-	}
 
 	@Override
 	public void hide() {
 		super.hide();
-		/*levelsTex.dispose();
-		levelsTexDown.dispose();
-		classicTex.dispose();
-		classicTexDown.dispose();
 		mostRecentTex.dispose();
 		mostRecentTexDown.dispose();
-		highScoresTex.dispose();
-		highScoresTexDown.dispose();
-		settingsTex.dispose();
-		settingsTexDown.dispose();
-		atlas.dispose();
-		stage.dispose();*/
 	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dispose() {
-		Gdx.input.setInputProcessor(null);
-	}
-	
-
 }

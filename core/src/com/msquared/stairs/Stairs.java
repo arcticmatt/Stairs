@@ -1,13 +1,11 @@
 package com.msquared.stairs;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Texture;
 import com.msquared.stairs.profile.ProfileManager;
 import com.msquared.stairs.screens.ClassicScreen;
-import com.msquared.stairs.screens.GameOverScreen;
-import com.msquared.stairs.screens.GameScreen;
 import com.msquared.stairs.screens.HighScoresScreen;
 import com.msquared.stairs.screens.LevelsScreen;
 import com.msquared.stairs.screens.MenuScreen;
@@ -15,7 +13,6 @@ import com.msquared.stairs.screens.SettingsScreen;
 import com.msquared.stairs.screens.SplashScreen;
 import com.msquared.stairs.utils.IActivityRequestHandler;
 import com.msquared.stairs.utils.MusicManager;
-import com.sun.net.ssl.internal.www.protocol.https.Handler;
 
 public class Stairs extends Game {
 	
@@ -24,10 +21,6 @@ public class Stairs extends Game {
 	public SplashScreen splashScreen;
 	public MenuScreen menuScreen;
 	public HighScoresScreen highScoresScreen;
-	public GameScreen easyScreen;
-	public GameScreen mediumScreen;
-	public GameScreen hardScreen;
-	public GameScreen insaneScreen;
 	public SettingsScreen settingsScreen;
 	public ClassicScreen classicScreen;
 	public LevelsScreen levelsScreen;
@@ -51,6 +44,8 @@ public class Stairs extends Game {
 	public static final int INSANE_CLASSIC = 8;
 	public boolean paused;
 	public IActivityRequestHandler myRequestHandler;
+	public Texture menuTex;
+	public Texture menuTexDown;
 	
 	public AssetManager assetManager;
 	private ProfileManager profileManager;
@@ -72,13 +67,20 @@ public class Stairs extends Game {
 		levelsScreen = new LevelsScreen(this);
 		settingsScreen = new SettingsScreen(this);
 		musicManager = new MusicManager();
+		menuTex = new Texture("images/buttons/misc/btn_menu.png");
+		menuTexDown = new Texture(
+				"images/buttons/misc/btn_menu_down.png");
 		
 		if (!htmlGame) {
 			profileManager = new ProfileManager();
 			profileManager.retrieveProfile();
 		}
 		
-		setScreen(splashScreen);
+		if (!iphoneGame) {
+			setScreen(splashScreen);
+		} else {
+			setScreen(menuScreen);
+		}
 	}
 	
 	public ProfileManager getProfileManager() {

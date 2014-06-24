@@ -1,42 +1,28 @@
 package com.msquared.stairs.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.msquared.stairs.Stairs;
-import com.msquared.stairs.model.World;
 import com.msquared.stairs.profile.Profile;
 import com.msquared.stairs.utils.DefaultActorListener;
 import com.msquared.stairs.view.WorldRenderer;
 
 public class HighScoresScreen extends AbstractScreen {
-	private int score = 0;
 	CharSequence gameScore;
 	Color winningColor = new Color(0, 255, 0, 1);
 	Color scoreColor = new Color(255, 0, 0, 1);
-	int difficulty;
 	Table table;
 	Profile profile;
 	LabelStyle scoreStyle;
@@ -44,9 +30,6 @@ public class HighScoresScreen extends AbstractScreen {
 	// Constructor to keep a reference to the main Game class
 	public HighScoresScreen(Stairs game) {
 		super(game);
-		this.difficulty = difficulty;
-		spriteBatch = new SpriteBatch();
-		font = new BitmapFont();
 		skin = getSkin();
 		scoreStyle = skin.get("score", LabelStyle.class);
 	}
@@ -55,9 +38,7 @@ public class HighScoresScreen extends AbstractScreen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(.02f, .02f, .02f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		stage.draw();
-        //Table.drawDebug(stage);
 	}
 
 	@Override
@@ -76,19 +57,17 @@ public class HighScoresScreen extends AbstractScreen {
 		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
 		final Float imagHeight = imagHeightOrig;
 		
-		table = super.getTable();
+		table = new Table(getSkin());
 		table.defaults().spaceBottom(2f);
 		if (!game.htmlGame) {
-			showScoreProfile(difficulty);
+			showScoreProfile();
 		} else {
-			showScorePrefs(difficulty);
+			showScorePrefs();
 		}
 		
 		table.row();
-		Texture menuTex = new Texture("images/buttons/misc/btn_menu.png");
-		Texture menuTexDown = new Texture("images/buttons/misc/btn_menu_down.png");
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(menuTexDown));
+		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -98,7 +77,6 @@ public class HighScoresScreen extends AbstractScreen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagWidth)) {
-					super.touchUp(event, x, y, pointer, button);
 					game.setScreen(game.menuScreen);
 				}
 			}
@@ -106,12 +84,10 @@ public class HighScoresScreen extends AbstractScreen {
 		table.add(menuImagButton).colspan(2).
 			spaceTop(5f).size(imagWidth, imagHeight).align(Align.center).expandX().fillX();
         table.setFillParent(true);
-        table.debugWidget();
-        //table.debug();
         stage.addActor(table);
 	}
 	
-	public void showScoreProfile(int difficulty) {
+	public void showScoreProfile() {
 		float scorePaddingLeft = 55f;
 		float titlePadding = 20f;
 		float scorePaddingRight = 125f;
@@ -217,7 +193,7 @@ public class HighScoresScreen extends AbstractScreen {
 		table.add(thirdInsaneClassicLabel).align(Align.left).padLeft(scorePaddingRight).spaceBottom(0f);
 	}
 	
-	public void showScorePrefs(int difficulty) {
+	public void showScorePrefs() {
 		Preferences prefs = Gdx.app.getPreferences("Preferences");
 		Skin skin = getSkin();
 		LabelStyle labelStyle = skin.get("highscore", LabelStyle.class);
@@ -323,33 +299,4 @@ public class HighScoresScreen extends AbstractScreen {
 		label.setAlignment(Align.center, Align.center);
 		return label;
 	}
-	
-	public void setjdGScore(int gameScore) {
-		score = gameScore;
-	}
-
-	@Override
-	public void hide() {
-		super.hide();
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dispose() {
-		Gdx.input.setInputProcessor(null);
-	}
-	
-
-
 }
