@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -357,6 +358,17 @@ public class SettingsScreen extends AbstractScreen {
 			}
 		});
 		table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4).spaceTop(50f);
+		
+		if (prefs.getBoolean("showTutorialAdvice", true)) {
+			Label tutorialAdvice = new Label("To watch a tutorial, touch the animation on the main menu",
+					getSkin(), "mscore");
+			table.row();
+			tutorialAdvice.setAlignment(Align.center, Align.center);
+			tutorialAdvice.setWrap(true);
+			table.add(tutorialAdvice).colspan(4).center().expandX().fillX();
+			prefs.putBoolean("showTutorialAdvice", false);
+			prefs.flush();
+		}
 		table.setFillParent(true);
 		stage.addActor(table);
 	}

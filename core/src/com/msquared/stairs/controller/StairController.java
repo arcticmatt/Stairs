@@ -160,7 +160,7 @@ public class StairController {
 	protected int[] randMinColors = { 220, 170, 130, 90, 0, 0 };
 
 	boolean levels;
-	
+
 	Preferences prefs;
 
 	public StairController(World world, boolean bool) {
@@ -366,14 +366,14 @@ public class StairController {
 		narrowWidth = rapidWidthOriginal / Stair.MAX_WIDTH_SCALAR;
 		narrowPosition = (CAM_WIDTH - narrowWidth) / 2;
 		narrowLevel = generateNarrowLevel(narrowWidth, numNarrow, false);
-	
+
 //		straightLimiter = 0;
 //		zigZagLimiter = 15;
 //		sidesLimiter = 0;
 //		randLimiter = 0;
 //		rapidLimiter = 0;
 //		narrowLimiter = 8;
-		
+
 		// Set up initial level (overriden in the hard and easy controllers)
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
@@ -388,7 +388,7 @@ public class StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
-		
+
 		// Used to test different rounds
 		makeNewRound(false);
 		changeRoundSpeeds();
@@ -599,11 +599,11 @@ public class StairController {
 				 * Round change stuff
 				 */
 				roundChange();
-				
+
 				stairSelector = 0;
 				if (roundSelector < maxRound) {
 					levelSelector = ZIG_ZAG_SELECTOR;
-					
+
 				} else {
 					do {
 						levelSelector = random.nextInt(NUM_LEVELS) + 1;
@@ -612,7 +612,7 @@ public class StairController {
 							- narrowLimiterMin + 1)
 							+ narrowLimiterMin;
 				}
-				
+
 				levelChange = true;
 				Gdx.app.log(Stairs.LOG, "Level change: zig zag");
 			}
@@ -904,7 +904,7 @@ public class StairController {
 	public void randLevelChange() {
 		levelSelector = random.nextInt(4) + 1;
 	}
-	
+
 	public void roundChange() {
 		if (roundSelector < maxRound) {
 			roundSelector++;

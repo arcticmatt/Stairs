@@ -12,12 +12,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.msquared.stairs.Stairs;
+import com.msquared.stairs.controller.FootController;
 import com.msquared.stairs.utils.DefaultActorListener;
 import com.msquared.stairs.view.WorldRenderer;
 
@@ -61,7 +63,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	boolean loaded;
 	
 	// Constructor to keep a reference to the main Game class
-	public MenuScreen(Stairs game) {
+	public MenuScreen(final Stairs game) {
 		super(game);
 		stateTime = 0f;
 		heightRatio = 1;
@@ -115,6 +117,26 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
 		prefs = Gdx.app.getPreferences("Preferences");
+		
+		/* 
+		 * Add listener so that when user clicks on animation area, he gets taken to 
+		 * tutorial video
+		 */
+		stage.addListener(new InputListener() {     
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				if (x >= aniXPos && x <= aniXPos + aniWidth
+	        			&& y >= aniYPos && y <= aniYPos + aniHeight) {
+		    		return true;
+	        	}
+				return false;
+	        }
+	        public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+	        	if (x >= aniXPos && x <= aniXPos + aniWidth
+	        			&& y >= aniYPos + 50 && y <= aniYPos + aniHeight) {
+	        		Gdx.net.openURI("https://www.youtube.com/watch?v=Tg89ps7lcUQ");
+	        	}
+	        }
+		});
 		
 		// Show ads
 		game.myRequestHandler.showAds(true);

@@ -37,7 +37,7 @@ public class FootController {
 	Stair secondStair = null;
 	Stair firstStair = null;
 	Color deadColor = new Color(255, 0, 0, 1);
-	
+
 	Preferences prefs;
 	Sound stepSound;
 	boolean invincOn;
@@ -111,7 +111,7 @@ public class FootController {
 			chooseDeath(deadOrAlive);
 		}
 	}
-	
+
 	public void chooseDeath(int deadOrAlive) {
 		switch (deadOrAlive) {
 		case TRIPPED:
@@ -277,7 +277,7 @@ public class FootController {
 						return FELL_OFF_RIGHT;
 					} else if (leftFootRight < firstStairLeft
 							|| leftFootLeft > firstStairRight) {
-						if (leftFoot.state.equals(State.FALLING)) { 
+						if (leftFoot.state.equals(State.FALLING)) {
 							/*
 							 * If you step off the stairs, you fall. This means
 							 * that when a stair passes off the screen, if the

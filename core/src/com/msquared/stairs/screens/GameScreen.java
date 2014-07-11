@@ -296,27 +296,27 @@ public class GameScreen extends AbstractScreen implements Screen {
 		// Play the right music
 		if (prefs.getBoolean("musicOn", true)) {
 			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
-				if (prefs.getBoolean("songFirst", true)) {
+				if (!prefs.getBoolean("songFirst", false)) {
 					game.musicManager.play(MUSIC_EASY, true);
-				} else if (!prefs.getBoolean("songFirst", false) ) {
+				} else if (prefs.getBoolean("songFirst", false) ) {
 					game.musicManager.play(MUSIC_EASY_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.MEDIUM || difficulty == MenuScreen.MEDIUM + 4) {
-				if (prefs.getBoolean("songFirst", true)) {
+				if (!prefs.getBoolean("songFirst", false)) {
 					game.musicManager.play(MUSIC_MEDIUM, true);
-				} else if (!prefs.getBoolean("songFirst", false)){
+				} else if (prefs.getBoolean("songFirst", false)){
 					game.musicManager.play(MUSIC_MEDIUM_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.HARD || difficulty == MenuScreen.HARD + 4) {
-				if (prefs.getBoolean("songFirst", true)) {
+				if (!prefs.getBoolean("songFirst", false)) {
 					game.musicManager.play(MUSIC_HARD, true);
-				} else if (!prefs.getBoolean("songFirst", false)){
+				} else if (prefs.getBoolean("songFirst", false)){
 					game.musicManager.play(MUSIC_HARD_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.INSANE || difficulty == MenuScreen.INSANE + 4) {
-				if (prefs.getBoolean("songFirst", true) ) {
+				if (!prefs.getBoolean("songFirst", false) ) {
 					game.musicManager.play(MUSIC_INSANE, true);
-				} else if (!prefs.getBoolean("songFirst", false)) {
+				} else if (prefs.getBoolean("songFirst", false)) {
 					game.musicManager.play(MUSIC_INSANE_ALT, false);
 				}
 			}
