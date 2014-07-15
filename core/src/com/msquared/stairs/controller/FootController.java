@@ -53,9 +53,8 @@ public class FootController {
 		invincOn = prefs.getBoolean("invincOn", false);
 	}
 
-	/** The main update method **/
+	/** The main update method */
 	public void update(float delta) {
-		// processInput();
 		if (jump_left)
 		{
 			processInput(GameScreen.JUMP_LEFT);
@@ -305,7 +304,7 @@ public class FootController {
 		return ALIVE;
 	}
 
-	/** Change Bob's state and parameters based on input controls **/
+	/** Change Bob's state and parameters based on input controls */
 	public void processInput(int input) {
 		switch (input) {
 		case GameScreen.JUMP_LEFT:

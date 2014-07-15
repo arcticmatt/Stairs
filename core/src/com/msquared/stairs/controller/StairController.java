@@ -5,7 +5,6 @@ import static java.util.Arrays.asList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
@@ -114,7 +113,7 @@ public class StairController {
 	protected int narrowLimiterMin;
 	protected int narrowLimiterMax;
 
-	/***
+	/**
 	 * LEVEL ARRAYS
 	 */
 	protected List<Integer> highXSpeeds;
@@ -176,6 +175,7 @@ public class StairController {
 			levels = false;
 		}
 
+		stairColor = white;
 		initColors();
 	}
 
@@ -282,8 +282,7 @@ public class StairController {
 		randMinMaxTimes[5][0] = 300;
 		randMinMaxTimes[5][1] = 360;
 
-		stairColor = white;
-
+        // TIME INTERVALS
 		this.randTimeInterval = random.nextInt(100) + 400;
 		regTimeInterval = 420l;
 		rapidTimeInterval = 220l;
@@ -307,80 +306,53 @@ public class StairController {
 		randMinWidth = randMinMaxWidths[roundSelector][0];
 		randMaxWidth = randMinMaxWidths[roundSelector][1];
 
-		// Make straight level
+		// Straight level init
 		numStraight = 0;
 		straightLimiter = 0;
 		straightWidthOriginal = 500;
-		straightWidth = straightWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		straightPosition = (CAM_WIDTH - straightWidth) / 2;
-		straightLevel = generateStraightLevel(straightWidth, numStraight, false);
 
-		// Make zig zag level
+		// Zig zag level init
 		numZigZag = 50;
 		zigZagLimiter = 20;
 		zigZagLimiterMin = 15;
 		zigZagLimiterMax = 25;
 		zigZagWidthOriginal = 350;
-		zigZagWidth = zigZagWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		zigZagPositions = makeZigZagPositions(numZigZag,
-				zzBufferDeltas[roundSelector][0],
-				zzBufferDeltas[roundSelector][1]);
-		zigZagLevel = generateZigZagLevel(zigZagWidth, numZigZag, false);
 
-		// Make sides level
+		// Sides level init
 		numSides = 50;
 		sidesLimiter = 15;
 		sidesLimiterMin = 12;
 		sidesLimiterMax = 18;
 		sidesWidthOriginal = 325;
-		sidesWidth = sidesWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		sidesPositions = makeSidesPositions(numSides, sidesWidth);
-		sidesLevel = generateSidesLevel(sidesWidth, numSides, false);
 
-		// Make random level
+		// Rand level init
 		numRand = 100;
 		randLimiter = 20;
 		randLimiterMin = 15;
 		randLimiterMax = 25;
-		randLevel = generateRandLevel(numRand, randMinWidth, randMaxWidth,
-				randMinPosition, randMaxPosition);
 		randTimeInterval = 500;
 
-		// Make rapid level
+		// Rapid level init
 		numRapid = 50;
 		rapidLimiter = 10;
 		rapidLimiterMin = 8;
 		rapidLimiterMax = 12;
 		rapidWidthOriginal = 1200;
-		rapidWidth = rapidWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		rapidPosition = (CAM_WIDTH - rapidWidth) / 2;
-		rapidLevel = generateRapidLevel(rapidWidth, numRapid, rapidPosition,
-				false);
 
-		// Make narrow level
+		// Narrow level init
 		numNarrow = 50;
 		narrowLimiter = 8;
 		narrowLimiterMin = 6;
 		narrowLimiterMax = 10;
 		narrowWidthOriginal = 200;
-		narrowWidth = rapidWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		narrowPosition = (CAM_WIDTH - narrowWidth) / 2;
-		narrowLevel = generateNarrowLevel(narrowWidth, numNarrow, false);
-
-//		straightLimiter = 0;
-//		zigZagLimiter = 15;
-//		sidesLimiter = 0;
-//		randLimiter = 0;
-//		rapidLimiter = 0;
-//		narrowLimiter = 8;
 
 		// Set up initial level (overriden in the hard and easy controllers)
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
 			currLevel = randLevel;
 			randLimiter = 40;
-			randLimiterMin = 25;
-			randLimiterMax = 45;
+			randLimiterMin = 30;
+			randLimiterMax = 50;
 		} else if (prefs.getBoolean("earlyOn", true)) {
 			levelSelector = SIDES_SELECTOR;
 			currLevel = sidesLevel;
@@ -389,10 +361,10 @@ public class StairController {
 			currLevel = zigZagLevel;
 		}
 
-		// Used to test different rounds
+		// Make levels corresponding to round selector
 		makeNewRound(false);
+        // Change constants corresponding to round selector
 		changeRoundSpeeds();
-
 		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 
@@ -404,7 +376,6 @@ public class StairController {
 				217f / 255f, 108f / 255f, 1), new Color(232f / 255f,
 				188f / 255f, 63f / 255f, 1), new Color(232f / 255f,
 				188f / 255f, 63f / 255f, 1)));
-
 		sidesColors = new ArrayList<Color>(asList(new Color(255f / 255f,
 				212f / 255f, 216f / 255f, 1), new Color(255f / 255f,
 				189f / 255f, 195f / 255f, 1), new Color(255f / 255f,
@@ -412,7 +383,6 @@ public class StairController {
 				108f / 255f, 123f / 255f, 1), new Color(255f / 255f,
 				71f / 255f, 90f / 255f, 1), new Color(255f / 255f, 71f / 255f,
 				90f / 255f, 1)));
-
 		rapidColors = new ArrayList<Color>(asList(new Color(228f / 255f,
 				199f / 255f, 255f / 255f, 1), new Color(213f / 255f,
 				168f / 255f, 255f / 255f, 1), new Color(192f / 255f,
@@ -420,7 +390,6 @@ public class StairController {
 				96f / 255f, 226f / 255f, 1), new Color(140f / 255f, 60f / 255f,
 				214f / 255f, 1), new Color(140f / 255f, 60f / 255f,
 				214f / 255f, 1)));
-
 		narrowColors = new ArrayList<Color>(asList(new Color(201f / 255f,
 				229f / 255f, 255f / 255f, 1), new Color(179f / 255f,
 				218f / 255f, 255f / 255f, 1), new Color(148f / 255f,
@@ -428,10 +397,9 @@ public class StairController {
 				184f / 255f, 255f / 255f, 1), new Color(75f / 255f,
 				158f / 255f, 235f / 255f, 1), new Color(75f / 255f,
 				158f / 255f, 235f / 255f, 1)));
-
 	}
 
-	/** The main update method **/
+	/** The main update method */
 	public void update(float delta) {
 		/*
 		 * See if there is a level change. If so, change the relevant variables
@@ -468,10 +436,6 @@ public class StairController {
 				stairSelector = 0;
 				if (roundSelector < maxRound) {
 					levelSelector = SIDES_SELECTOR;
-					/*
-					 * Color color = new Color(178f/255f, 102f/255f, 255f/255f,
-					 * 1); stairColor = color;
-					 */
 				} else {
 					do {
 						levelSelector = random.nextInt(NUM_LEVELS) + 1;
@@ -480,7 +444,6 @@ public class StairController {
 							- zigZagLimiterMin + 1)
 							+ zigZagLimiterMin;
 				}
-				// currLevel = sidesLevel;
 				timeInterval = regTimeInterval;
 				levelChange = true;
 				Gdx.app.log(Stairs.LOG, "Level change: Sides");
@@ -502,7 +465,6 @@ public class StairController {
 							- sidesLimiterMin + 1)
 							+ sidesLimiterMin;
 				}
-				// currLevel = randLevel;
 				levelChange = true;
 				Gdx.app.log(Stairs.LOG, "Level change: Random");
 			}
@@ -532,7 +494,6 @@ public class StairController {
 						255f, 1);
 				break;
 			}
-
 			currLevel = randLevel;
 			timeInterval = getRandTimeInterval();
 			if (stairSelector >= randLimiter) {
@@ -543,7 +504,7 @@ public class StairController {
 						levelSelector = RAPID_SELECTOR;
 					} else {
 						// else (if classic) stay with random
-						roundChange();
+						roundChange(true);
 						levelSelector = RAND_SELECTOR;
 					}
 				} else {
@@ -555,16 +516,17 @@ public class StairController {
 						randLimiter = random.nextInt(randLimiterMax
 								- randLimiterMin + 1)
 								+ randLimiterMin;
+                        // make a new random level
+                        makeNewRound(true);
 					} else {
 						// else (if classic) stay with random
-						roundChange();
+						roundChange(true);
 						levelSelector = RAND_SELECTOR;
 						randLimiter = random.nextInt(randLimiterMax
 								- randLimiterMin + 1)
 								+ randLimiterMin;
 					}
 				}
-				// currLevel = rapidLevel;
 				levelChange = true;
 				Gdx.app.log(Stairs.LOG, "Level change: Rapid");
 			}
@@ -585,7 +547,6 @@ public class StairController {
 							- rapidLimiterMin + 1)
 							+ rapidLimiterMin;
 				}
-				// currLevel = rapidLevel;
 				levelChange = true;
 				Gdx.app.log(Stairs.LOG, "Level change: narrow");
 			}
@@ -598,12 +559,10 @@ public class StairController {
 				/*
 				 * Round change stuff
 				 */
-				roundChange();
-
+				roundChange(false);
 				stairSelector = 0;
 				if (roundSelector < maxRound) {
 					levelSelector = ZIG_ZAG_SELECTOR;
-
 				} else {
 					do {
 						levelSelector = random.nextInt(NUM_LEVELS) + 1;
@@ -612,7 +571,6 @@ public class StairController {
 							- narrowLimiterMin + 1)
 							+ narrowLimiterMin;
 				}
-
 				levelChange = true;
 				Gdx.app.log(Stairs.LOG, "Level change: zig zag");
 			}
@@ -620,13 +578,11 @@ public class StairController {
 		default:
 			break;
 		}
-
 		// If there is a level change, note the change time
 		// to use to time the level transitions.
 		if (levelChange) {
 			levelChangeTime = System.currentTimeMillis();
 		}
-
 		// If a round change was made, delay the speed changes until the last
 		// stair of the last round exits the stage
 		if (roundSelector > prevRoundSelector && world.roundChangeStair != null
@@ -637,12 +593,10 @@ public class StairController {
 			prevRoundSelector++;
 			Gdx.app.log(Stairs.LOG, "Change constants");
 		}
-
 		// Update all the stairs
 		for (Stair stair : world.stairs) {
 			stair.update(delta);
 		}
-
 		/*
 		 * If we are past the level transition time and enough time has passed
 		 * since spawning the last stair, spawn the next one in the level.
@@ -659,7 +613,6 @@ public class StairController {
 			stairSelector++;
 			//Gdx.app.log(Stairs.LOG, "Time interval: " + timeInterval);
 		}
-
 	}
 
 	/** Multiplies the widths of a level by a given multiplier */
@@ -885,10 +838,6 @@ public class StairController {
 			randWidth = random.nextInt(maxStairWidth - minStairWidth + 1)
 					+ minStairWidth;
 			randXPos = random.nextInt(maxXPos - minXPos + 1) + minXPos;
-			/*
-			 * randWidth = minStairWidth; if (i %2 == 0) randXPos = minXPos;
-			 * else randXPos = maxXPos;
-			 */
 			randLevel[i][0] = randXPos;
 			randLevel[i][1] = randWidth;
 		}
@@ -898,14 +847,13 @@ public class StairController {
 
 	public int getRandTimeInterval() {
 		return random.nextInt(randMaxTime - randMinTime + 1) + randMinTime;
-		// return randMinTime;
 	}
 
 	public void randLevelChange() {
 		levelSelector = random.nextInt(4) + 1;
 	}
 
-	public void roundChange() {
+	public void roundChange(boolean classic) {
 		if (roundSelector < maxRound) {
 			roundSelector++;
 			makeNewRound(false);
@@ -915,10 +863,9 @@ public class StairController {
 		}
 		// Used for knowing when to increase gravity
 		roundChangeTime = System.currentTimeMillis();
-		// Make levels for the new round
-		makeNewRound(true);
 		world.roundChangeStair = world.lastStair;
-		Gdx.app.log(Stairs.LOG, "Round change y pos: "
-				+ world.roundChangeStair.yPos);
+        if (classic) {
+            makeNewRound(true);
+        }
 	}
 }

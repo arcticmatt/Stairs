@@ -1,6 +1,8 @@
 package com.msquared.stairs.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.msquared.stairs.Stairs;
 import com.msquared.stairs.view.WorldRenderer;
 
 public class Stair {
@@ -84,6 +86,7 @@ public class Stair {
 	 * delta (time) and velocity.
 	 */
 	public void update(float delta) {
+		Gdx.app.log(Stairs.LOG, "Stair gravity = " + Stair.lowYSpeed);
 		yPos += yVelo * delta;
 		xPos += xVelo * delta;
 

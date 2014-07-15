@@ -1,6 +1,8 @@
 package com.msquared.stairs.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.msquared.stairs.Stairs;
 
 public class Foot {
 	public static int footGravity;
@@ -45,6 +47,7 @@ public class Foot {
 	 * delta (time) and velocity.
 	 */
 	public void update(float delta) {
+		Gdx.app.log(Stairs.LOG, "Foot gravity = " + Foot.footGravity);
 		if (footStill) {
 			yVelo = 0;
 		} else if ((gameOver && !footSteppedOff)

@@ -6,27 +6,25 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.msquared.stairs.Stairs;
-import com.msquared.stairs.model.Stair;
 import com.msquared.stairs.model.World;
 
 public class StairControllerHard extends StairController {
-	
+
 	public StairControllerHard(World world) {
 		super(world);
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	public StairControllerHard(World world, boolean bool) {
 		super(world, bool);
-		
+
 		highXSpeeds = new ArrayList<Integer>(asList(250, 300, 400, 495, 600, 600));
 		lowYSpeeds = new ArrayList<Integer>(asList(-400, -500, -550, -600, -700,
 	    -700));
 		jumpSpeeds = new ArrayList<Integer>(asList(500, 550, 600, 600, 700, 700));
-		
-		// STRAIGHT
-		straightWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .75f, .7f, .7f));
-		straightTimes = new ArrayList<Integer>(asList(900, 825, 750, 675, 600, 600));
+
+        // STRAIGHT
+        straightWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .75f, .7f, .7f));
+        straightTimes = new ArrayList<Integer>(asList(900, 825, 750, 675, 600, 600));
 
 		// ZIG ZAG
 		zzWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .77f, .7f, .7f));
@@ -52,7 +50,7 @@ public class StairControllerHard extends StairController {
 		// RAPID
 		rapidWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .6f, .5f, .5f));
 		rapidTimes = new ArrayList<Integer>(asList(300, 270, 255, 240, 220, 220));
-		
+
 		// NARROW
 		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .85f, .85f, .85f));
 		narrowTimes = new ArrayList<Integer>(asList(450, 400, 375, 350, 325, 325));
@@ -100,25 +98,22 @@ public class StairControllerHard extends StairController {
 		randMinMaxTimes[5][0] = 300;
 		randMinMaxTimes[5][1] = 360;
 
-
-		
-		stairColor = white;
-		
+        // TIME INTERVALS
 		this.randTimeInterval = random.nextInt(100) + 400;
 		regTimeInterval = 420l;
 		rapidTimeInterval = 220l;
 		timeInterval = regTimeInterval;
 		levelTransitionTime = 700l;
-		roundTransitionTime = 700l;
+		roundTransitionTime = levelTransitionTime;
 		roundChangeTime = 0;
-		
+
 		stairSelector = 0;
 		prevRoundSelector = 0;
 		roundSelector = 5;
 		levelChangeTime = 0;
 		roundChangeTime = 0;
 		maxRound = 5;
-		
+
 		// Rand level initializers
 		randMinTime = randMinMaxTimes[roundSelector][0];
 		randMaxTime = randMinMaxTimes[roundSelector][1];
@@ -127,15 +122,12 @@ public class StairControllerHard extends StairController {
 		randMinWidth = randMinMaxWidths[roundSelector][0];
 		randMaxWidth = randMinMaxWidths[roundSelector][1];
 
-		// Make straight level
-		numStraight = 0;
-		straightLimiter = 0;
-		straightWidthOriginal = 500;
-		straightWidth = straightWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		straightPosition = (CAM_WIDTH - straightWidth) / 2;
-		straightLevel = generateStraightLevel(straightWidth, numStraight, false);
-		
-		// Make zig zag level
+        // Straight level init
+        numStraight = 0;
+        straightLimiter = 0;
+        straightWidthOriginal = 500;
+
+        // Zig zag level init
 		numZigZag = 50;
 		zigZagLimiterMin = 15;
 		zigZagLimiterMax = 20;
@@ -143,12 +135,8 @@ public class StairControllerHard extends StairController {
 				- zigZagLimiterMin + 1)
 				+ zigZagLimiterMin;
 		zigZagWidthOriginal = 350;
-		zigZagWidth = zigZagWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		zigZagPositions = makeZigZagPositions(numZigZag, zzBufferDeltas[roundSelector][0], 
-				zzBufferDeltas[roundSelector][1]);
-		zigZagLevel = generateZigZagLevel(zigZagWidth, numZigZag, false);
-		
-		// Make sides level
+
+        // Sides level init
 		numSides = 50;
 		sidesLimiterMin = 12;
 		sidesLimiterMax = 16;
@@ -156,22 +144,16 @@ public class StairControllerHard extends StairController {
 				- sidesLimiterMin + 1)
 				+ sidesLimiterMin;
 		sidesWidthOriginal = 325;
-		sidesWidth = sidesWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		sidesPositions = makeSidesPositions(numSides, sidesWidth);
-		sidesLevel = generateSidesLevel(sidesWidth, numSides, false);
-		
-		// Make random level
+
+        // Rand level init
 		numRand = 100;
 		randLimiterMin = 15;
 		randLimiterMax = 20;
 		randLimiter = random.nextInt(randLimiterMax
 				- randLimiterMin + 1)
 				+ randLimiterMin;
-		randLevel = generateRandLevel(numRand, randMinWidth, randMaxWidth,
-				randMinPosition, randMaxPosition);
-		randTimeInterval = 500;
-		
-		// Make rapid level
+
+        // Rapid level init
 		numRapid = 50;
 		rapidLimiterMin = 6;
 		rapidLimiterMax = 10;
@@ -179,11 +161,8 @@ public class StairControllerHard extends StairController {
 				- rapidLimiterMin + 1)
 				+ rapidLimiterMin;
 		rapidWidthOriginal = 1200;
-		rapidWidth = rapidWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		rapidPosition = (CAM_WIDTH - rapidWidth) / 2;
-		rapidLevel = generateRapidLevel(rapidWidth, numRapid, rapidPosition, false);
-		
-		// Make narrow level
+
+        // Narrow level init
 		numNarrow = 50;
 		narrowLimiter = 10;
 		narrowLimiterMin = 6;
@@ -192,32 +171,25 @@ public class StairControllerHard extends StairController {
 				- narrowLimiterMin + 1)
 				+ narrowLimiterMin;
 		narrowWidthOriginal = 200;
-		narrowWidth = rapidWidthOriginal / Stair.MAX_WIDTH_SCALAR;
-		narrowPosition = (CAM_WIDTH - narrowWidth) / 2;
-		narrowLevel = generateNarrowLevel(narrowWidth, numNarrow, false);
-		
-		levelSelector = STRAIGHT_SELECTOR;
-		currLevel = straightLevel;
-		
+
 		// Hard has its own level stuff because it starts random
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
 			currLevel = randLevel;
 			randLimiter = 30;
-			randLimiterMin = 15;
-			randLimiterMax = 35;
-			levelTransitionTime = 650l;
-			roundTransitionTime = 650l;
+			randLimiterMin = 20;
+			randLimiterMax = 40;
 		} else {
 			do {
 				levelSelector = random.nextInt(NUM_LEVELS) + 1;
 			} while (levelSelector == RAND_SELECTOR);
 		}
-		
-		// Used to test different rounds
+
+		// Make levels corresonding to round selector
 		makeNewRound(false);
+        // Change constants corresponding to round selector
 		changeRoundSpeeds();
-		
+
 		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 

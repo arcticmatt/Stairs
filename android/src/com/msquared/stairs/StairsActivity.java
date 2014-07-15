@@ -24,9 +24,9 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 	private final int SHOW_ADS = 1;
 	private final int HIDE_ADS = 0;
 	RelativeLayout layout;
-	
+
     protected Handler handler = new Handler() {
-    	@Override 
+    	@Override
     	public void handleMessage(Message msg) {
     		switch(msg.what) {
     		case SHOW_ADS:
@@ -44,7 +44,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
     		}
     	}
     };
-	
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,21 +53,21 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 		config.useAccelerometer = false;
 		config.useCompass = false;
 		config.useWakelock = true;
-		
+
 		/*** Admob view stuff ***/
 		// Create the layout
 		layout = new RelativeLayout(this);
-		
+
 		// Do the stuff that initialize() would do for you
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-		
+
 		// Create the libgdx View
 		View gameView = initializeForView(new Stairs(false, false, this), config);
-		
-		// Create and setup the AdMob view 
+
+		// Create and setup the AdMob view
 		adView = new AdView(this);
 		adView.setAdSize(AdSize.BANNER);
 		adView.setAdUnitId(AD_UNIT_ID);
@@ -78,21 +78,21 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 		// Real ads
 		//adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
-		
+
 		// Add the libgdx view
 		layout.addView(gameView);;
-		
+
 		// Add the AdMob view
-		adParams = 
+		adParams =
 				new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
 						RelativeLayout.LayoutParams.WRAP_CONTENT);
 		adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-		
+
 		layout.addView(adView, adParams);
 		adView.setVisibility(View.VISIBLE);
 		showAds(false);
-		
+
 		// Hook it all up
 		setContentView(layout);
     }
