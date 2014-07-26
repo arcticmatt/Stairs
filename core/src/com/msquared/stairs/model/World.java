@@ -63,15 +63,20 @@ public class World {
 			769.42f, 784.48f, 798.23f, 811.82f, 825.68f, 839.84f, 853f }
 	};
 
-	protected float[] mediumZigZagXPositions = { 204.65f, 336.82f, 465.41f,
-			471.80f, 356.74f, 241.40f, 126.03f, 9.00f, -1.0f, 119.0f, 239.0f,
-			359.0f, 479.0f };
+	protected float[] mediumZigZagXPositions = { 203f, 336f, 465f, 471f, 357f,
+        241f, 126f, 9.0f, -1f, 119f, 239f, 359f, 479f };
 
-	protected float[] mediumZigZagYPositions = { 481.17f, 546.70f, 592.95f,
-			627.36f, 653.99f, 679.08f, 704.01f, 729.06f, 754.01f, 779.03f,
-			804.05f, 829.04f, 860.0f };
+	protected float[] mediumZigZagYPositions = { 473f, 541f, 589f, 626f, 653f,
+        678f, 703f, 728f, 753f, 778f, 803f, 829f, 860f };
 
-	protected float[] insaneZigZagXPositions = { 221.94f, 379.94f, 475.86f, 330.39f, 184.00f, 36.91f, -.6500f, 151.43f,
+    protected float[] hardZigZagXPositions = { 219, 398, 504, 339, 173, 6, -31,
+        143, 315, 465, 505, 355, 185, 15, -25 };
+
+    protected float[] hardZigZagYPositions = { 470, 532, 576, 610, 637, 659, 681,
+        703, 724, 746, 768, 789, 811, 833, 860 };
+
+	protected float[] insaneZigZagXPositions = { 221.94f, 379.94f, 475.86f,
+            330.39f, 184.00f, 36.91f, -.6500f, 151.43f,
 			302.00f, 452.00f, 492.00f, 342.00f, 192.00f, 42.00f, 2.0f, 152.0f,
 			302.0f, 452.0f, 492.0f };
 
@@ -128,11 +133,11 @@ public class World {
 				addStair(187, 734, 1000 / 6, 4, white);
 				addStair(187, 784, 1000 / 6, 2, white);
 				addStair(187, 834, 1000 / 6, 2, white);
-				addStair(187, 880, 1000 / 6, 2, white);
+				//addStair(187, 880, 1000 / 6, 2, white);
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
-				addHardClassic();
+				addHardZigZag();
 			} else if (difficulty == Stairs.INSANE_LEVELS) {
 				addInsaneZigZag();
 			} else if (difficulty == Stairs.EASY_CLASSIC) {
@@ -232,10 +237,33 @@ public class World {
 				235f / 255f, 176f / 255f, 1);
 		int x;
 		int y;
+        /*
+         * Calculated from:
+         * zigZagWidth = (int) ((zigZagWidthOriginal * zzWidthMults
+         * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
+         */
 		int width = 52;
 		for (int i = 0; i < mediumZigZagXPositions.length - 1; i++) {
-			x = (int) mediumZigZagXPositions[i];
-			y = (int) mediumZigZagYPositions[i];
+			x = (int) mediumZigZagXPositions[i] + 46;
+			y = (int) mediumZigZagYPositions[i] + 20;
+			addStair(x, y, width, 2, stairColor);
+		}
+	}
+
+    public void addHardZigZag() {
+		Color stairColor = new Color(232f / 255f,
+				188f / 255f, 63f / 255f, 1);
+		int x;
+		int y;
+        /*
+         * Calculated from:
+         * zigZagWidth = (int) ((zigZagWidthOriginal * zzWidthMults
+         * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
+         */
+		int width = 41;
+		for (int i = 0; i < hardZigZagXPositions.length - 1; i++) {
+			x = (int) hardZigZagXPositions[i] + 32;
+			y = (int) hardZigZagYPositions[i] + 20;
 			addStair(x, y, width, 2, stairColor);
 		}
 	}
@@ -245,6 +273,11 @@ public class World {
 				227f / 255f, 145f / 255f, 1);
 		int x;
 		int y;
+        /*
+         * Calculated from:
+         * zigZagWidth = (int) ((zigZagWidthOriginal * zzWidthMults
+         * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
+         */
 		int width = 47;
 		for (int i = 0; i < insaneZigZagXPositions.length - 2; i++) {
 			x = (int) insaneZigZagXPositions[i];

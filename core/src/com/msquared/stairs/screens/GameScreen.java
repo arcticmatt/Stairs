@@ -70,7 +70,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 	// Also keeps a reference to the Stage from the GameOverScreen to dispose.
 	public GameScreen(Stairs game, int diff, Stage stageToDispose) {
 		super(game);
-		
+
 		// Initialize Stair vars
 		stageDispose = stageToDispose;
 		Stair.gameOver = false;
@@ -101,7 +101,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 			stairsController = new StairControllerInsane(world, true);
 			break;
 		}
-		world.createDemoWorld();
 		feetController = new FootController(world);
 		prevScore = 0;
 
@@ -113,7 +112,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 		float yPos = WorldRenderer.CAMERA_HEIGHT - 21;
 		scoreLabel.setPosition(xPos, yPos - labelHeight);
 		stage.addActor(scoreLabel);
-		
+
 		// Add controls to stage
 		stage.addListener(new InputListener() {
 	        public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -139,7 +138,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 	    			FootController.jump_right = false;
 	    		}
 	        }
-	        
+
 	        @Override
 	    	public boolean keyDown(InputEvent event, int keycode) {
 	    		if (keycode == Keys.LEFT && !rightPressed) {
@@ -168,7 +167,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 	    		}
 	    		return true;
 	    	}
-	        
+
 	    });
 	}
 
@@ -262,10 +261,10 @@ public class GameScreen extends AbstractScreen implements Screen {
 		Gdx.input.setInputProcessor(stage);
 		// NO ADS!
 		game.myRequestHandler.showAds(false);
-		
+
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-		
+
 		// Pause button/kill button
 		if (!prefs.getBoolean("invincOn", false)) {
 			pauseTex = new Texture("images/buttons/misc/pause1.png");
@@ -292,7 +291,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 			}
 		});
 		stage.addActor(pauseButton);
-		
+
 		// Play the right music
 		if (prefs.getBoolean("musicOn", true)) {
 			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
@@ -321,8 +320,10 @@ public class GameScreen extends AbstractScreen implements Screen {
 				}
 			}
 		}
+		
+		world.createDemoWorld();
 	}
-	
+
 	@Override
 	public void hide() {
 		if (stageDispose != null) {

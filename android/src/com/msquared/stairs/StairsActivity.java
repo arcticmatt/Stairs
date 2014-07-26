@@ -3,17 +3,20 @@ package com.msquared.stairs;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.utils.IActivityRequestHandler;
 
@@ -24,6 +27,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 	private final int SHOW_ADS = 1;
 	private final int HIDE_ADS = 0;
 	RelativeLayout layout;
+	public static final String TEST_ADS_LG = "95CFF973B1B840806C43234A952D1F07";
 
     protected Handler handler = new Handler() {
     	@Override
@@ -74,6 +78,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 		AdRequest adRequest = new AdRequest.Builder()
         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
         .addTestDevice("D52FF7CF5E8C1D04CD5A8584F0737B22")
+        .addTestDevice(TEST_ADS_LG)
         .build();
 		// Real ads
 		//adRequest = new AdRequest.Builder().build();

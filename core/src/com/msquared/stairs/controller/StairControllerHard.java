@@ -184,6 +184,9 @@ public class StairControllerHard extends StairController {
 				levelSelector = random.nextInt(NUM_LEVELS) + 1;
 			} while (levelSelector == RAND_SELECTOR);
 		}
+		
+		zigZagLimiter = 17;
+		levelSelector = ZIG_ZAG_SELECTOR;
 
 		// Make levels corresonding to round selector
 		makeNewRound(false);

@@ -5,6 +5,7 @@ import static java.util.Arrays.asList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
@@ -360,6 +361,8 @@ public class StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
+		
+		//levelSelector = ZIG_ZAG_SELECTOR;
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
@@ -610,6 +613,7 @@ public class StairController {
 			int width = currLevel[stairSelector][1];
 			world.addStair(xPos, startingYPos, width, startingHeight,
 					stairColor);
+			Gdx.app.log("blah", "");
 			stairSelector++;
 			//Gdx.app.log(Stairs.LOG, "Time interval: " + timeInterval);
 		}
