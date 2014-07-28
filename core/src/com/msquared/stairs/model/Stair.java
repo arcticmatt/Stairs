@@ -11,7 +11,7 @@ public class Stair {
 	public static int highYSpeed = -50;
 	public static int lowXSpeed = 10;
 	public static int highXSpeed = 250;
-	public static int startingSpeed = -400;
+	public static int startingSpeed = 0;
 	public final static int MAX_HEIGHT_SCALAR = 12;
 	public final static int MIN_HEIGHT_SCALAR = 1;
 	public final static int MAX_WIDTH_SCALAR = 6;
@@ -86,7 +86,6 @@ public class Stair {
 	 * delta (time) and velocity.
 	 */
 	public void update(float delta) {
-		Gdx.app.log(Stairs.LOG, "Stair gravity = " + Stair.lowYSpeed);
 		yPos += yVelo * delta;
 		xPos += xVelo * delta;
 

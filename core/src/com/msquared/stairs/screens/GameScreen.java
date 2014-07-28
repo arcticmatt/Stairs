@@ -95,12 +95,13 @@ public class GameScreen extends AbstractScreen implements Screen {
 			stairsController = new StairController(world);
 			break;
 		case MenuScreen.HARD:
-			stairsController = new StairControllerHard(world, true);
+			stairsController = new StairControllerHard(world, true, world.earlySelector);
 			break;
 		case 0:
 			stairsController = new StairControllerInsane(world, true);
 			break;
 		}
+		Gdx.app.log("BLAH", "EARLYSELECTOR = " + world.earlySelector + " and " + stairsController.earlySelector);
 		feetController = new FootController(world);
 		prevScore = 0;
 
@@ -185,7 +186,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 				}
 			}
 
-			Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+			Gdx.gl.glClearColor(0f, 0f, 0f, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 			stairsController.update(delta);

@@ -1,5 +1,7 @@
 package com.msquared.stairs;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -49,6 +51,7 @@ public class Stairs extends Game {
 	
 	public AssetManager assetManager;
 	private ProfileManager profileManager;
+	public static final Random randomGenerator = new Random();
 	
 	public Stairs(boolean html, boolean iphone, IActivityRequestHandler handler) {
 		myRequestHandler = handler;

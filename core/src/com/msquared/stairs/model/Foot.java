@@ -47,7 +47,6 @@ public class Foot {
 	 * delta (time) and velocity.
 	 */
 	public void update(float delta) {
-		Gdx.app.log(Stairs.LOG, "Foot gravity = " + Foot.footGravity);
 		if (footStill) {
 			yVelo = 0;
 		} else if ((gameOver && !footSteppedOff)

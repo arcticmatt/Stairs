@@ -25,6 +25,7 @@ public class World {
 	public Stair roundChangeStair;
 	public static int difficulty;
 	Random random;
+	public int earlySelector;
 
 	protected int[] randMinColors = { 220, 170, 130, 90, 0, 0 };
 
@@ -67,22 +68,37 @@ public class World {
         241f, 126f, 9.0f, -1f, 119f, 239f, 359f, 479f };
 
 	protected float[] mediumZigZagYPositions = { 473f, 541f, 589f, 626f, 653f,
-        678f, 703f, 728f, 753f, 778f, 803f, 829f, 860f };
+        678f, 703f, 728f, 753f, 778f, 803f, 829f, 850 };
 
-    protected float[] hardZigZagXPositions = { 219, 398, 504, 339, 173, 6, -31,
-        143, 315, 465, 505, 355, 185, 15, -25 };
+    protected float[] hardZigZagXPositions = { 222, 400, 506, 341, 174, 7, -30, 
+    		143, 315, 485, 525, 355, 185, 15, -22 };
 
-    protected float[] hardZigZagYPositions = { 470, 532, 576, 610, 637, 659, 681,
-        703, 724, 746, 768, 789, 811, 833, 860 };
+    protected float[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666, 
+    		688, 709, 731, 753, 774, 796, 818, 839, 860 };
 
-	protected float[] insaneZigZagXPositions = { 221.94f, 379.94f, 475.86f,
-            330.39f, 184.00f, 36.91f, -.6500f, 151.43f,
-			302.00f, 452.00f, 492.00f, 342.00f, 192.00f, 42.00f, 2.0f, 152.0f,
-			302.0f, 452.0f, 492.0f };
+    protected float[] hardSidesXPositions = { 78, 351, 93, 362, 103, 370, 110,
+    		377, 115, 379, 115, 379, 115, 379, 115 };
 
-	protected float[] insaneZigZagYPositions = { 557.04f, 605.70f, 641.77f, 669.35f, 691.32f, 709.0f, 723.85f, 736.56f,
-			749.11f, 761.54f, 774.04f, 786.46f, 799.00f, 811.54f, 824.05f, 836.50f,
-			849.00f, 861.54f, 880.0f };
+    protected float[] hardSidesYPositions = { 492, 547, 588, 619, 644, 666, 688,
+    		709, 731, 753, 774, 796, 818, 839, 860 };
+
+    protected float[] hardRapidXPositions = { 216, 220, 220, 220, 220, 220, 220,
+        220, 220, 220, 220, 220, 220, 220 };
+
+    protected float[] hardRapidYPositions = { 709, 721, 733, 744, 756, 768, 779,
+        791, 803, 814, 826, 838, 849, 860 };
+
+    protected float[] hardNarrowXPositions = { 248, 250, 252, 253, 255, 256,
+        256, 256, 256, 256, 256, 256, 256, 256 };
+
+    protected float[] hardNarrowYPositions = { 644, 661, 677, 694, 711, 727, 744,
+        761, 778, 794, 811, 828, 844, 860 };
+
+	protected float[] insaneZigZagXPositions = { 222, 380, 476, 330, 184, 37,
+			0, 152, 302, 452, 492, 342, 192, 42, 2, 152, 302,  452, 492 };
+
+	protected float[] insaneZigZagYPositions = { 538, 586, 624, 651, 673,
+			691, 706, 719, 732, 744, 758, 771, 783, 797, 809, 823, 835, 848, 860 };
 
 	private final Pool<Stair> stairPool = new Pool<Stair>() {
 		@Override
@@ -116,11 +132,11 @@ public class World {
 		numStairs = 0;
 		leftFoot = new Foot(160, 0, true);
 		rightFoot = new Foot(380 - Foot.footSize, 0, false);
-		this.random = new Random(System.currentTimeMillis());
+		this.random = Stairs.randomGenerator;
+		earlySelector = random.nextInt(4) + 1;
 	}
 
 	public void createDemoWorld() {
-		this.random = new Random(System.currentTimeMillis());
 		// If earlyOn pref is not on, don't spawn early stairs. Else, do.
 		final Preferences prefs = Gdx.app.getPreferences("Preferences");
 		boolean earlyOn = prefs.getBoolean("earlyOn", true);
@@ -137,7 +153,20 @@ public class World {
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
-				addHardZigZag();
+				switch (earlySelector) {
+				case 1:
+					addHardZigZag();
+					break;
+				case 2:
+					addHardSides();
+					break;
+				case 3:
+					addHardNarrow();
+					break;
+				case 4: 
+					addHardRapid();
+					break;
+				}
 			} else if (difficulty == Stairs.INSANE_LEVELS) {
 				addInsaneZigZag();
 			} else if (difficulty == Stairs.EASY_CLASSIC) {
@@ -244,8 +273,8 @@ public class World {
          */
 		int width = 52;
 		for (int i = 0; i < mediumZigZagXPositions.length - 1; i++) {
-			x = (int) mediumZigZagXPositions[i] + 46;
-			y = (int) mediumZigZagYPositions[i] + 20;
+			x = (int) mediumZigZagXPositions[i];
+			y = (int) mediumZigZagYPositions[i];
 			addStair(x, y, width, 2, stairColor);
 		}
 	}
@@ -262,8 +291,62 @@ public class World {
          */
 		int width = 41;
 		for (int i = 0; i < hardZigZagXPositions.length - 1; i++) {
-			x = (int) hardZigZagXPositions[i] + 32;
-			y = (int) hardZigZagYPositions[i] + 20;
+			x = (int) hardZigZagXPositions[i];
+			y = (int) hardZigZagYPositions[i];
+			addStair(x, y, width, 2, stairColor);
+		}
+	}
+
+    public void addHardSides() {
+		Color stairColor = new Color(255f / 255f,
+				71f / 255f, 90f / 255f, 1);
+		int x;
+		int y;
+        /*
+         * Calculated from:
+         * sidesWidth = (int) ((sidesWidthOriginal * sidesWidthMults
+		 * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
+         */
+		int width = 47;
+		for (int i = 0; i < hardSidesXPositions.length - 1; i++) {
+			x = (int) hardSidesXPositions[i];
+			y = (int) hardSidesYPositions[i];
+			addStair(x, y, width, 2, stairColor);
+		}
+	}
+
+    public void addHardRapid() {
+		Color stairColor = new Color(140f / 255f,
+				60f / 255f, 214f / 255f, 1);
+		int x;
+		int y;
+        /*
+         * Calculated from:
+         * rapidWidth = (int) ((rapidWidthOriginal * rapidWidthMults
+		 * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
+         */
+		int width = 100;
+		for (int i = 0; i < hardRapidXPositions.length - 1; i++) {
+			x = (int) hardRapidXPositions[i];
+			y = (int) hardRapidYPositions[i];
+			addStair(x, y, width, 2, stairColor);
+		}
+	}
+
+    public void addHardNarrow() {
+		Color stairColor = new Color(75f / 255f,
+				158f / 255f, 235f / 255f, 1);
+		int x;
+		int y;
+        /*
+         * Calculated from:
+         * narrowWidth = (int) ((narrowWidthOriginal * narrowWidthMults
+		 * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
+         */
+		int width = 29;
+		for (int i = 0; i < hardNarrowXPositions.length - 1; i++) {
+			x = (int) hardNarrowXPositions[i];
+			y = (int) hardNarrowYPositions[i];
 			addStair(x, y, width, 2, stairColor);
 		}
 	}
