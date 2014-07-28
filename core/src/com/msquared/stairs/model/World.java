@@ -64,16 +64,22 @@ public class World {
 			769.42f, 784.48f, 798.23f, 811.82f, 825.68f, 839.84f, 853f }
 	};
 
+    protected float[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186,
+    	186 };
+
+    protected float[] easyStraightYPositions = { 453, 570, 635, 680, 726, 771, 815,
+        860 };
+
 	protected float[] mediumZigZagXPositions = { 203f, 336f, 465f, 471f, 357f,
         241f, 126f, 9.0f, -1f, 119f, 239f, 359f, 479f };
 
 	protected float[] mediumZigZagYPositions = { 473f, 541f, 589f, 626f, 653f,
         678f, 703f, 728f, 753f, 778f, 803f, 829f, 850 };
 
-    protected float[] hardZigZagXPositions = { 222, 400, 506, 341, 174, 7, -30, 
+    protected float[] hardZigZagXPositions = { 222, 400, 506, 341, 174, 7, -30,
     		143, 315, 485, 525, 355, 185, 15, -22 };
 
-    protected float[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666, 
+    protected float[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666,
     		688, 709, 731, 753, 774, 796, 818, 839, 860 };
 
     protected float[] hardSidesXPositions = { 78, 351, 93, 362, 103, 370, 110,
@@ -143,12 +149,7 @@ public class World {
 		if (earlyOn) {
 			Gdx.app.log(Stairs.LOG, "earlyOn");
 			if (difficulty == Stairs.EASY_LEVELS) {
-				addStair(187, 510, 1000 / 6, 5, white);
-				addStair(187, 620, 1000 / 6, 5, white);
-				addStair(187, 684, 1000 / 6, 5, white);
-				addStair(187, 734, 1000 / 6, 4, white);
-				addStair(187, 784, 1000 / 6, 2, white);
-				addStair(187, 834, 1000 / 6, 2, white);
+				addEasyStraight();
 				//addStair(187, 880, 1000 / 6, 2, white);
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
@@ -163,7 +164,7 @@ public class World {
 				case 3:
 					addHardNarrow();
 					break;
-				case 4: 
+				case 4:
 					addHardRapid();
 					break;
 				}
@@ -260,6 +261,18 @@ public class World {
 			addStair(x, y, randWidth, 2, stairColor);
 		}
 	}
+
+    public void addEasyStraight() {
+        int x;
+        int y;
+
+        int width = 166;
+        for (int i = 0; i < easyStraightXPositions.length - 1; i++) {
+            x = (int) easyStraightXPositions[i];
+            y = (int) easyStraightYPositions[i];
+            addStair(x, y, width, 2, white);
+        }
+    }
 
 	public void addMediumZigZag() {
 		Color stairColor = new Color(255f / 255f,
