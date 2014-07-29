@@ -143,7 +143,7 @@ public class World {
 			} else if (difficulty == Stairs.EASY_CLASSIC) {
 				addEasyClassic();
 			} else if (difficulty == Stairs.MEDIUM_CLASSIC) {
-				addMediumClassic();
+				addStair(187, 860, 1000 / 6, 2, white);
 			} else if (difficulty == Stairs.INSANE_CLASSIC) {
 				addInsaneClassic();
 			} else if (difficulty == Stairs.HARD_CLASSIC) {
