@@ -44,14 +44,14 @@ public class GameScreen extends AbstractScreen implements Screen {
 	public static final int JUMP_RIGHT = 1;
 	public static final int FALL_LEFT = 2;
 	public static final int FALL_RIGHT = 3;
-	public static final String MUSIC_EASY = "sounds/stairs_easy.mp3";
-	public static final String MUSIC_MEDIUM = "sounds/stairs_medium.mp3";
-	public static final String MUSIC_HARD = "sounds/stairs_hard.mp3";
-	public static final String MUSIC_INSANE = "sounds/stairs_insane.mp3";
-	public static final String MUSIC_EASY_ALT = "sounds/stairs_alt_easy.mp3";
-	public static final String MUSIC_MEDIUM_ALT = "sounds/stairs_alt_medium.mp3";
-	public static final String MUSIC_HARD_ALT = "sounds/stairs_alt_hard.mp3";
-	public static final String MUSIC_INSANE_ALT = "sounds/stairs_alt_insane.mp3";
+	public static final String MUSIC_EASY = "sounds/music_easy.mp3";
+	public static final String MUSIC_MEDIUM = "sounds/music_medium.mp3";
+	public static final String MUSIC_HARD = "sounds/music_hard.mp3";
+	public static final String MUSIC_INSANE = "sounds/music_insane.mp3";
+	public static final String MUSIC_EASY_ALT = "sounds/music_alt_easy.mp3";
+	public static final String MUSIC_MEDIUM_ALT = "sounds/music_alt_medium.mp3";
+	public static final String MUSIC_HARD_ALT = "sounds/music_alt_hard.mp3";
+	public static final String MUSIC_INSANE_ALT = "sounds/music_alt_insane.mp3";
 	public static final int GAME_OVER_TIME = 1000;
 	Music music;
 	public int screenWidth;
@@ -296,27 +296,29 @@ public class GameScreen extends AbstractScreen implements Screen {
 		// Play the right music
 		if (prefs.getBoolean("musicOn", true)) {
 			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
-				if (!prefs.getBoolean("songFirst", false)) {
+				if (prefs.getBoolean("songFirst", true)) {
+					Gdx.app.log("blah", "blah");
 					game.musicManager.play(MUSIC_EASY, true);
-				} else if (prefs.getBoolean("songFirst", false) ) {
+				} else {
+					Gdx.app.log("blah", "secondary music");
 					game.musicManager.play(MUSIC_EASY_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.MEDIUM || difficulty == MenuScreen.MEDIUM + 4) {
-				if (!prefs.getBoolean("songFirst", false)) {
+				if (prefs.getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_MEDIUM, true);
-				} else if (prefs.getBoolean("songFirst", false)){
+				} else {
 					game.musicManager.play(MUSIC_MEDIUM_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.HARD || difficulty == MenuScreen.HARD + 4) {
-				if (!prefs.getBoolean("songFirst", false)) {
+				if (prefs.getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_HARD, true);
-				} else if (prefs.getBoolean("songFirst", false)){
+				} else {
 					game.musicManager.play(MUSIC_HARD_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.INSANE || difficulty == MenuScreen.INSANE + 4) {
-				if (!prefs.getBoolean("songFirst", false) ) {
+				if (prefs.getBoolean("songFirst", true) ) {
 					game.musicManager.play(MUSIC_INSANE, true);
-				} else if (prefs.getBoolean("songFirst", false)) {
+				} else {
 					game.musicManager.play(MUSIC_INSANE_ALT, false);
 				}
 			}

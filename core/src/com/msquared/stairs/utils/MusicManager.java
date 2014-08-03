@@ -55,7 +55,7 @@ public class MusicManager
         FileHandle musicFile = Gdx.files.internal(fileName);
         musicBeingPlayed = Gdx.audio.newMusic( musicFile );
         if (main) {
-        	musicBeingPlayed.setVolume( .6f );
+        	musicBeingPlayed.setVolume( .4f );
         }
         else {
         	musicBeingPlayed.setVolume(.4f);

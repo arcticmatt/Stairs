@@ -64,11 +64,9 @@ public class World {
 			769.42f, 784.48f, 798.23f, 811.82f, 825.68f, 839.84f, 853f }
 	};
 
-    protected float[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186,
-    	186 };
+    protected float[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186 };
 
-    protected float[] easyStraightYPositions = { 453, 570, 635, 680, 726, 771, 815,
-        860 };
+    protected float[] easyStraightYPositions = { 570, 635, 681, 726, 771, 816, 860 };
 
 	protected float[] mediumZigZagXPositions = { 203f, 336f, 465f, 471f, 357f,
         241f, 126f, 9.0f, -1f, 119f, 239f, 359f, 479f };
@@ -269,7 +267,7 @@ public class World {
         int width = 166;
         for (int i = 0; i < easyStraightXPositions.length - 1; i++) {
             x = (int) easyStraightXPositions[i];
-            y = (int) easyStraightYPositions[i];
+            y = (int) easyStraightYPositions[i] + 10;
             addStair(x, y, width, 2, white);
         }
     }
