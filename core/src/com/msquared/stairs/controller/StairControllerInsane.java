@@ -52,7 +52,7 @@ public class StairControllerInsane extends StairController {
 		rapidTimes = new ArrayList<Integer>(asList(250, 250, 180, 160, 140, 140));
 
 		// NARROW
-		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .88f, .9f, .9f));
+		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .9f, .9f, .9f));
 		narrowTimes = new ArrayList<Integer>(asList(250, 250, 260, 240, 230, 230));
 
 		// RAND
@@ -137,6 +137,8 @@ public class StairControllerInsane extends StairController {
 		zigZagLimiterMin = 12;
 		zigZagLimiterMax = 18;
 		zigZagWidthOriginal = 350;
+		// UNDO
+		zigZagLimiter = 25;
 
         // Sides levle init
 		numSides = 50;

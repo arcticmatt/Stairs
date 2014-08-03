@@ -21,9 +21,9 @@ public class StairController {
 	protected final int STRAIGHT_SELECTOR = 0;
 	protected final int ZIG_ZAG_SELECTOR = 1;
 	protected final int SIDES_SELECTOR = 2;
-	protected final int RAND_SELECTOR = 3;
+	protected final int RAND_SELECTOR = 5;
 	protected final int RAPID_SELECTOR = 4;
-	protected final int NARROW_SELECTOR = 5;
+	protected final int NARROW_SELECTOR = 3;
 	protected final int NUM_LEVELS = 5;
 
 	protected World world;
@@ -162,10 +162,13 @@ public class StairController {
 	boolean levels;
 
 	Preferences prefs;
+	
+	public int earlySelector;
+	
 
 	public StairController(World world, boolean bool) {
 		this.world = world;
-		this.random = new Random(System.currentTimeMillis());
+		this.random = Stairs.randomGenerator;
 		this.time = System.currentTimeMillis();
 		this.random.setSeed(time);
 		prefs = Gdx.app.getPreferences("Preferences");
@@ -182,7 +185,7 @@ public class StairController {
 
 	public StairController(World world) {
 		this.world = world;
-		this.random = new Random(System.currentTimeMillis());
+		this.random = Stairs.randomGenerator;
 		this.time = System.currentTimeMillis();
 		this.random.setSeed(time);
 		Preferences prefs = Gdx.app.getPreferences("Preferences");
@@ -238,8 +241,8 @@ public class StairController {
 				asList(300, 270, 255, 240, 220, 220));
 
 		// NARROW
-		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .85f,
-				.85f, .85f));
+		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .87f,
+				.87f, .87f));
 		narrowTimes = new ArrayList<Integer>(asList(450, 400, 375, 350, 325,
 				325));
 
@@ -335,16 +338,16 @@ public class StairController {
 
 		// Rapid level init
 		numRapid = 50;
-		rapidLimiter = 10;
-		rapidLimiterMin = 8;
-		rapidLimiterMax = 12;
+		rapidLimiter = 12;
+		rapidLimiterMin = 10;
+		rapidLimiterMax = 14;
 		rapidWidthOriginal = 1200;
 
 		// Narrow level init
 		numNarrow = 50;
-		narrowLimiter = 8;
-		narrowLimiterMin = 6;
-		narrowLimiterMax = 10;
+		narrowLimiter = 10;
+		narrowLimiterMin = 8;
+		narrowLimiterMax = 12;
 		narrowWidthOriginal = 200;
 
 		// Set up initial level (overriden in the hard and easy controllers)
@@ -362,8 +365,6 @@ public class StairController {
 			currLevel = zigZagLevel;
 		}
 		
-		//levelSelector = ZIG_ZAG_SELECTOR;
-
 		// Make levels corresponding to round selector
 		makeNewRound(false);
         // Change constants corresponding to round selector
@@ -613,7 +614,6 @@ public class StairController {
 			int width = currLevel[stairSelector][1];
 			world.addStair(xPos, startingYPos, width, startingHeight,
 					stairColor);
-			Gdx.app.log("blah", "");
 			stairSelector++;
 			//Gdx.app.log(Stairs.LOG, "Time interval: " + timeInterval);
 		}

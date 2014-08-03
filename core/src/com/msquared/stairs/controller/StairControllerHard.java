@@ -14,8 +14,9 @@ public class StairControllerHard extends StairController {
 		super(world);
 	}
 
-	public StairControllerHard(World world, boolean bool) {
+	public StairControllerHard(World world, boolean bool, int earlySelector) {
 		super(world, bool);
+		this.earlySelector = earlySelector;
 
 		highXSpeeds = new ArrayList<Integer>(asList(250, 300, 400, 495, 600, 600));
 		lowYSpeeds = new ArrayList<Integer>(asList(-400, -500, -550, -600, -700,
@@ -52,7 +53,7 @@ public class StairControllerHard extends StairController {
 		rapidTimes = new ArrayList<Integer>(asList(300, 270, 255, 240, 220, 220));
 
 		// NARROW
-		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .85f, .85f, .85f));
+		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .87f, .87f, .87f));
 		narrowTimes = new ArrayList<Integer>(asList(450, 400, 375, 350, 325, 325));
 
 		// RAND
@@ -155,8 +156,8 @@ public class StairControllerHard extends StairController {
 
         // Rapid level init
 		numRapid = 50;
-		rapidLimiterMin = 6;
-		rapidLimiterMax = 10;
+		rapidLimiterMin = 10;
+		rapidLimiterMax = 14;
 		rapidLimiter = random.nextInt(rapidLimiterMax
 				- rapidLimiterMin + 1)
 				+ rapidLimiterMin;
@@ -165,13 +166,15 @@ public class StairControllerHard extends StairController {
         // Narrow level init
 		numNarrow = 50;
 		narrowLimiter = 10;
-		narrowLimiterMin = 6;
-		narrowLimiterMax = 10;
+		narrowLimiterMin = 8;
+		narrowLimiterMax = 12;
 		narrowLimiter = random.nextInt(narrowLimiterMax
 				- narrowLimiterMin + 1)
 				+ narrowLimiterMin;
 		narrowWidthOriginal = 200;
 
+		Gdx.app.log(Stairs.LOG, "levelSelector before = " + levelSelector);
+		Gdx.app.log(Stairs.LOG, "earlySelector = " + earlySelector);
 		// Hard has its own level stuff because it starts random
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
@@ -182,11 +185,9 @@ public class StairControllerHard extends StairController {
 		} else {
 			do {
 				levelSelector = random.nextInt(NUM_LEVELS) + 1;
-			} while (levelSelector == RAND_SELECTOR);
+			} while (levelSelector == earlySelector);
 		}
-		
-		zigZagLimiter = 17;
-		levelSelector = ZIG_ZAG_SELECTOR;
+		Gdx.app.log(Stairs.LOG, "levelSelector after = " + levelSelector);
 
 		// Make levels corresonding to round selector
 		makeNewRound(false);
