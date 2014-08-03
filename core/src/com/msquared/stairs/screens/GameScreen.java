@@ -297,10 +297,8 @@ public class GameScreen extends AbstractScreen implements Screen {
 		if (prefs.getBoolean("musicOn", true)) {
 			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
 				if (prefs.getBoolean("songFirst", true)) {
-					Gdx.app.log("blah", "blah");
 					game.musicManager.play(MUSIC_EASY, true);
 				} else {
-					Gdx.app.log("blah", "secondary music");
 					game.musicManager.play(MUSIC_EASY_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.MEDIUM || difficulty == MenuScreen.MEDIUM + 4) {
