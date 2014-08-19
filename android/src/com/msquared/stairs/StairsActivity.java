@@ -81,7 +81,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
         .addTestDevice(TEST_ADS_LG)
         .build();
 		// Real ads
-		//adRequest = new AdRequest.Builder().build();
+		adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
 
 		// Add the libgdx view

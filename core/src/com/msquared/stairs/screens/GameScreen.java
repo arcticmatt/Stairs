@@ -268,13 +268,13 @@ public class GameScreen extends AbstractScreen implements Screen {
 
 		// Pause button/kill button
 		if (!prefs.getBoolean("invincOn", false)) {
-			pauseTex = new Texture("images/buttons/misc/pause1.png");
+			pauseTex = new Texture("images/buttons/misc/btn_pause.png");
 		} else {
 			pauseTex = new Texture("images/buttons/misc/btn_stop.png");
 		}
 		Image pauseButton = new Image(pauseTex);
 		float labelHeight = pauseButton.getHeight();
-		float xPos = 485;
+		float xPos = WorldRenderer.CAMERA_WIDTH - pauseButton.getWidth() - 14;
 		float yPos = WorldRenderer.CAMERA_HEIGHT - 14;
 		pauseButton.setPosition(xPos, yPos - labelHeight);
 		pauseButton.addListener(new DefaultActorListener() {
