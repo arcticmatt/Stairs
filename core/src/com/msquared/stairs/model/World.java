@@ -29,79 +29,79 @@ public class World {
 
 	protected int[] randMinColors = { 220, 170, 130, 90, 0, 0 };
 
-	protected float[][] classicXPositions = {
+	protected int[][] classicXPositions = {
 
-			{ 194.89f, 217.96f, 296.06f, 283.84f, 166.83f, 320.00f, 146.00f, 146.00f },
+			{ 199, 184, 154, 326, 261, 145, 295 },
 
-			{ 179.46f, 189.95f, 201.68f, 197.53f, 299.69f, 187.51f, 207.54f,
-					190.37f, 232.00f, 235.00f, 323.00f, 210.00f, 235.00f,
-					233.00f },
+			{ 179, 190, 202, 198, 300, 188, 208,
+					190, 232, 235, 323, 210, 235,
+					233 },
 
-			{ 233.00f, 278.02f, 214.49f, 244.01f, 303.35f, 225.43f, 216.13f, 284.83f,
-					157.22f, 274.42f, 301.00f, 249.00f, 309.00f, 213.00f,
-					262.00f, 215.00f, 274.00f, 333.00f, 188.00f },
+			{ 233, 278, 214, 244, 303, 225, 216, 285,
+					157, 274, 301, 249, 309, 213,
+					262, 215, 274, 333, 188 },
 
-			{ 286.91f, 174.87f, 267.90f, 266.54f, 258.96f, 188.95f,
-					192.0f, 282.0f, 205.0f, 246.0f, 276.0f, 229.0f, 284.0f,
-					209.0f, 191.0f, 319.0f }
+			{ 287, 175, 268, 267, 259, 189,
+					192, 282, 205, 246, 276, 229, 284,
+					209, 191, 319 }
 
 	};
-	protected float[][] classicYPositions = {
+	protected int[][] classicYPositions = {
 
-			{ 444.04f, 580.05f, 655.10f, 705.20f, 750.10f, 790.47f, 835.07f, 870.00f },
+			{ 569, 635, 682, 725, 770, 817, 860 },
 
-			{ 461.06f, 531.47f, 581.10f, 615.16f, 644.42f, 669.43f, 693.18f,
-					716.89f, 737.34f, 761.89f, 784.80f, 808.17f, 829.85f,
-					858.00f },
+			{ 461, 531, 581, 615, 644, 669, 693,
+					717, 737, 762, 785, 808, 830,
+					858 },
 
-			{ 460.00f, 523.38f, 561.29f, 590.31f, 614.07f,
-				635.47f, 652.39f, 671.06f, 687.38f, 703.95f,
-				720.00f, 736.10f, 753.62f, 769.92f, 786.15f,
-				803.59f, 821.12f, 838.68f, 850.00f },
+			{ 460, 523, 561, 590, 614,
+				635, 652, 671, 687, 704,
+				720, 736, 754, 770, 786,
+				804, 821, 839, 850 },
 
-			{ 582.57f, 625.72f,
-			654.68f, 677.56f, 696.37f, 711.80f, 726.58f, 740.68f, 754.825f,
-			769.42f, 784.48f, 798.23f, 811.82f, 825.68f, 839.84f, 853f }
+			{ 583, 626,
+			655, 678, 696, 712, 727, 741, 755,
+			769, 784, 798, 812, 826, 840, 853 }
 	};
 
-    protected float[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186 };
+    protected int[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186 };
 
-    protected float[] easyStraightYPositions = { 570, 635, 681, 726, 771, 816, 860 };
+    protected int[] easyStraightYPositions = { 570, 635, 681, 726, 771, 816, 860 };
 
-	protected float[] mediumZigZagXPositions = { 203f, 336f, 465f, 471f, 357f,
-        241f, 126f, 9.0f, -1f, 119f, 239f, 359f, 479f };
+	protected int[] mediumZigZagXPositions = { 203, 336, 465, 471, 357,
+        241, 126, 9, -1, 119, 239, 359, 479 };
 
-	protected float[] mediumZigZagYPositions = { 473f, 541f, 589f, 626f, 653f,
-        678f, 703f, 728f, 753f, 778f, 803f, 829f, 850 };
+	protected int[] mediumZigZagYPositions = { 473, 541, 589, 626, 653,
+        678, 703, 728, 753, 778, 803, 829, 850 };
 
-    protected float[] hardZigZagXPositions = { 222, 400, 506, 341, 174, 7, -30,
+    protected int[] hardZigZagXPositions = { 222, 400, 506, 341, 174, 7, -30,
     		143, 315, 485, 525, 355, 185, 15, -22 };
 
-    protected float[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666,
+    protected int[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666,
     		688, 709, 731, 753, 774, 796, 818, 839, 860 };
 
-    protected float[] hardSidesXPositions = { 78, 351, 93, 362, 103, 370, 110,
+    protected int[] hardSidesXPositions = { 78, 351, 93, 362, 103, 370, 110,
     		377, 115, 379, 115, 379, 115, 379, 115 };
 
-    protected float[] hardSidesYPositions = { 492, 547, 588, 619, 644, 666, 688,
+    protected int[] hardSidesYPositions = { 492, 547, 588, 619, 644, 666, 688,
     		709, 731, 753, 774, 796, 818, 839, 860 };
 
-    protected float[] hardRapidXPositions = { 216, 220, 220, 220, 220, 220, 220,
+    protected int[] hardRapidXPositions = { 216, 220, 220, 220, 220, 220, 220,
         220, 220, 220, 220, 220, 220, 220 };
 
-    protected float[] hardRapidYPositions = { 709, 721, 733, 744, 756, 768, 779,
+    protected int[] hardRapidYPositions = { 709, 721, 733, 744, 756, 768, 779,
         791, 803, 814, 826, 838, 849, 860 };
 
-    protected float[] hardNarrowXPositions = { 248, 250, 252, 253, 255, 256,
+    protected int[] hardNarrowXPositions = { 248, 250, 252, 253, 255, 256,
         256, 256, 256, 256, 256, 256, 256, 256 };
 
-    protected float[] hardNarrowYPositions = { 644, 661, 677, 694, 711, 727, 744,
+    protected int[] hardNarrowYPositions = { 644, 661, 677, 694, 711, 727, 744,
         761, 778, 794, 811, 828, 844, 860 };
 
-	protected float[] insaneZigZagXPositions = { 222, 380, 476, 330, 184, 37,
+	protected int[] insaneZigZagXPositions = { 222, 380, 476, 330, 184, 37,
 			0, 152, 302, 452, 492, 342, 192, 42, 2, 152, 302,  452, 492 };
 
-	protected float[] insaneZigZagYPositions = { 538, 586, 624, 651, 673,
+	protected int[] insaneZigZagYPositions = { 538, 586, 624, 651, 673,
 			691, 706, 719, 732, 744, 758, 771, 783, 797, 809, 823, 835, 848, 860 };
 
 	private final Pool<Stair> stairPool = new Pool<Stair>() {
