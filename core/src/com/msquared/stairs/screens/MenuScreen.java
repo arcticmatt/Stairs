@@ -159,7 +159,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		aniWidth = 361.5f * heightRatio * (1 / widthRatio);
 		aniHeight = 482f;
 		aniXPos = (WorldRenderer.CAMERA_WIDTH - aniWidth) / 2;
-		aniYPos = 430;
+		aniYPos = 428;
 
 		table.setFillParent(true);
 		table.setY(-150);
@@ -174,7 +174,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		final Float buttonWidth = 400f * heightRatio * (1 / widthRatio);
 		final Float buttonHeight = 71f;
-		Float buttonSpacing = 30f;
+		Float buttonSpacing = 27.5f;
 
 		/*
 		 * Levels buttons
@@ -198,7 +198,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			}
 		});
 		table.add(levelsImagButton).size(buttonWidth, buttonHeight)
-				.spaceBottom(buttonSpacing).spaceTop(20).colspan(2).center()
+				.spaceBottom(buttonSpacing).spaceTop(10).colspan(2).center()
 				.expandX().fillX();
 		table.row();
 
