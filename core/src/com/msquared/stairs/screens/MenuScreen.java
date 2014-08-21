@@ -102,7 +102,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+		Gdx.gl.glClearColor(.101f, .101f, .101f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		stateTime += delta;
@@ -159,7 +159,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		aniWidth = 361.5f * heightRatio * (1 / widthRatio);
 		aniHeight = 482f;
 		aniXPos = (WorldRenderer.CAMERA_WIDTH - aniWidth) / 2;
-		aniYPos = 410;
+		aniYPos = 430;
 
 		table.setFillParent(true);
 		table.setY(-150);
@@ -198,7 +198,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			}
 		});
 		table.add(levelsImagButton).size(buttonWidth, buttonHeight)
-				.spaceBottom(buttonSpacing).spaceTop(60).colspan(2).center()
+				.spaceBottom(buttonSpacing).spaceTop(20).colspan(2).center()
 				.expandX().fillX();
 		table.row();
 
