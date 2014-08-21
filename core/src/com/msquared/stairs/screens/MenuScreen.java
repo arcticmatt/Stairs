@@ -133,7 +133,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	        public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
 	        	if (x >= aniXPos && x <= aniXPos + aniWidth
 	        			&& y >= aniYPos + 50 && y <= aniYPos + aniHeight) {
-	        		Gdx.net.openURI("https://www.youtube.com/watch?v=Tg89ps7lcUQ");
+	        		Gdx.net.openURI("http://www.stairsthegame.com/mobile.html");
 	        	}
 	        }
 		});
@@ -159,7 +159,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		aniWidth = 361.5f * heightRatio * (1 / widthRatio);
 		aniHeight = 482f;
 		aniXPos = (WorldRenderer.CAMERA_WIDTH - aniWidth) / 2;
-		aniYPos = 428;
+		aniYPos = 403;
 
 		table.setFillParent(true);
 		table.setY(-150);
@@ -174,7 +174,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		final Float buttonWidth = 400f * heightRatio * (1 / widthRatio);
 		final Float buttonHeight = 71f;
-		Float buttonSpacing = 27.5f;
+		Float buttonSpacing = 30f;
 
 		/*
 		 * Levels buttons
@@ -198,7 +198,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			}
 		});
 		table.add(levelsImagButton).size(buttonWidth, buttonHeight)
-				.spaceBottom(buttonSpacing).spaceTop(10).colspan(2).center()
+				.spaceBottom(buttonSpacing).spaceTop(67).colspan(2).center()
 				.expandX().fillX();
 		table.row();
 
