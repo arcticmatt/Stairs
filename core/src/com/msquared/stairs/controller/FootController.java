@@ -263,6 +263,8 @@ public class FootController {
 							return STEPPED_OFF_RIGHT;
 						} else if (rightFoot.state.equals(State.JUMPING)) {
 							dead_flag_right = true;
+							world.deleteFirstStair();
+							Gdx.app.log(Stairs.LOG, "Delayed death");
 							return ALIVE;
 						}
 					}
@@ -286,6 +288,8 @@ public class FootController {
 							return STEPPED_OFF_LEFT;
 						} else if (leftFoot.state.equals(State.JUMPING)) {
 							dead_flag_left = true;
+							world.deleteFirstStair();
+							Gdx.app.log(Stairs.LOG, "Delayed death");
 							return ALIVE;
 						}
 					}
