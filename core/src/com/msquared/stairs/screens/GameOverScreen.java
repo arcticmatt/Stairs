@@ -44,7 +44,9 @@ public class GameOverScreen extends AbstractScreen{
 		stage.addListener(new InputListener() {
 	        @Override
 	    	public boolean keyDown(InputEvent event, int keycode) {
-	    		if (keycode == Keys.SPACE)
+	    		if (keycode == Keys.SPACE || keycode == Keys.RIGHT
+	    				|| keycode == Keys.LEFT || keycode == Keys.UP
+	    				|| keycode == Keys.DOWN)
 	    			game.setScreen(new GameScreen(game, difficulty, stage));
 					return false;
 	    	}
