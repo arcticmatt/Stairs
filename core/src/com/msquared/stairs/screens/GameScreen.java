@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -321,8 +322,26 @@ public class GameScreen extends AbstractScreen implements Screen {
 				}
 			}
 		}
-		
+
 		world.createDemoWorld();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		this.width = width;
+		this.height = height;
+		// Changed jars, this became necessary (along with the new
+		// stage constructor with the stretch viewport)
+		camera = new OrthographicCamera(width, height);
+	    camera.position.set(width / 2, height / 2, 0);
+	    camera.update();
+		stage.getViewport().update(width, height, true);
+        Float heightRatio = this.height / WorldRenderer.CAMERA_HEIGHT;
+        Float widthRatio = this.width / WorldRenderer.CAMERA_WIDTH;
+        Float newFootHeight = world.leftFoot.height * widthRatio * (1 / heightRatio);
+        Gdx.app.log(Stairs.LOG, "Resize feet");
+		world.leftFoot.height = newFootHeight;
+		world.rightFoot.height = newFootHeight;
 	}
 
 	@Override
