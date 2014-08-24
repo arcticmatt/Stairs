@@ -64,7 +64,6 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		profile = game.getProfileManager().retrieveProfile();
 		prefs = Gdx.app.getPreferences("Preferences");
 		Gdx.input.setInputProcessor(stage);
-		profile.setHighScores();
 		// Show ads
 		game.myRequestHandler.showAds(true);
 
@@ -144,7 +143,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		mediumHighScore = profile.getHighScore(16);
-		hardUnlocked = mediumHighScore >= 150;
+		hardUnlocked = mediumHighScore >= 150 || Stairs.PAID_VERSION;
 		if (hardUnlocked) {
 			hardTexClassic = new Texture(
 					"images/buttons/classic/btn_hard_classic.png");
@@ -182,7 +181,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		hardHighScore = profile.getHighScore(19);
-		insaneUnlocked = hardHighScore >= 100;
+		insaneUnlocked = hardHighScore >= 100 || Stairs.PAID_VERSION;
 		if (insaneUnlocked) {
 			insaneTexClassic = new Texture(
 					"images/buttons/classic/btn_insane_classic.png");

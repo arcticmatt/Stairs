@@ -63,7 +63,6 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 	public void show() {
 		profile = game.getProfileManager().retrieveProfile();
 		prefs = Gdx.app.getPreferences("Preferences");
-		//profile.resetScores();
 		Gdx.input.setInputProcessor(stage);
 		// Show ads
 		game.myRequestHandler.showAds(true);
@@ -143,7 +142,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		mediumHighScore = profile.getHighScore(4);
-		hardUnlocked = mediumHighScore >= 150;
+		hardUnlocked = mediumHighScore >= 150 || Stairs.PAID_VERSION;
 		if (hardUnlocked) {
 			hardTexLevels = new Texture(
 					"images/buttons/levels/btn_hard_levels.png");
@@ -181,7 +180,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		hardHighScore = profile.getHighScore(7);
-		insaneUnlocked = hardHighScore >= 100;
+		insaneUnlocked = hardHighScore >= 100 || Stairs.PAID_VERSION;
 		if (insaneUnlocked) {
 			insaneTexLevels = new Texture(
 					"images/buttons/levels/btn_insane_levels.png");

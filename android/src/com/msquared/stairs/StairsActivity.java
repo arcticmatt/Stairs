@@ -94,7 +94,8 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 		adParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		adParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
-		layout.addView(adView, adParams);
+		if (!Stairs.PAID_VERSION)
+			layout.addView(adView, adParams);
 		adView.setVisibility(View.VISIBLE);
 		showAds(false);
 
@@ -106,6 +107,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 	@Override
 	// This is the callback that posts a message for the handler
 	public void showAds(boolean show) {
-		handler.sendEmptyMessage(show ? SHOW_ADS : HIDE_ADS);
+		if (!Stairs.PAID_VERSION)
+			handler.sendEmptyMessage(show ? SHOW_ADS : HIDE_ADS);
 	}
 }

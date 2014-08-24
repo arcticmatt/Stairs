@@ -94,8 +94,8 @@ public class SettingsScreen extends AbstractScreen {
 		// Invincible toggle (only display if score above 50 on either insane level)
 		insaneHighScoreLevels = profile.getHighScore(10);
 		insaneHighScoreClassic = profile.getHighScore(22);
-		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50;
-		if (true) {
+		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50 || Stairs.PAID_VERSION;
+		if (showInvinc) {
 			table.row().expandX().fillX();
 			TextureRegionDrawable invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
 			TextureRegionDrawable invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
