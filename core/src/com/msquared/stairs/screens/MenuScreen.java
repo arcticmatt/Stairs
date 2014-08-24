@@ -168,8 +168,10 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		Float imagWidthOrig = 65f;
 		Float imagHeightOrig = 65f;
+		Gdx.app.log(Stairs.LOG, "Height ratio = " + heightRatio + ", width ratio = " + widthRatio);
 		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
 		final Float imagHeight = imagHeightOrig;
+		Gdx.app.log(Stairs.LOG, "Height = " + imagHeight + ", width = " + imagWidth);
 		Float imagPadding = 180f - (imagWidth - imagWidthOrig);
 
 		final Float buttonWidth = 400f * heightRatio * (1 / widthRatio);

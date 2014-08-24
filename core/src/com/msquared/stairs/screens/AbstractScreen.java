@@ -86,6 +86,7 @@ public class AbstractScreen implements Screen {
 	public void resize(int width, int height) {
 		this.width = width;
 		this.height = height;
+		Gdx.app.log(Stairs.LOG,  "Resize height = " + height + ", width = " + width);
 		// Changed jars, this became necessary (along with the new
 		// stage constructor with the stretch viewport)
 		camera = new OrthographicCamera(width, height);
