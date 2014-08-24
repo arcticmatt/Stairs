@@ -12,6 +12,7 @@ public class Stair {
 	public static int lowXSpeed = 10;
 	public static int highXSpeed = 250;
 	public static int startingSpeed = 0;
+	//public final static int MAX_HEIGHT_SCALAR = 5555;
 	public final static int MAX_HEIGHT_SCALAR = 12;
 	public final static int MIN_HEIGHT_SCALAR = 1;
 	public final static int MAX_WIDTH_SCALAR = 6;
@@ -137,6 +138,9 @@ public class Stair {
 
 		// Height
 		float scalarHeight = Math.abs((yPos - 860) / 70);
+		//float scalarHeight = Math.abs((yPos - 860) / 50);
+		/*if (scalarHeight > 12)
+			Gdx.app.log("STAIRS", "scalarHeight = " + scalarHeight + " and yPos = " + yPos);*/
 		scalarHeight = clamp(scalarHeight, MIN_HEIGHT_SCALAR, MAX_HEIGHT_SCALAR);
 		float newHeight = startingHeight * scalarHeight;
 
