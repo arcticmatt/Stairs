@@ -68,13 +68,13 @@ public class World {
 
     protected int[] easyStraightYPositions = { 570, 635, 681, 726, 771, 816, 860 };
 
-	protected int[] mediumZigZagXPositions = { 203, 336, 465, 471, 357,
+	protected int[] mediumZigZagXPositions = { 244, 336, 465, 471, 357,
         241, 126, 9, -1, 119, 239, 359, 479 };
 
 	protected int[] mediumZigZagYPositions = { 473, 541, 589, 626, 653,
         678, 703, 728, 753, 778, 803, 829, 850 };
 
-    protected int[] hardZigZagXPositions = { 222, 400, 506, 341, 174, 7, -30,
+    protected int[] hardZigZagXPositions = { 250, 400, 506, 341, 174, 7, -30,
     		143, 315, 485, 525, 355, 185, 15, -22 };
 
     protected int[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666,
