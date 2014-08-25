@@ -3,6 +3,8 @@ package com.msquared.stairs;
 import java.util.Random;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
@@ -52,7 +54,8 @@ public class Stairs extends Game {
 	public AssetManager assetManager;
 	private ProfileManager profileManager;
 	public static final Random randomGenerator = new Random();
-	public static final boolean PAID_VERSION = false;
+	public static final boolean PAID_VERSION = true;
+	public static Preferences prefs;
 	
 	public Stairs(boolean html, boolean iphone, IActivityRequestHandler handler) {
 		myRequestHandler = handler;
@@ -74,6 +77,7 @@ public class Stairs extends Game {
 		menuTex = new Texture("images/buttons/misc/btn_menu.png");
 		menuTexDown = new Texture(
 				"images/buttons/misc/btn_menu_down.png");
+		prefs = Gdx.app.getPreferences("Preferences");
 		
 		if (!htmlGame) {
 			profileManager = new ProfileManager();
@@ -89,6 +93,10 @@ public class Stairs extends Game {
 	
 	public ProfileManager getProfileManager() {
 		return profileManager;
+	}
+	
+	public static Preferences getSharedPrefs() {
+		return prefs;
 	}
 	
 	@Override
