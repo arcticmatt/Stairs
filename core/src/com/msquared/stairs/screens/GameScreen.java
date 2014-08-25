@@ -57,7 +57,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 	Music music;
 	public int screenWidth;
 	public int screenHeight;
-	Preferences prefs;
 	Stage stageDispose;
 	Texture pauseTex;
 
@@ -82,7 +81,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 		FootController.jump_left = false;
 		FootController.jump_right = false;
 		difficulty = diff;
-		prefs = Gdx.app.getPreferences("Preferences");
 
 		// Initialize world, renderer, controllers
 		world = new World();
@@ -268,7 +266,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 		screenHeight = Gdx.graphics.getHeight();
 
 		// Pause button/kill button
-		if (!prefs.getBoolean("invincOn", false)) {
+		if (!Stairs.getSharedPrefs().getBoolean("invincOn", false)) {
 			pauseTex = new Texture("images/buttons/misc/btn_pause.png");
 		} else {
 			pauseTex = new Texture("images/buttons/misc/btn_stop.png");
@@ -282,7 +280,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 			@Override
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
-				if (!prefs.getBoolean("invincOn", false)) {
+				if (!Stairs.getSharedPrefs().getBoolean("invincOn", false)) {
 					game.paused = !game.paused;
 				} else {
 					GameOverScreen gameOverScreen = new GameOverScreen(game,
@@ -295,27 +293,27 @@ public class GameScreen extends AbstractScreen implements Screen {
 		stage.addActor(pauseButton);
 
 		// Play the right music
-		if (prefs.getBoolean("musicOn", true)) {
+		if (Stairs.getSharedPrefs().getBoolean("musicOn", true)) {
 			if (difficulty == MenuScreen.EASY || difficulty == MenuScreen.EASY + 4) {
-				if (prefs.getBoolean("songFirst", true)) {
+				if (Stairs.getSharedPrefs().getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_EASY, true);
 				} else {
 					game.musicManager.play(MUSIC_EASY_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.MEDIUM || difficulty == MenuScreen.MEDIUM + 4) {
-				if (prefs.getBoolean("songFirst", true)) {
+				if (Stairs.getSharedPrefs().getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_MEDIUM, true);
 				} else {
 					game.musicManager.play(MUSIC_MEDIUM_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.HARD || difficulty == MenuScreen.HARD + 4) {
-				if (prefs.getBoolean("songFirst", true)) {
+				if (Stairs.getSharedPrefs().getBoolean("songFirst", true)) {
 					game.musicManager.play(MUSIC_HARD, true);
 				} else {
 					game.musicManager.play(MUSIC_HARD_ALT, false);
 				}
 			} else if (difficulty == MenuScreen.INSANE || difficulty == MenuScreen.INSANE + 4) {
-				if (prefs.getBoolean("songFirst", true) ) {
+				if (Stairs.getSharedPrefs().getBoolean("songFirst", true) ) {
 					game.musicManager.play(MUSIC_INSANE, true);
 				} else {
 					game.musicManager.play(MUSIC_INSANE_ALT, false);

@@ -160,8 +160,6 @@ public class StairController {
 	protected int[] randMinColors = { 220, 170, 130, 90, 0, 0 };
 
 	boolean levels;
-
-	Preferences prefs;
 	
 	public int earlySelector;
 	
@@ -171,8 +169,7 @@ public class StairController {
 		this.random = Stairs.randomGenerator;
 		this.time = System.currentTimeMillis();
 		this.random.setSeed(time);
-		prefs = Gdx.app.getPreferences("Preferences");
-		int level = prefs.getInteger("mostRecent");
+		int level = Stairs.getSharedPrefs().getInteger("mostRecent");
 		if (level <= 4) {
 			levels = true;
 		} else {
@@ -188,8 +185,7 @@ public class StairController {
 		this.random = Stairs.randomGenerator;
 		this.time = System.currentTimeMillis();
 		this.random.setSeed(time);
-		Preferences prefs = Gdx.app.getPreferences("Preferences");
-		int level = prefs.getInteger("mostRecent");
+		int level = Stairs.getSharedPrefs().getInteger("mostRecent");
 		if (level <= 4) {
 			levels = true;
 		} else {
@@ -357,7 +353,7 @@ public class StairController {
 			randLimiter = 40;
 			randLimiterMin = 30;
 			randLimiterMax = 50;
-		} else if (prefs.getBoolean("earlyOn", true)) {
+		} else if (Stairs.getSharedPrefs().getBoolean("earlyOn", true)) {
 			levelSelector = SIDES_SELECTOR;
 			currLevel = sidesLevel;
 		} else {

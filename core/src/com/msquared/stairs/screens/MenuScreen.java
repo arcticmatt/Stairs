@@ -38,7 +38,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	public static final int MEDIUM_CLASSIC = 6;
 	public static final int HARD_CLASSIC = 7;
 	public static final int INSANE_CLASSIC = 8;
-	Preferences prefs;
 	float heightRatio;
 	float widthRatio;
 	float aniWidth;
@@ -116,7 +115,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		prefs = Gdx.app.getPreferences("Preferences");
 		
 		/* 
 		 * Add listener so that when user clicks on animation area, he gets taken to 
@@ -243,7 +241,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					int difficulty = prefs.getInteger("mostRecent", 1);
+					int difficulty = Stairs.getSharedPrefs().getInteger("mostRecent", 1);
 					gameScreen = new GameScreen(game, difficulty, null);
 					game.setScreen(gameScreen);
 				}
@@ -302,49 +300,49 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		ArrayList<String> mostRecentLevels = new ArrayList<String>();
 		String mostRecentUp;
 		String mostRecentDown;
-		if (prefs.getInteger("mostRecent", 1) == Stairs.EASY_LEVELS) {
+		if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.EASY_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_easy_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_easy_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.MEDIUM_LEVELS) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.MEDIUM_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_medium_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_medium_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.HARD_LEVELS) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.HARD_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_hard_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_hard_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.INSANE_LEVELS) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.INSANE_LEVELS) {
 			mostRecentUp = "images/buttons/levels/btn_insane_levels.png";
 			mostRecentDown = "images/buttons/levels/btn_insane_levels_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.EASY_CLASSIC) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.EASY_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_easy_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_easy_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.MEDIUM_CLASSIC) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.MEDIUM_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_medium_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_medium_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.HARD_CLASSIC) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.HARD_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_hard_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_hard_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);
 			mostRecentLevels.add(mostRecentDown);
 			return mostRecentLevels;
-		} else if (prefs.getInteger("mostRecent", 1) == Stairs.INSANE_CLASSIC) {
+		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.INSANE_CLASSIC) {
 			mostRecentUp = "images/buttons/classic/btn_insane_classic.png";
 			mostRecentDown = "images/buttons/classic/btn_insane_classic_down.png";
 			mostRecentLevels.add(mostRecentUp);

@@ -75,7 +75,7 @@ public class SettingsScreen extends AbstractScreen {
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
 		profile = game.getProfileManager().retrieveProfile();		
-		prefs = Gdx.app.getPreferences("Preferences");
+		prefs = Stairs.getSharedPrefs();
 		// Show ads
 		game.myRequestHandler.showAds(true);
 

@@ -38,7 +38,6 @@ public class FootController {
 	Stair firstStair = null;
 	Color deadColor = new Color(255, 0, 0, 1);
 
-	Preferences prefs;
 	Sound stepSound;
 	boolean invincOn;
 
@@ -49,8 +48,7 @@ public class FootController {
 		dead_flag_left = false;
 		dead_flag_right = false;
 		stepSound = Gdx.audio.newSound(Gdx.files.internal("sounds/step.wav"));
-		prefs = Gdx.app.getPreferences("Preferences");
-		invincOn = prefs.getBoolean("invincOn", false);
+		invincOn = Stairs.getSharedPrefs().getBoolean("invincOn", false);
 	}
 
 	/** The main update method */
@@ -86,7 +84,7 @@ public class FootController {
 			leftFoot.yVelo = 0f;
 			leftFoot.state = State.IDLE;
 			leftFoot.grounded = true;
-			if (prefs.getBoolean("soundsOn", true)) {
+			if (Stairs.getSharedPrefs().getBoolean("soundsOn", true)) {
 				stepSound.play(1f);
 			}
 		}
@@ -95,7 +93,7 @@ public class FootController {
 			rightFoot.yVelo = 0f;
 			rightFoot.state = State.IDLE;
 			rightFoot.grounded = true;
-			if (prefs.getBoolean("soundsOn", true)) {
+			if (Stairs.getSharedPrefs().getBoolean("soundsOn", true)) {
 				stepSound.play(1f);
 			}
 		}

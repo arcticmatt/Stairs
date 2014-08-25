@@ -27,7 +27,6 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 	int hardHighScore;
 	boolean hardUnlocked;
 	boolean insaneUnlocked;
-	Preferences prefs;
 	Texture easyTexLevels;
 	Texture easyTexLevelsDown;
 	Texture mediumTexLevels;
@@ -62,7 +61,6 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		profile = game.getProfileManager().retrieveProfile();
-		prefs = Gdx.app.getPreferences("Preferences");
 		Gdx.input.setInputProcessor(stage);
 		// Show ads
 		game.myRequestHandler.showAds(true);
@@ -105,8 +103,8 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					prefs.putInteger("mostRecent", Stairs.EASY_LEVELS);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.EASY_LEVELS);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.EASY_LEVELS, null);
 					game.setScreen(gameScreen);
 				}
@@ -130,8 +128,8 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					prefs.putInteger("mostRecent", Stairs.MEDIUM_LEVELS);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.MEDIUM_LEVELS);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.MEDIUM_LEVELS, null);
 					game.setScreen(gameScreen);
 				}
@@ -168,8 +166,8 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)
 						&& hardUnlocked) {
-					prefs.putInteger("mostRecent", Stairs.HARD_LEVELS);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.HARD_LEVELS);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.HARD_LEVELS, null);
 					game.setScreen(gameScreen);
 				}
@@ -206,8 +204,8 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)
 						&& insaneUnlocked) {
-					prefs.putInteger("mostRecent", Stairs.INSANE_LEVELS);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.INSANE_LEVELS);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.INSANE_LEVELS, null);
 					game.setScreen(gameScreen);
 				}

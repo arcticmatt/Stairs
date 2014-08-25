@@ -171,7 +171,7 @@ public class StairControllerEasy extends StairController {
 			randLimiter = 35;
             randLimiterMin = 25;
             randLimiterMax = 45;
-		} else if (prefs.getBoolean("earlyOn", true)) {
+		} else if (Stairs.getSharedPrefs().getBoolean("earlyOn", true)) {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		} else {

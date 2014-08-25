@@ -28,7 +28,6 @@ public class GameOverScreen extends AbstractScreen{
 	Color winningColor = new Color(0, 255, 0, 1);
 	Color scoreColor = new Color(255, 0, 0, 1);
 	int difficulty;
-	Preferences prefs;
 	Stage stageDispose;
 	Texture restartTex;
 	Texture restartTexDown;
@@ -39,7 +38,6 @@ public class GameOverScreen extends AbstractScreen{
 		super(game);
 		stageDispose = stageToDispose;
 		this.difficulty = difficulty;
-		prefs = Gdx.app.getPreferences("Preferences");
 		
 		stage.addListener(new InputListener() {
 	        @Override
@@ -130,7 +128,7 @@ public class GameOverScreen extends AbstractScreen{
 	
 	// Show score using highscores from profile
 	public void showScoreProfile(int difficulty) {
-		int levelNum = prefs.getInteger("mostRecent", Stairs.EASY_LEVELS);
+		int levelNum = Stairs.getSharedPrefs().getInteger("mostRecent", Stairs.EASY_LEVELS);
 		boolean levels;
 		if (levelNum <= 4) {
 			levels = true;
@@ -249,6 +247,7 @@ public class GameOverScreen extends AbstractScreen{
 	
 	// Show score using highscores from prefs
 	public void showScorePrefs(int difficulty) {
+		Preferences prefs = Stairs.getSharedPrefs();
 		String highScoresLabel = "";
 		int[] scores = new int[3];
 		int place = 0;

@@ -27,7 +27,6 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 	int hardHighScore;
 	boolean hardUnlocked;
 	boolean insaneUnlocked;
-	Preferences prefs;
 	Texture easyTexClassic;
 	Texture easyTexClassicDown;
 	Texture mediumTexClassic;
@@ -62,7 +61,6 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		profile = game.getProfileManager().retrieveProfile();
-		prefs = Gdx.app.getPreferences("Preferences");
 		Gdx.input.setInputProcessor(stage);
 		// Show ads
 		game.myRequestHandler.showAds(true);
@@ -105,8 +103,8 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					prefs.putInteger("mostRecent", Stairs.EASY_CLASSIC);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.EASY_CLASSIC);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.EASY_CLASSIC, null);
 					game.setScreen(gameScreen);
 				}
@@ -131,8 +129,8 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 			public void touchUp(InputEvent event, float x, float y,
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)) {
-					prefs.putInteger("mostRecent", Stairs.MEDIUM_CLASSIC);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.MEDIUM_CLASSIC);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.MEDIUM_CLASSIC, null);
 					game.setScreen(gameScreen);
 				}
@@ -169,8 +167,8 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)
 						&& hardUnlocked) {
-					prefs.putInteger("mostRecent", Stairs.HARD_CLASSIC);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.HARD_CLASSIC);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.HARD_CLASSIC, null);
 					game.setScreen(gameScreen);
 				}
@@ -208,8 +206,8 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 					int pointer, int button) {
 				if (!(x < 0 || x > buttonWidth || y < 0 || y > buttonHeight)
 						&& insaneUnlocked) {
-					prefs.putInteger("mostRecent", Stairs.INSANE_CLASSIC);
-					prefs.flush();
+					Stairs.getSharedPrefs().putInteger("mostRecent", Stairs.INSANE_CLASSIC);
+					Stairs.getSharedPrefs().flush();
 					gameScreen = new GameScreen(game, Stairs.INSANE_CLASSIC, null);
 					game.setScreen(gameScreen);
 				}

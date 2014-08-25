@@ -194,7 +194,7 @@ public class HighScoresScreen extends AbstractScreen {
 	}
 	
 	public void showScorePrefs() {
-		Preferences prefs = Gdx.app.getPreferences("Preferences");
+		Preferences prefs = Stairs.getSharedPrefs();
 		Skin skin = getSkin();
 		LabelStyle labelStyle = skin.get("highscore", LabelStyle.class);
 		Label scoreLabel = new Label("Highscores", labelStyle);

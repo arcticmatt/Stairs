@@ -106,8 +106,7 @@ public class StairControllerInsane extends StairController {
 
 		stairSelector = 0;
 		prevRoundSelector = 0;
-		Preferences prefs = Gdx.app.getPreferences("Preferences");
-		int mostRecent = prefs.getInteger("mostRecent", 1);
+		int mostRecent = Stairs.getSharedPrefs().getInteger("mostRecent", 1);
 		if (mostRecent == 8) {
 			roundSelector = 3;
 		} else {
@@ -177,7 +176,7 @@ public class StairControllerInsane extends StairController {
 			randLimiter = 30;
 			randLimiterMin = 20;
 			randLimiterMax = 40;
-		} else if (prefs.getBoolean("earlyOn", true)) {
+		} else if (Stairs.getSharedPrefs().getBoolean("earlyOn", true)) {
 			levelSelector = SIDES_SELECTOR;
 			currLevel = sidesLevel;
 		} else {

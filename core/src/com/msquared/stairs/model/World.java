@@ -142,8 +142,7 @@ public class World {
 
 	public void createDemoWorld() {
 		// If earlyOn pref is not on, don't spawn early stairs. Else, do.
-		final Preferences prefs = Gdx.app.getPreferences("Preferences");
-		boolean earlyOn = prefs.getBoolean("earlyOn", true);
+		boolean earlyOn = Stairs.getSharedPrefs().getBoolean("earlyOn", true);
 		if (earlyOn) {
 			Gdx.app.log(Stairs.LOG, "earlyOn");
 			if (difficulty == Stairs.EASY_LEVELS) {
