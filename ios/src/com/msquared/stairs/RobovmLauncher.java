@@ -52,41 +52,55 @@ public class RobovmLauncher extends IOSApplication.Delegate
 
 	// Override
 	public void hide() {
-		initializeAds();
-		
-		final CGSize screenSize = UIScreen.getMainScreen().getBounds().size();
-		double screenWidth = screenSize.width();
-		
-		final CGSize adSize = adview.getBounds().size();
-		double adWidth = adSize.width();
-		double adHeight = adSize.height();
-		
-		log.debug("Hiding ad. size (width, height): (" + adWidth + ", " + adHeight + ")");
-		
-		float bannerWidth = (float) screenWidth;
-		float bannerHeight = (float) (bannerWidth / adWidth * adHeight);
-		
-		adview.setFrame(new CGRect(0, -bannerHeight, bannerWidth, bannerHeight));
+		if (!Stairs.PAID_VERSION) {
+			initializeAds();
+
+			final CGSize screenSize = UIScreen.getMainScreen().getBounds()
+					.size();
+			double screenWidth = screenSize.width();
+
+			final CGSize adSize = adview.getBounds().size();
+			double adWidth = adSize.width();
+			double adHeight = adSize.height();
+
+			log.debug("Hiding ad. size (width, height): (" + adWidth + ", "
+					+ adHeight + ")");
+
+			float bannerWidth = (float) screenWidth;
+			float bannerHeight = (float) (bannerWidth / adWidth * adHeight);
+
+			adview.setFrame(new CGRect(0, -bannerHeight, bannerWidth,
+					bannerHeight));
+		}
 	}
 	
 	// Override
 	public void show() {
-		initializeAds();
+		if (!Stairs.PAID_VERSION) {
+			initializeAds();
 
-        final CGSize screenSize = UIScreen.getMainScreen().getBounds().size();
-        double screenWidth = screenSize.width();
+			final CGSize screenSize = UIScreen.getMainScreen().getBounds()
+					.size();
+			double screenWidth = screenSize.width();
 
-        final CGSize adSize = adview.getBounds().size();
-        double adWidth = adSize.width();
-        double adHeight = adSize.height();
+			final CGSize adSize = adview.getBounds().size();
+			double adWidth = adSize.width();
+			double adHeight = adSize.height();
 
-        float bannerWidth = (float) screenWidth;
-        float bannerHeight = (float) (bannerWidth / adWidth * adHeight);
-        
-        log.debug("Show method: (adWidth, adHeight : screenWidth, screenHeight) " + 
-        " ( " + adWidth + ", " + adHeight + " : " + screenSize.width() + ", " + screenSize.height() + ")");
+			float bannerWidth = (float) screenWidth;
+			float bannerHeight = (float) (bannerWidth / adWidth * adHeight);
 
-        adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0, bannerWidth, bannerHeight));
+			log.debug("Show method: (adWidth, adHeight : screenWidth, screenHeight) "
+					+ " ( "
+					+ adWidth
+					+ ", "
+					+ adHeight
+					+ " : "
+					+ screenSize.width() + ", " + screenSize.height() + ")");
+
+			adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0,
+					bannerWidth, bannerHeight));
+		}
 	}
 	
 	public void initializeAds() {
@@ -131,25 +145,35 @@ public class RobovmLauncher extends IOSApplication.Delegate
 	}
 	
 	public void showAds(boolean show) {
-		initializeAds();
+		if (!Stairs.PAID_VERSION) {
+			initializeAds();
 
-        final CGSize screenSize = UIScreen.getMainScreen().getBounds().size();
-        double screenWidth = screenSize.width();
-        
-        final CGSize adSize = adview.getBounds().size();
-        double adWidth = adSize.width();
-        double adHeight = adSize.height();
+			final CGSize screenSize = UIScreen.getMainScreen().getBounds()
+					.size();
+			double screenWidth = screenSize.width();
 
-        float bannerWidth = (float) screenWidth;
-        float bannerHeight = (float) (bannerWidth / adWidth * adHeight);
-        
-        log.debug("Show method: (adWidth, adHeight : screenWidth, screenHeight) " + 
-                " ( " + adWidth + ", " + adHeight + " : " + screenSize.width() + ", " + screenSize.height() + ")");
+			final CGSize adSize = adview.getBounds().size();
+			double adWidth = adSize.width();
+			double adHeight = adSize.height();
 
-        if(show) {
-            adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0, bannerWidth, bannerHeight));
-        } else {
-            adview.setFrame(new CGRect(0, -bannerHeight, bannerWidth, bannerHeight));
-        }
+			float bannerWidth = (float) screenWidth;
+			float bannerHeight = (float) (bannerWidth / adWidth * adHeight);
+
+			log.debug("Show method: (adWidth, adHeight : screenWidth, screenHeight) "
+					+ " ( "
+					+ adWidth
+					+ ", "
+					+ adHeight
+					+ " : "
+					+ screenSize.width() + ", " + screenSize.height() + ")");
+
+			if (show) {
+				adview.setFrame(new CGRect((screenWidth / 2) - adWidth / 2, 0,
+						bannerWidth, bannerHeight));
+			} else {
+				adview.setFrame(new CGRect(0, -bannerHeight, bannerWidth,
+						bannerHeight));
+			}
+		}
 	}
 }
