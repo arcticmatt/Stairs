@@ -47,8 +47,8 @@ public class SettingsScreen extends AbstractScreen {
 
 	public SettingsScreen(Stairs game) {
 		super(game);
-		blockTexOn = new Texture("images/buttons/toggles/btn_sound_on.png");
-		blockTexChecked = new Texture("images/buttons/toggles/btn_sound_off.png");
+		blockTexOn = new Texture("images/buttons/toggles/btn_block_on.png");
+		blockTexChecked = new Texture("images/buttons/toggles/btn_block_off.png");
 		invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
 		invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
 		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");

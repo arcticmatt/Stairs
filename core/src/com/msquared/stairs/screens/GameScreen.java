@@ -116,11 +116,15 @@ public class GameScreen extends AbstractScreen implements Screen {
 		// Add controls to stage
 		stage.addListener(new InputListener() {
 	        public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-	    		if (x < 540 / 2 && !rightPressed && y < (860 - 860/9)) {
+	    		if (x < WorldRenderer.CAMERA_WIDTH / 2 
+	    				&& !rightPressed 
+	    				&& y < (WorldRenderer.CAMERA_HEIGHT - WorldRenderer.CAMERA_HEIGHT/9)) {
 	    			leftPressed = true;
 	    			feetController.processInput(JUMP_LEFT);
 	    			FootController.jump_left = true;
-	    		} else if (x >= 540 / 2 && !leftPressed && y < (860 - 860/9)) {
+	    		} else if (x >= WorldRenderer.CAMERA_WIDTH / 2 
+	    				&& !leftPressed 
+	    				&& y < (WorldRenderer.CAMERA_HEIGHT - WorldRenderer.CAMERA_HEIGHT/9)) {
 	    			rightPressed = true;
 	    			feetController.processInput(JUMP_RIGHT);
 	    			FootController.jump_right = true;

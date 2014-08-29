@@ -74,7 +74,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 
 		table.setFillParent(true);
 		table.setY(0);
-		table.add("").width(540).expandX().colspan(2).center();
+		table.add("").width(WorldRenderer.CAMERA_WIDTH).expandX().colspan(2).center();
 		table.row();
 
 		Float imagWidthOrig = 100f;

@@ -45,7 +45,7 @@ public class StairController {
 	public static int prevRoundSelector;
 	public static int maxRound;
 
-	public final static int startingYPos = 860;
+	public final static int startingYPos = WorldRenderer.CAMERA_HEIGHT;
 	public int startingHeight = 2;
 
 	public int straightWidthOriginal;

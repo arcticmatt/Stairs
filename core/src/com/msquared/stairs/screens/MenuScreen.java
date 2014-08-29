@@ -161,7 +161,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		table.setFillParent(true);
 		table.setY(-150);
-		table.add("").width(540).expandX().colspan(2).center();
+		table.add("").width(WorldRenderer.CAMERA_WIDTH).expandX().colspan(2).center();
 		table.row();
 
 		Float imagWidthOrig = 65f;

@@ -94,14 +94,14 @@ public class Stair {
 		if (!gameOver) {
 			if (World.difficulty % 4 != 0){ 
 				// Update velocity depending upon the stair's y position
-				yVelo = (float) (-Math.pow((-860 + yPos), 2f) / y_divisor);
+				yVelo = (float) (-Math.pow((-WorldRenderer.CAMERA_HEIGHT + yPos), 2f) / y_divisor);
 				yVelo = clamp(yVelo, lowYSpeed, highYSpeed);
 
 				if (movingLeft) {
-					xVelo = (float) (Math.pow((-860 + yPos), 2f) / x_divisor);
+					xVelo = (float) (Math.pow((-WorldRenderer.CAMERA_HEIGHT + yPos), 2f) / x_divisor);
 					xVelo = -clamp(xVelo, lowXSpeed, highXSpeed);
 				} else if (movingRight) {
-					xVelo = (float) (Math.pow((-860 + yPos), 2f) / x_divisor);
+					xVelo = (float) (Math.pow((-WorldRenderer.CAMERA_HEIGHT + yPos), 2f) / x_divisor);
 					xVelo = clamp(xVelo, lowXSpeed, highXSpeed);
 					// velocity.x = 200f;
 				} else {
@@ -110,14 +110,14 @@ public class Stair {
 			}
 			else {
 				// Update velocity depending upon the stair's y position
-				yVelo = (float) (-Math.pow((-860 + yPos), 2f) / y_divisor_hard);
+				yVelo = (float) (-Math.pow((-WorldRenderer.CAMERA_HEIGHT + yPos), 2f) / y_divisor_hard);
 				yVelo = clamp(yVelo, lowYSpeed, highYSpeed);
 
 				if (movingLeft) {
-					xVelo = (float) (Math.pow((-860 + yPos), 2f) / x_divisor_hard);
+					xVelo = (float) (Math.pow((-WorldRenderer.CAMERA_HEIGHT + yPos), 2f) / x_divisor_hard);
 					xVelo = -clamp(xVelo, lowXSpeed, highXSpeed);
 				} else if (movingRight) {
-					xVelo = (float) (Math.pow((-860 + yPos), 2f) / x_divisor_hard);
+					xVelo = (float) (Math.pow((-WorldRenderer.CAMERA_HEIGHT + yPos), 2f) / x_divisor_hard);
 					xVelo = clamp(xVelo, lowXSpeed, highXSpeed);
 					// velocity.x = 200f;
 				} else {
@@ -133,16 +133,16 @@ public class Stair {
 		// Width
 		float oldWidth = width;
 
-		float scalarWidth = Math.abs((yPos - 860) / 140);
+		float scalarWidth = Math.abs((yPos - WorldRenderer.CAMERA_HEIGHT) / 140);
 		scalarWidth = clamp(scalarWidth, MIN_WIDTH_SCALAR, MAX_WIDTH_SCALAR);
 		float newWidth = startingWidth * scalarWidth;
 
 		// Height
-		float scalarHeight = Math.abs((yPos - 860) / 70);
+		float scalarHeight = Math.abs((yPos - WorldRenderer.CAMERA_HEIGHT) / 70);
 		if (Stairs.getSharedPrefs().getBoolean("blockOn", false)) {
 			scalarHeight = 25;
 		}
-		//float scalarHeight = Math.abs((yPos - 860) / 50);
+		//float scalarHeight = Math.abs((yPos - WorldRenderer.CAMERA_HEIGHT) / 50);
 		/*if (scalarHeight > 12)
 			Gdx.app.log("STAIRS", "scalarHeight = " + scalarHeight + " and yPos = " + yPos);*/
 		scalarHeight = clamp(scalarHeight, MIN_HEIGHT_SCALAR, MAX_HEIGHT_SCALAR);
