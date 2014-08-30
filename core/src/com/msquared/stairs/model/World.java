@@ -100,7 +100,7 @@ public class World {
     protected int[] hardNarrowYPositions = { 644, 661, 677, 694, 711, 727, 744,
         761, 778, 794, 811, 828, 844, 860 };
 
-	protected int[] insaneZigZagXPositions = { 222, 380, 476, 330, 184, 37,
+	protected int[] insaneZigZagXPositions = { 246, 380, 476, 330, 184, 37,
 			0, 152, 302, 452, 492, 342, 192, 42, 2, 152, 302,  452, 492 };
 
 	protected int[] insaneZigZagYPositions = { 538, 586, 624, 651, 673,
