@@ -180,6 +180,7 @@ public class StairControllerEasy extends StairController {
 		}
 		
 		//onlyRapid();
+		// Random change
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
