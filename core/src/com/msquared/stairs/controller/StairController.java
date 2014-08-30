@@ -3,7 +3,9 @@ package com.msquared.stairs.controller;
 import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
@@ -42,6 +44,7 @@ public class StairController {
 	public static int levelSelector;
 	public static int stairSelector;
 	public static int roundSelector;
+	public Queue<Integer> roundSelectorsForRoundSpeedChange = new LinkedList<Integer>();
 	public static int prevRoundSelector;
 	public static int maxRound;
 
@@ -361,10 +364,12 @@ public class StairController {
 			currLevel = zigZagLevel;
 		}
 		
+		onlySides();
+		
 		// Make levels corresponding to round selector
 		makeNewRound(false);
         // Change constants corresponding to round selector
-		changeRoundSpeeds();
+		changeRoundSpeeds(roundSelector);
 		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 
@@ -585,12 +590,17 @@ public class StairController {
 		}
 		// If a round change was made, delay the speed changes until the last
 		// stair of the last round exits the stage
-		if (roundSelector > prevRoundSelector && world.roundChangeStair != null
-				&& world.roundChangeStair.yPos < 10) {
+		if (roundSelector > prevRoundSelector && !world.roundChangeStairs.isEmpty()
+				&& world.roundChangeStairs.peek().yPos < 10) {
 			// Change various speeds for the new round (gravity,
 			// foot x speed, etc.)
-			changeRoundSpeeds();
+			if (!roundSelectorsForRoundSpeedChange.isEmpty()) {
+				changeRoundSpeeds(roundSelectorsForRoundSpeedChange.poll().intValue());
+			} else {
+				changeRoundSpeeds(roundSelector);
+			}
 			prevRoundSelector++;
+			world.roundChangeStairs.poll();
 			Gdx.app.log(Stairs.LOG, "Change constants");
 		}
 		// Update all the stairs
@@ -611,7 +621,7 @@ public class StairController {
 			world.addStair(xPos, startingYPos, width, startingHeight,
 					stairColor);
 			stairSelector++;
-			//Gdx.app.log(Stairs.LOG, "Time interval: " + timeInterval);
+			Gdx.app.log(Stairs.LOG, "Stair gravity: " + Stair.lowYSpeed);
 		}
 	}
 
@@ -813,13 +823,13 @@ public class StairController {
 		Gdx.app.log(Stairs.LOG, "Making new levels");
 	}
 
-	public void changeRoundSpeeds() {
-		Gdx.app.log(Stairs.LOG, "Changing round speed " + roundSelector);
+	public void changeRoundSpeeds(int round) {
+		Gdx.app.log(Stairs.LOG, "Changing round speed " + round);
 		// Changing gravity, x speed, jump speed
-		Foot.footGravity = lowYSpeeds.get(roundSelector);
-		Foot.jumpVelo = jumpSpeeds.get(roundSelector);
-		Stair.lowYSpeed = lowYSpeeds.get(roundSelector);
-		Stair.highXSpeed = highXSpeeds.get(roundSelector);
+		Foot.footGravity = lowYSpeeds.get(round);
+		Foot.jumpVelo = jumpSpeeds.get(round);
+		Stair.lowYSpeed = lowYSpeeds.get(round);
+		Stair.highXSpeed = highXSpeeds.get(round);
 	}
 
 	public int getNextRoundSelector() {
@@ -863,9 +873,68 @@ public class StairController {
 		}
 		// Used for knowing when to increase gravity
 		roundChangeTime = System.currentTimeMillis();
-		world.roundChangeStair = world.lastStair;
+		world.roundChangeStairs.add(world.lastStair);
+		roundSelectorsForRoundSpeedChange.add(new Integer(roundSelector));
         if (classic) {
             makeNewRound(true);
         }
 	}
+	
+	/* Testing Methods */
+	
+	public void onlyZigZag() {
+		straightLimiter = 0;
+		zigZagLimiter = 20;
+		sidesLimiter = 0;
+		narrowLimiter = 0;
+		randLimiter = 0;
+		rapidLimiter = 0;
+		levelSelector = ZIG_ZAG_SELECTOR;
+		currLevel = zigZagLevel;
+	}
+	
+	public void onlySides() {
+		straightLimiter = 0;
+		zigZagLimiter = 0;
+		sidesLimiter = 20;
+		narrowLimiter = 0;
+		randLimiter = 0;
+		rapidLimiter = 0;
+		levelSelector = SIDES_SELECTOR;
+		currLevel = sidesLevel;
+	}
+	
+	public void onlyRandom() {
+		straightLimiter = 0;
+		zigZagLimiter = 0;
+		sidesLimiter = 0;
+		narrowLimiter = 0;
+		randLimiter = 20;
+		rapidLimiter = 0;
+		levelSelector = RAND_SELECTOR;
+		currLevel = randLevel;
+	}
+	
+	public void onlyRapid() {
+		straightLimiter = 0;
+		zigZagLimiter = 0;
+		sidesLimiter = 0;
+		narrowLimiter = 0;
+		randLimiter = 0;
+		rapidLimiter = 12;
+		levelSelector = RAPID_SELECTOR;
+		currLevel = rapidLevel;
+	}
+	
+	public void onlyNarrow() {
+		straightLimiter = 0;
+		zigZagLimiter = 0;
+		sidesLimiter = 0;
+		narrowLimiter = 20;
+		randLimiter = 0;
+		rapidLimiter = 0;
+		levelSelector = NARROW_SELECTOR;
+		currLevel = narrowLevel;
+	}
+	
 }

@@ -48,7 +48,7 @@ public class StairControllerEasy extends StairController {
 
 		// RAPID
 		rapidWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .6f, .5f, .5f));
-		rapidTimes = new ArrayList<Integer>(asList(540, 470, 430, 390, 350, 350));
+		rapidTimes = new ArrayList<Integer>(asList(600, 520, 450, 390, 350, 350));
 
 		// NARROW
 		narrowWidthMults = new ArrayList<Float>(asList(1f, .94f, .88f, .82f, .80f, .80f));
@@ -178,11 +178,13 @@ public class StairControllerEasy extends StairController {
 			levelSelector = STRAIGHT_SELECTOR;
 			currLevel = straightLevel;
 		}
+		
+		//onlyRapid();
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
 		// Change constants corresponding to round selector
-		changeRoundSpeeds();
+		changeRoundSpeeds(roundSelector);
 		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 

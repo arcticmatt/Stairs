@@ -187,7 +187,7 @@ public class StairControllerInsane extends StairController {
         // Make levels corresponding to round selector
 		makeNewRound(false);
         // Chagne constants corresponding to round selector
-		changeRoundSpeeds();
+		changeRoundSpeeds(roundSelector);
 
 	}
 

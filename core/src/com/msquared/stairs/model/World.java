@@ -1,7 +1,9 @@
 package com.msquared.stairs.model;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
@@ -13,6 +15,7 @@ public class World {
 	public int width;
 	public int height;
 	public LinkedList<Stair> stairs = new LinkedList<Stair>();
+	public Queue<Stair> roundChangeStairs = new LinkedList<Stair>();
 	public Foot leftFoot;
 	public Foot rightFoot;
 	public boolean gameOver = false;
@@ -22,7 +25,6 @@ public class World {
 	public int gameOverType;
 	Color white = new Color(255, 255, 255, 1);
 	public Stair lastStair;
-	public Stair roundChangeStair;
 	public static int difficulty;
 	Random random;
 	public int earlySelector;

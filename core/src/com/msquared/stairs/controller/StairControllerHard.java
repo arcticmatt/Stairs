@@ -192,7 +192,7 @@ public class StairControllerHard extends StairController {
 		// Make levels corresonding to round selector
 		makeNewRound(false);
         // Change constants corresponding to round selector
-		changeRoundSpeeds();
+		changeRoundSpeeds(roundSelector);
 
 		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
