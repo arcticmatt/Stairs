@@ -364,7 +364,7 @@ public class StairController {
 			currLevel = zigZagLevel;
 		}
 		
-		onlySides();
+		onlyRapid();
 		
 		// Make levels corresponding to round selector
 		makeNewRound(false);
@@ -884,7 +884,7 @@ public class StairController {
 	
 	public void onlyZigZag() {
 		straightLimiter = 0;
-		zigZagLimiter = 20;
+		zigZagLimiter = 10;
 		sidesLimiter = 0;
 		narrowLimiter = 0;
 		randLimiter = 0;
@@ -896,7 +896,7 @@ public class StairController {
 	public void onlySides() {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
-		sidesLimiter = 20;
+		sidesLimiter = 10;
 		narrowLimiter = 0;
 		randLimiter = 0;
 		rapidLimiter = 0;
@@ -909,7 +909,7 @@ public class StairController {
 		zigZagLimiter = 0;
 		sidesLimiter = 0;
 		narrowLimiter = 0;
-		randLimiter = 20;
+		randLimiter = 10;
 		rapidLimiter = 0;
 		levelSelector = RAND_SELECTOR;
 		currLevel = randLevel;
@@ -921,7 +921,7 @@ public class StairController {
 		sidesLimiter = 0;
 		narrowLimiter = 0;
 		randLimiter = 0;
-		rapidLimiter = 12;
+		rapidLimiter = 10;
 		levelSelector = RAPID_SELECTOR;
 		currLevel = rapidLevel;
 	}
@@ -930,7 +930,7 @@ public class StairController {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
 		sidesLimiter = 0;
-		narrowLimiter = 20;
+		narrowLimiter = 10;
 		randLimiter = 0;
 		rapidLimiter = 0;
 		levelSelector = NARROW_SELECTOR;

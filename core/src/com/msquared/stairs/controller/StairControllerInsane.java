@@ -183,12 +183,13 @@ public class StairControllerInsane extends StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
+		
+		onlyRapid();
 
         // Make levels corresponding to round selector
 		makeNewRound(false);
         // Chagne constants corresponding to round selector
 		changeRoundSpeeds(roundSelector);
-
 	}
 
 

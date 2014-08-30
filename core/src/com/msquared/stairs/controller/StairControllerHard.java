@@ -188,6 +188,8 @@ public class StairControllerHard extends StairController {
 			} while (levelSelector == earlySelector);
 		}
 		Gdx.app.log(Stairs.LOG, "levelSelector after = " + levelSelector);
+		
+		onlyRapid();
 
 		// Make levels corresonding to round selector
 		makeNewRound(false);

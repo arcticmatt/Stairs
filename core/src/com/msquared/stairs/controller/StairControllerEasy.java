@@ -178,10 +178,9 @@ public class StairControllerEasy extends StairController {
 			levelSelector = STRAIGHT_SELECTOR;
 			currLevel = straightLevel;
 		}
-		
-		//onlyRapid();
-		// Random change
 
+		onlyRapid();
+		
 		// Make levels corresponding to round selector
 		makeNewRound(false);
 		// Change constants corresponding to round selector
