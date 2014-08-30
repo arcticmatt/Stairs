@@ -364,7 +364,7 @@ public class StairController {
 			currLevel = zigZagLevel;
 		}
 		
-		onlyRapid();
+		//onlyRapid();
 		
 		// Make levels corresponding to round selector
 		makeNewRound(false);
@@ -935,6 +935,17 @@ public class StairController {
 		rapidLimiter = 0;
 		levelSelector = NARROW_SELECTOR;
 		currLevel = narrowLevel;
+	}
+	
+	public void onlyCustom() {
+		straightLimiter = 0;
+		zigZagLimiter = 8;
+		sidesLimiter = 8;
+		narrowLimiter = 8;
+		randLimiter = 8;
+		rapidLimiter = 8;
+		levelSelector = ZIG_ZAG_SELECTOR;
+		currLevel = zigZagLevel;
 	}
 	
 }
