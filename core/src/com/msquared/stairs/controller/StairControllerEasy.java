@@ -196,7 +196,7 @@ public class StairControllerEasy extends StairController {
 			currLevel = straightLevel;
 		}
 
-		onlyCustom();
+		//onlyCustom();
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);

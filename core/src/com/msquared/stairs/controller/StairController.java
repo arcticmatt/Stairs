@@ -195,7 +195,7 @@ public class StairController {
 			levels = false;
 		}
 
-		initColors();
+		initColorsMedium();
 
 		highXSpeeds = new ArrayList<Integer>(asList(250, 300, 400, 495, 495,
 				495));
@@ -260,7 +260,7 @@ public class StairController {
 		randMinMaxPositions[5][1] = 332 - 4;
 
 		randMinMaxWidths[0][0] = 45;
-		randMinMaxWidths[0][1] = 70;
+		randMinMaxWidths[0][1] = 65;
 		randMinMaxWidths[1][0] = 40;
 		randMinMaxWidths[1][1] = 60;
 		randMinMaxWidths[2][0] = 35;
@@ -338,8 +338,8 @@ public class StairController {
 		// Rapid level init
 		numRapid = 50;
 		rapidLimiter = 12;
-		rapidLimiterMin = 10;
-		rapidLimiterMax = 14;
+		rapidLimiterMin = 9;
+		rapidLimiterMax = 12;
 		rapidWidthOriginal = 1200;
 
 		// Narrow level init
@@ -403,6 +403,38 @@ public class StairController {
 				184f / 255f, 255f / 255f, 1), new Color(75f / 255f,
 				158f / 255f, 235f / 255f, 1), new Color(75f / 255f,
 				158f / 255f, 235f / 255f, 1)));
+	}
+	
+	public void initColorsMedium() {
+		randMinColors = new int[]{ 170, 130, 90, 0, 0, 0 };
+		zigZagColors = new ArrayList<Color>(asList(
+			    new Color(255f / 255f, 235f / 255f, 176f / 255f, 1),
+			    new Color(255f / 255f, 227f / 255f, 145f / 255f, 1),
+			    new Color(255f / 255f, 217f / 255f, 108f / 255f, 1),
+			    new Color(232f / 255f, 188f / 255f, 63f / 255f, 1),
+			    new Color(232f / 255f, 188f / 255f, 63f / 255f, 1),
+			new Color(232f / 255f, 188f / 255f, 63f / 255f, 1)));
+		sidesColors = new ArrayList<Color>(asList(
+			    new Color(255f / 255f, 189f / 255f, 195f / 255f, 1),
+			    new Color(255f / 255f, 133f / 255f, 145f / 255f, 1),
+			    new Color(255f / 255f, 108f / 255f, 123f / 255f, 1),
+			    new Color(255f / 255f, 71f / 255f, 90f / 255f, 1),
+			    new Color(255f / 255f, 71f / 255f, 90f / 255f, 1),
+			new Color(255f / 255f, 71f / 255f, 90f / 255f, 1)));
+		rapidColors = new ArrayList<Color>(asList(
+			    new Color(213f / 255f, 168f / 255f, 255f / 255f, 1),
+			    new Color(192f / 255f, 134f / 255f, 247f / 255f, 1),
+			    new Color(163f / 255f, 96f / 255f, 226f / 255f, 1),
+			    new Color(140f / 255f, 60f / 255f, 214f / 255f, 1),
+			    new Color(140f / 255f, 60f / 255f, 214f / 255f, 1),
+			new Color(140f / 255f, 60f / 255f, 214f / 255f, 1)));
+		narrowColors = new ArrayList<Color>(asList(
+			    new Color(179f / 255f, 218f / 255f, 255f / 255f, 1),
+			    new Color(148f / 255f, 203f / 255f, 255f / 255f, 1),
+			    new Color(108f / 255f, 184f / 255f, 255f / 255f, 1),
+			    new Color(75f / 255f, 158f / 255f, 235f / 255f, 1),
+			    new Color(75f / 255f, 158f / 255f, 235f / 255f, 1),
+			    new Color(75f / 255f, 158f / 255f, 235f / 255f, 1)));
 	}
 
 	/** The main update method */
@@ -885,7 +917,7 @@ public class StairController {
 
 	public void onlyZigZag() {
 		straightLimiter = 0;
-		zigZagLimiter = 10;
+		zigZagLimiter = 20;
 		sidesLimiter = 0;
 		narrowLimiter = 0;
 		randLimiter = 0;
@@ -897,7 +929,7 @@ public class StairController {
 	public void onlySides() {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
-		sidesLimiter = 10;
+		sidesLimiter = 20;
 		narrowLimiter = 0;
 		randLimiter = 0;
 		rapidLimiter = 0;
@@ -922,7 +954,7 @@ public class StairController {
 		sidesLimiter = 0;
 		narrowLimiter = 0;
 		randLimiter = 0;
-		rapidLimiter = 10;
+		rapidLimiter = 14;
 		levelSelector = RAPID_SELECTOR;
 		currLevel = rapidLevel;
 	}
@@ -931,7 +963,7 @@ public class StairController {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
 		sidesLimiter = 0;
-		narrowLimiter = 10;
+		narrowLimiter = 20;
 		randLimiter = 0;
 		rapidLimiter = 0;
 		levelSelector = NARROW_SELECTOR;
@@ -940,11 +972,11 @@ public class StairController {
 
 	public void onlyCustom() {
 		straightLimiter = 0;
-		zigZagLimiter = 8;
-		sidesLimiter = 8;
-		narrowLimiter = 0;
-		randLimiter = 0;
-		rapidLimiter = 0;
+		zigZagLimiter = 14;
+		sidesLimiter = 14;
+		narrowLimiter = 10;
+		randLimiter = 14;
+		rapidLimiter = 10;
 		levelSelector = ZIG_ZAG_SELECTOR;
 		currLevel = zigZagLevel;
 	}

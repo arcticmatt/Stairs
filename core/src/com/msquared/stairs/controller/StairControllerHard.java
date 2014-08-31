@@ -28,7 +28,7 @@ public class StairControllerHard extends StairController {
         straightTimes = new ArrayList<Integer>(asList(900, 825, 750, 675, 600, 600));
 
 		// ZIG ZAG
-		zzWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .77f, .7f, .7f));
+		zzWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .77f, .74f, .74f));
 	    zzBufferDeltas[0][0] = 150;
 	    zzBufferDeltas[0][1] = 50;
 	    zzBufferDeltas[1][0] = 150;
@@ -135,7 +135,7 @@ public class StairControllerHard extends StairController {
 		zigZagLimiter = random.nextInt(zigZagLimiterMax
 				- zigZagLimiterMin + 1)
 				+ zigZagLimiterMin;
-		zigZagWidthOriginal = 350;
+		zigZagWidthOriginal = 358;
 
         // Sides level init
 		numSides = 50;
@@ -144,7 +144,7 @@ public class StairControllerHard extends StairController {
 		sidesLimiter = random.nextInt(sidesLimiterMax
 				- sidesLimiterMin + 1)
 				+ sidesLimiterMin;
-		sidesWidthOriginal = 325;
+		sidesWidthOriginal = 348;
 
         // Rand level init
 		numRand = 100;
@@ -156,8 +156,8 @@ public class StairControllerHard extends StairController {
 
         // Rapid level init
 		numRapid = 50;
-		rapidLimiterMin = 10;
-		rapidLimiterMax = 14;
+		rapidLimiterMin = 9;
+		rapidLimiterMax = 12;
 		rapidLimiter = random.nextInt(rapidLimiterMax
 				- rapidLimiterMin + 1)
 				+ rapidLimiterMin;
@@ -171,7 +171,7 @@ public class StairControllerHard extends StairController {
 		narrowLimiter = random.nextInt(narrowLimiterMax
 				- narrowLimiterMin + 1)
 				+ narrowLimiterMin;
-		narrowWidthOriginal = 200;
+		narrowWidthOriginal = 227;
 
 		Gdx.app.log(Stairs.LOG, "levelSelector before = " + levelSelector);
 		Gdx.app.log(Stairs.LOG, "earlySelector = " + earlySelector);
@@ -189,7 +189,7 @@ public class StairControllerHard extends StairController {
 		}
 		Gdx.app.log(Stairs.LOG, "levelSelector after = " + levelSelector);
 		
-		onlyRapid();
+		//onlyNarrow();
 
 		// Make levels corresonding to round selector
 		makeNewRound(false);
