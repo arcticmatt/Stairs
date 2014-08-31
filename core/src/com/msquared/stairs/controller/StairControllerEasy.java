@@ -23,7 +23,7 @@ public class StairControllerEasy extends StairController {
 
 		// STRAIGHT
 		straightWidthMults = new ArrayList<Float>(asList(1f, .85f, .7f, .65f, .5f, .5f));
-		straightTimes = new ArrayList<Integer>(asList(900, 825, 750, 675, 600, 600));
+		straightTimes = new ArrayList<Integer>(asList(1125, 985, 900, 825, 730, 730));
 
 		// ZIG ZAG
 		zzWidthMults = new ArrayList<Float>(asList(1f, .92f, .85f, .80f, .77f, .77f));
@@ -196,7 +196,7 @@ public class StairControllerEasy extends StairController {
 			currLevel = straightLevel;
 		}
 
-		//onlyCustom();
+		onlyCustom();
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
