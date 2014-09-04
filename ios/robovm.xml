@@ -30,21 +30,20 @@
     <pattern>org.apache.harmony.xnet.provider.jsse.OpenSSLMessageDigestJDK$MD5</pattern>
   </forceLinkClasses>
   <libs>
+    <lib>build/libs/ios/libadmob.a</lib>
     <lib>build/libs/ios/libgdx-box2d.a</lib>
     <lib>build/libs/ios/libgdx.a</lib>
     <lib>build/libs/ios/libObjectAL.a</lib>
-    <lib>build/libs/ios/libadmob.a</lib>
   </libs>
   <weakFrameworks>
-		<framework>AdSupport</framework>
-		<framework>StoreKit</framework>
+    <framework>AdSupport</framework>
+    <framework>StoreKit</framework>
   </weakFrameworks>
   <frameworks>
-      <framework>CoreGraphics</framework>
-	<framework>CoreTelephony</framework>
-	<framework>MessageUI</framework>
-	<framework>SystemConfiguration</framework>
-	
+    <framework>CoreGraphics</framework>
+    <framework>CoreTelephony</framework>
+    <framework>MessageUI</framework>
+    <framework>SystemConfiguration</framework>
     <framework>UIKit</framework>
     <framework>OpenGLES</framework>
     <framework>QuartzCore</framework>

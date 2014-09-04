@@ -1,7 +1,5 @@
 package com.msquared.stairs;
 
-import java.util.Collection;
-
 import org.robovm.apple.coregraphics.CGRect;
 import org.robovm.apple.coregraphics.CGSize;
 import org.robovm.apple.foundation.NSArray;
@@ -10,16 +8,15 @@ import org.robovm.apple.foundation.NSObject;
 import org.robovm.apple.foundation.NSString;
 import org.robovm.apple.uikit.UIApplication;
 import org.robovm.apple.uikit.UIScreen;
+import org.robovm.apple.uikit.UIViewController;
 import org.robovm.bindings.admob.GADAdSizeManager;
 import org.robovm.bindings.admob.GADBannerView;
 import org.robovm.bindings.admob.GADBannerViewDelegateAdapter;
 import org.robovm.bindings.admob.GADRequest;
 import org.robovm.bindings.admob.GADRequestError;
-import org.robovm.apple.uikit.UIViewController;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
-import com.badlogic.gdx.backends.iosrobovm.IOSApplication.Delegate;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
 import com.badlogic.gdx.utils.Logger;
 import com.msquared.stairs.utils.IActivityRequestHandler;
