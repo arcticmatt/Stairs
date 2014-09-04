@@ -40,10 +40,9 @@ public class SettingsScreen extends AbstractScreen {
 	Texture blockTexOn;
 	Texture blockTexChecked;
 	ImageButton blockToggle;
+	Texture lockedTex;
 	Profile profile;
 	Preferences prefs;
-	int insaneHighScoreLevels;
-	int insaneHighScoreClassic;
 
 	public SettingsScreen(Stairs game) {
 		super(game);
@@ -59,6 +58,7 @@ public class SettingsScreen extends AbstractScreen {
 		musicTexChecked = new Texture("images/buttons/toggles/btn_music_off.png");
 		soundTexOn = new Texture("images/buttons/toggles/btn_sound_on.png");
 		soundTexChecked = new Texture("images/buttons/toggles/btn_sound_off.png");
+		lockedTex = new Texture("images/buttons/toggles/btn_locked.png");
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class SettingsScreen extends AbstractScreen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		profile = game.getProfileManager().retrieveProfile();		
+		profile = game.getProfileManager().retrieveProfile();
 		prefs = Stairs.getSharedPrefs();
 		// Show ads
 		game.myRequestHandler.showAds(true);
@@ -99,72 +99,19 @@ public class SettingsScreen extends AbstractScreen {
 
 		Float defaultSpaceBottom = 30f;
 		Float mainButtonspaceTop = 70f;
-		
+
 		table.defaults().spaceBottom(defaultSpaceBottom);
 		table.defaults().padLeft(0f);
 		table.defaults().padRight(0f);
-		
-		// Invincible toggle (only display if score above 50 on either insane level)
-		insaneHighScoreLevels = profile.getHighScore(10);
-		insaneHighScoreClassic = profile.getHighScore(22);
-		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50 || Stairs.PAID_VERSION;
-		if (showInvinc) {
-			table.row().expandX().fillX();
-			TextureRegionDrawable invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
-			TextureRegionDrawable invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
-			final ImageButtonStyle invincStyleOn = new ImageButtonStyle();
-			invincStyleOn.up = invincUp;
-			invincStyleOn.down = invincChecked;
-			invincStyleOn.checked = invincChecked;
-			final ImageButtonStyle invincStyleOff = new ImageButtonStyle();
-			invincStyleOff.up = invincUp;
-			invincStyleOff.down = invincUp;
-			invincStyleOff.checked = invincChecked;                                     
-			invincToggle = new ImageButton(invincStyleOn);
-			if (prefs.getBoolean("invincOn", false)) {
-				invincToggle.setChecked(false);
-				invincToggle.setStyle(invincStyleOn);
-			} else {
-				invincToggle.setChecked(true);
-				invincToggle.setStyle(invincStyleOff);
-			}
-			invincToggle.addListener(new DefaultActorListener() {
-				@Override
-				public void touchUp(InputEvent event, float x, float y,
-						int pointer, int button) {
-					if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-						boolean invincOn = prefs.getBoolean("invincOn", false);
-						if (invincOn) {
-							prefs.putBoolean("invincOn", false);
-							prefs.flush();
-							invincToggle.setChecked(true);
-							// Sleep for a little so that clicking really fast
-							// doesn't cause the button to bug out
-							sleep(200);
-							invincToggle.setStyle(invincStyleOff);
-						} else {
-							prefs.putBoolean("invincOn", true);
-							prefs.flush();
-							invincToggle.setChecked(false);
-							// Sleep for a little so that clicking really fast
-							// doesn't cause the button to bug out
-							sleep(200);
-							invincToggle.setStyle(invincStyleOn);
-						}
-					}
-				}
-			});
-			if (Stairs.PAID_VERSION) {
-				addPaidVersionButtons(settingPadding, settingWidth, settingHeight);
-			} else {
-				table.add(invincToggle).size(settingWidth, settingHeight).colspan(4)
-						.align(Align.center);
-			}
-		}
-		
-		
+
+		/*
+		 * Add unlockable buttons (invincible toggle, block mode toggle). Adds 
+		 * a new row before adding these buttons.
+		 */
+		addUnlockableButtons(settingPadding, settingWidth, settingHeight);
+
 		table.row().expandX().fillX();
-		
+
 		// Early toggle
 		TextureRegionDrawable earlyUp = new TextureRegionDrawable(new TextureRegion(earlyTexOn));
 		TextureRegionDrawable earlyChecked = new TextureRegionDrawable(new TextureRegion(earlyTexChecked));
@@ -175,7 +122,7 @@ public class SettingsScreen extends AbstractScreen {
 		final ImageButtonStyle earlyStyleOff = new ImageButtonStyle();
 		earlyStyleOff.up = earlyUp;
 		earlyStyleOff.down = earlyUp;
-		earlyStyleOff.checked = earlyChecked;                                     
+		earlyStyleOff.checked = earlyChecked;
 		earlyToggle = new ImageButton(earlyStyleOn);
 		if (prefs.getBoolean("earlyOn", true)) {
 			earlyToggle.setChecked(false);
@@ -378,7 +325,7 @@ public class SettingsScreen extends AbstractScreen {
 			}
 		});
 		table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4);
-		
+
 		if (prefs.getBoolean("showTutorialAdvice", true)) {
 			Label tutorialAdvice = new Label("To watch a tutorial, touch the animation on the main menu",
 					getSkin(), "mscore");
@@ -392,18 +339,92 @@ public class SettingsScreen extends AbstractScreen {
 		table.setFillParent(true);
 		stage.addActor(table);
 	}
-	
-	public void addPaidVersionButtons(float padding, final float settingWidth, final float settingHeight) {
+
+	public void addUnlockableButtons(float padding, final float settingWidth, final float settingHeight) {
+        // Make new row
+        table.row().expandX().fillX();
+
+        // Add dummy button
 		table.add().size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center).padLeft(padding);
-		
-		table.add(invincToggle).size(settingWidth, settingHeight).colspan(1)
+
+        // Add insane button
+		int insaneHighScoreLevels = profile.getHighScore(10);
+		int insaneHighScoreClassic = profile.getHighScore(22);
+		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50 || Stairs.PAID_VERSION;
+        TextureRegionDrawable invincUp;
+        TextureRegionDrawable invincChecked;
+        if (showInvinc) {
+			invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
+			invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
+        } else {
+			invincUp = new TextureRegionDrawable(new TextureRegion(lockedTex));
+			invincChecked = new TextureRegionDrawable(new TextureRegion(lockedTex));
+        }
+        final ImageButtonStyle invincStyleOn = new ImageButtonStyle();
+        invincStyleOn.up = invincUp;
+        invincStyleOn.down = invincChecked;
+        invincStyleOn.checked = invincChecked;
+        final ImageButtonStyle invincStyleOff = new ImageButtonStyle();
+        invincStyleOff.up = invincUp;
+        invincStyleOff.down = invincUp;
+        invincStyleOff.checked = invincChecked;
+        invincToggle = new ImageButton(invincStyleOn);
+        if (prefs.getBoolean("invincOn", false)) {
+            invincToggle.setChecked(false);
+            invincToggle.setStyle(invincStyleOn);
+        } else {
+            invincToggle.setChecked(true);
+            invincToggle.setStyle(invincStyleOff);
+        }
+        if (showInvinc) {
+            invincToggle.addListener(new DefaultActorListener() {
+                @Override
+                public void touchUp(InputEvent event, float x, float y,
+                    int pointer, int button) {
+                    if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+                        boolean invincOn = prefs.getBoolean("invincOn", false);
+                        if (invincOn) {
+                            prefs.putBoolean("invincOn", false);
+                            prefs.flush();
+                            invincToggle.setChecked(true);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            invincToggle.setStyle(invincStyleOff);
+                        } else {
+                            prefs.putBoolean("invincOn", true);
+                            prefs.flush();
+                            invincToggle.setChecked(false);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            invincToggle.setStyle(invincStyleOn);
+                        }
+                    }
+                }
+            });
+        }
+        table.add(invincToggle).size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center);
-		
-		TextureRegionDrawable blockUp = new TextureRegionDrawable(
-				new TextureRegion(blockTexOn));
-		TextureRegionDrawable blockChecked = new TextureRegionDrawable(
-				new TextureRegion(blockTexChecked));
+
+        // Add block button
+        int mediumHighScoreLevels = profile.getHighScore(4);
+        int mediumHighScoreClassic = profile.getHighScore(16);
+        boolean showBlock = mediumHighScoreLevels >= 50 || mediumHighScoreClassic >= 50 || Stairs.PAID_VERSION;
+        TextureRegionDrawable blockUp;
+        TextureRegionDrawable blockChecked;
+        if (showBlock) {
+            blockUp = new TextureRegionDrawable(
+                    new TextureRegion(blockTexOn));
+            blockChecked = new TextureRegionDrawable(
+                    new TextureRegion(blockTexChecked));
+        } else {
+            blockUp = new TextureRegionDrawable(
+                    new TextureRegion(lockedTex));
+            blockChecked = new TextureRegionDrawable(
+                    new TextureRegion(lockedTex));
+        }
 		final ImageButtonStyle blockStyleOn = new ImageButtonStyle();
 		blockStyleOn.up = blockUp;
 		blockStyleOn.down = blockChecked;
@@ -420,39 +441,42 @@ public class SettingsScreen extends AbstractScreen {
 			blockToggle.setChecked(true);
 			blockToggle.setStyle(blockStyleOff);
 		}
-		blockToggle.addListener(new DefaultActorListener() {
-			@Override
-			public void touchUp(InputEvent event, float x, float y,
-					int pointer, int button) {
-				if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-					boolean blockOn = prefs.getBoolean("blockOn", false);
-					if (blockOn) {
-						prefs.putBoolean("blockOn", false);
-						prefs.flush();
-						blockToggle.setChecked(true);
-						// Sleep for a little so that clicking really fast
-						// doesn't cause the button to bug out
-						sleep(200);
-						blockToggle.setStyle(blockStyleOff);
-					} else {
-						prefs.putBoolean("blockOn", true);
-						prefs.flush();
-						blockToggle.setChecked(false);
-						// Sleep for a little so that clicking really fast
-						// doesn't cause the button to bug out
-						sleep(200);
-						blockToggle.setStyle(blockStyleOn);
-					}
-				}
-			}
-		});
+        if (showBlock) {
+            blockToggle.addListener(new DefaultActorListener() {
+                @Override
+                public void touchUp(InputEvent event, float x, float y,
+                    int pointer, int button) {
+                    if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+                        boolean blockOn = prefs.getBoolean("blockOn", false);
+                        if (blockOn) {
+                            prefs.putBoolean("blockOn", false);
+                            prefs.flush();
+                            blockToggle.setChecked(true);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            blockToggle.setStyle(blockStyleOff);
+                        } else {
+                            prefs.putBoolean("blockOn", true);
+                            prefs.flush();
+                            blockToggle.setChecked(false);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            blockToggle.setStyle(blockStyleOn);
+                        }
+                    }
+                }
+            });
+        }
 		table.add(blockToggle).size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center);
-		
+
+        // Add last dummy button
 		table.add().size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center).padRight(padding);
 	}
-	
+
 	public  void sleep(int time) {
 		// Causes thread to sleep
 		try {
