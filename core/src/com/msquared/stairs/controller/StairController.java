@@ -195,91 +195,91 @@ public class StairController {
 			levels = false;
 		}
 
-		initColorsMedium();
+		initColors();
 
-		highXSpeeds = new ArrayList<Integer>(asList(250, 300, 400, 495, 495,
+		highXSpeeds = new ArrayList<Integer>(asList(0, 250, 300, 400, 495,
 				495));
-		lowYSpeeds = new ArrayList<Integer>(asList(-400, -500, -550, -600,
+		lowYSpeeds = new ArrayList<Integer>(asList(0, -400, -500, -550,
 				-600, -600));
 		jumpSpeeds = new ArrayList<Integer>(
-				asList(500, 550, 600, 600, 600, 600));
+				asList(0, 500, 550, 600, 600, 600));
 
 		// STRAIGHT
-		straightWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .75f,
+		straightWidthMults = new ArrayList<Float>(asList(0f, 1f, .9f, .8f,
 				.75f, .75f));
-		straightTimes = new ArrayList<Integer>(asList(900, 825, 750, 675, 675,
+		straightTimes = new ArrayList<Integer>(asList(0, 900, 825, 750, 675,
 				675));
 
 		// ZIG ZAG
 		zzWidthMults = new ArrayList<Float>(
-				asList(1f, .9f, .8f, .77f, .77f, .77f));
-		zzBufferDeltas[0][0] = 150;
-		zzBufferDeltas[0][1] = 100;
+				asList(0f, 1f, .9f, .8f, .77f, .77f));
+		zzBufferDeltas[0][0] = 0;
+		zzBufferDeltas[0][1] = 0;
 		zzBufferDeltas[1][0] = 150;
-		zzBufferDeltas[1][1] = 120;
-		zzBufferDeltas[2][0] = 160;
-		zzBufferDeltas[2][1] = 150;
-		zzBufferDeltas[3][0] = 170;
-		zzBufferDeltas[3][1] = 160;
+		zzBufferDeltas[1][1] = 100;
+		zzBufferDeltas[2][0] = 150;
+		zzBufferDeltas[2][1] = 120;
+		zzBufferDeltas[3][0] = 160;
+		zzBufferDeltas[3][1] = 150;
 		zzBufferDeltas[4][0] = 170;
 		zzBufferDeltas[4][1] = 160;
 		zzBufferDeltas[5][0] = 170;
 		zzBufferDeltas[5][1] = 160;
-		zzTimes = new ArrayList<Integer>(asList(750, 500, 470, 460, 460, 460));
+		zzTimes = new ArrayList<Integer>(asList(0, 750, 500, 470, 460, 460));
 
 		// SIDES
-		sidesWidthMults = new ArrayList<Float>(asList(1f, .98f, .95f, .92f,
+		sidesWidthMults = new ArrayList<Float>(asList(0f, 1f, .98f, .95f,
 				.92f, .92f));
 		sidesTimes = new ArrayList<Integer>(
-				asList(750, 500, 470, 440, 440, 440));
+				asList(0, 750, 500, 470, 440, 440));
 
 		// RAPID
-		rapidWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .6f, .6f,
+		rapidWidthMults = new ArrayList<Float>(asList(0f, 1f, .9f, .8f, .6f,
 				.6f));
 		rapidTimes = new ArrayList<Integer>(
-				asList(450, 270, 255, 240, 240, 240));
+				asList(0, 450, 270, 255, 240, 240));
 
 		// NARROW
-		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .92f, .9f,
+		narrowWidthMults = new ArrayList<Float>(asList(0f, 1f, .95f, .92f,
 				.9f, .9f));
-		narrowTimes = new ArrayList<Integer>(asList(650, 400, 375, 350, 350,
+		narrowTimes = new ArrayList<Integer>(asList(0, 650, 400, 375, 350,
 				350));
 
 		// RAND
-		randMinMaxPositions[0][0] = 145;
-		randMinMaxPositions[0][1] = 340;
-		randMinMaxPositions[1][0] = 153;
-		randMinMaxPositions[1][1] = 327;
-		randMinMaxPositions[2][0] = 162;
-		randMinMaxPositions[2][1] = 318;
-		randMinMaxPositions[3][0] = 147 + 4;
-		randMinMaxPositions[3][1] = 332 - 4;
-		randMinMaxPositions[4][0] = 147 + 4;
-		randMinMaxPositions[4][1] = 332 - 4;
-		randMinMaxPositions[5][0] = 147 + 4;
-		randMinMaxPositions[5][1] = 332 - 4;
+		randMinMaxPositions[0][0] = 0;
+		randMinMaxPositions[0][1] = 0;
+		randMinMaxPositions[1][0] = 145;
+		randMinMaxPositions[1][1] = 340;
+		randMinMaxPositions[2][0] = 153;
+		randMinMaxPositions[2][1] = 327;
+		randMinMaxPositions[3][0] = 162;
+		randMinMaxPositions[3][1] = 318;
+		randMinMaxPositions[4][0] = 151;
+		randMinMaxPositions[4][1] = 328;
+		randMinMaxPositions[5][0] = 151;
+		randMinMaxPositions[5][1] = 328;
 
-		randMinMaxWidths[0][0] = 45;
-		randMinMaxWidths[0][1] = 65;
-		randMinMaxWidths[1][0] = 40;
-		randMinMaxWidths[1][1] = 60;
-		randMinMaxWidths[2][0] = 35;
-		randMinMaxWidths[2][1] = 55;
+		randMinMaxWidths[0][0] = 0;
+		randMinMaxWidths[0][1] = 0;
+		randMinMaxWidths[1][0] = 45;
+		randMinMaxWidths[1][1] = 65;
+		randMinMaxWidths[2][0] = 40;
+		randMinMaxWidths[2][1] = 60;
 		randMinMaxWidths[3][0] = 35;
-		randMinMaxWidths[3][1] = 47;
+		randMinMaxWidths[3][1] = 55;
 		randMinMaxWidths[4][0] = 35;
 		randMinMaxWidths[4][1] = 47;
 		randMinMaxWidths[5][0] = 35;
 		randMinMaxWidths[5][1] = 47;
 
-		randMinMaxTimes[0][0] = 700;
-		randMinMaxTimes[0][1] = 800;
-		randMinMaxTimes[1][0] = 400;
-		randMinMaxTimes[1][1] = 550;
-		randMinMaxTimes[2][0] = 350;
-		randMinMaxTimes[2][1] = 475;
-		randMinMaxTimes[3][0] = 320;
-		randMinMaxTimes[3][1] = 400;
+		randMinMaxTimes[0][0] = 0;
+		randMinMaxTimes[0][1] = 0;
+		randMinMaxTimes[1][0] = 700;
+		randMinMaxTimes[1][1] = 800;
+		randMinMaxTimes[2][0] = 400;
+		randMinMaxTimes[2][1] = 550;
+		randMinMaxTimes[3][0] = 350;
+		randMinMaxTimes[3][1] = 475;
 		randMinMaxTimes[4][0] = 320;
 		randMinMaxTimes[4][1] = 400;
 		randMinMaxTimes[5][0] = 320;
@@ -296,7 +296,7 @@ public class StairController {
 
 		stairSelector = 0;
 		prevRoundSelector = 0;
-		roundSelector = 0;
+		roundSelector = 1;
 		levelChangeTime = 0;
 		roundChangeTime = 0;
 		maxRound = 4;
@@ -363,7 +363,7 @@ public class StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
-		
+
 		//onlyRapid();
 
 
@@ -403,38 +403,6 @@ public class StairController {
 				184f / 255f, 255f / 255f, 1), new Color(75f / 255f,
 				158f / 255f, 235f / 255f, 1), new Color(75f / 255f,
 				158f / 255f, 235f / 255f, 1)));
-	}
-	
-	public void initColorsMedium() {
-		randMinColors = new int[]{ 170, 130, 90, 0, 0, 0 };
-		zigZagColors = new ArrayList<Color>(asList(
-			    new Color(255f / 255f, 235f / 255f, 176f / 255f, 1),
-			    new Color(255f / 255f, 227f / 255f, 145f / 255f, 1),
-			    new Color(255f / 255f, 217f / 255f, 108f / 255f, 1),
-			    new Color(232f / 255f, 188f / 255f, 63f / 255f, 1),
-			    new Color(232f / 255f, 188f / 255f, 63f / 255f, 1),
-			new Color(232f / 255f, 188f / 255f, 63f / 255f, 1)));
-		sidesColors = new ArrayList<Color>(asList(
-			    new Color(255f / 255f, 189f / 255f, 195f / 255f, 1),
-			    new Color(255f / 255f, 133f / 255f, 145f / 255f, 1),
-			    new Color(255f / 255f, 108f / 255f, 123f / 255f, 1),
-			    new Color(255f / 255f, 71f / 255f, 90f / 255f, 1),
-			    new Color(255f / 255f, 71f / 255f, 90f / 255f, 1),
-			new Color(255f / 255f, 71f / 255f, 90f / 255f, 1)));
-		rapidColors = new ArrayList<Color>(asList(
-			    new Color(213f / 255f, 168f / 255f, 255f / 255f, 1),
-			    new Color(192f / 255f, 134f / 255f, 247f / 255f, 1),
-			    new Color(163f / 255f, 96f / 255f, 226f / 255f, 1),
-			    new Color(140f / 255f, 60f / 255f, 214f / 255f, 1),
-			    new Color(140f / 255f, 60f / 255f, 214f / 255f, 1),
-			new Color(140f / 255f, 60f / 255f, 214f / 255f, 1)));
-		narrowColors = new ArrayList<Color>(asList(
-			    new Color(179f / 255f, 218f / 255f, 255f / 255f, 1),
-			    new Color(148f / 255f, 203f / 255f, 255f / 255f, 1),
-			    new Color(108f / 255f, 184f / 255f, 255f / 255f, 1),
-			    new Color(75f / 255f, 158f / 255f, 235f / 255f, 1),
-			    new Color(75f / 255f, 158f / 255f, 235f / 255f, 1),
-			    new Color(75f / 255f, 158f / 255f, 235f / 255f, 1)));
 	}
 
 	/** The main update method */
