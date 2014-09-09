@@ -54,7 +54,7 @@ public class Stairs extends Game {
 	public AssetManager assetManager;
 	private ProfileManager profileManager;
 	public static final Random randomGenerator = new Random();
-	public static final boolean PAID_VERSION = false;
+	public static final boolean PAID_VERSION = true;
 	public static Preferences prefs;
 	
 	public Stairs(boolean html, boolean iphone, IActivityRequestHandler handler) {
