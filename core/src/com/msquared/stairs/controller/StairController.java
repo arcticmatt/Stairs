@@ -225,24 +225,24 @@ public class StairController {
 		zzBufferDeltas[4][1] = 160;
 		zzBufferDeltas[5][0] = 170;
 		zzBufferDeltas[5][1] = 160;
-		zzTimes = new ArrayList<Integer>(asList(0, 750, 500, 470, 460, 460));
+		zzTimes = new ArrayList<Integer>(asList(0, 650, 500, 470, 460, 460));
 
 		// SIDES
 		sidesWidthMults = new ArrayList<Float>(asList(0f, 1f, .98f, .95f,
 				.92f, .92f));
 		sidesTimes = new ArrayList<Integer>(
-				asList(0, 750, 500, 470, 440, 440));
+				asList(0, 650, 500, 470, 440, 440));
 
 		// RAPID
 		rapidWidthMults = new ArrayList<Float>(asList(0f, 1f, .9f, .8f, .6f,
 				.6f));
 		rapidTimes = new ArrayList<Integer>(
-				asList(0, 450, 270, 255, 240, 240));
+				asList(0, 400, 270, 255, 240, 240));
 
 		// NARROW
 		narrowWidthMults = new ArrayList<Float>(asList(0f, 1f, .95f, .92f,
 				.9f, .9f));
-		narrowTimes = new ArrayList<Integer>(asList(0, 650, 400, 375, 350,
+		narrowTimes = new ArrayList<Integer>(asList(0, 550, 400, 375, 350,
 				350));
 
 		// RAND
@@ -261,28 +261,28 @@ public class StairController {
 
 		randMinMaxWidths[0][0] = 0;
 		randMinMaxWidths[0][1] = 0;
-		randMinMaxWidths[1][0] = 45;
+		randMinMaxWidths[1][0] = 55;
 		randMinMaxWidths[1][1] = 65;
-		randMinMaxWidths[2][0] = 40;
+		randMinMaxWidths[2][0] = 50;
 		randMinMaxWidths[2][1] = 60;
-		randMinMaxWidths[3][0] = 35;
+		randMinMaxWidths[3][0] = 45;
 		randMinMaxWidths[3][1] = 55;
-		randMinMaxWidths[4][0] = 35;
+		randMinMaxWidths[4][0] = 40;
 		randMinMaxWidths[4][1] = 47;
-		randMinMaxWidths[5][0] = 35;
+		randMinMaxWidths[5][0] = 40;
 		randMinMaxWidths[5][1] = 47;
-
+		
 		randMinMaxTimes[0][0] = 0;
 		randMinMaxTimes[0][1] = 0;
-		randMinMaxTimes[1][0] = 700;
-		randMinMaxTimes[1][1] = 800;
-		randMinMaxTimes[2][0] = 400;
-		randMinMaxTimes[2][1] = 550;
-		randMinMaxTimes[3][0] = 350;
+		randMinMaxTimes[1][0] = 600;
+		randMinMaxTimes[1][1] = 700;
+		randMinMaxTimes[2][0] = 440;
+		randMinMaxTimes[2][1] = 580;
+		randMinMaxTimes[3][0] = 380;
 		randMinMaxTimes[3][1] = 475;
-		randMinMaxTimes[4][0] = 320;
+		randMinMaxTimes[4][0] = 350;
 		randMinMaxTimes[4][1] = 400;
-		randMinMaxTimes[5][0] = 320;
+		randMinMaxTimes[5][0] = 350;
 		randMinMaxTimes[5][1] = 400;
 
         // TIME INTERVALS
@@ -299,7 +299,7 @@ public class StairController {
 		roundSelector = 1;
 		levelChangeTime = 0;
 		roundChangeTime = 0;
-		maxRound = 4;
+		maxRound = 5;
 
 		// Rand level initializers
 		randMinTime = randMinMaxTimes[roundSelector][0];
@@ -353,7 +353,7 @@ public class StairController {
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
 			currLevel = randLevel;
-			randLimiter = 40;
+			randLimiter = 25;
 			randLimiterMin = 30;
 			randLimiterMax = 50;
 		} else if (Stairs.getSharedPrefs().getBoolean("earlyOn", true)) {
@@ -363,9 +363,6 @@ public class StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
-
-		//onlyRapid();
-
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
@@ -885,7 +882,7 @@ public class StairController {
 
 	public void onlyZigZag() {
 		straightLimiter = 0;
-		zigZagLimiter = 20;
+		zigZagLimiter = 15;
 		sidesLimiter = 0;
 		narrowLimiter = 0;
 		randLimiter = 0;
@@ -897,7 +894,7 @@ public class StairController {
 	public void onlySides() {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
-		sidesLimiter = 20;
+		sidesLimiter = 15;
 		narrowLimiter = 0;
 		randLimiter = 0;
 		rapidLimiter = 0;
@@ -931,7 +928,7 @@ public class StairController {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
 		sidesLimiter = 0;
-		narrowLimiter = 20;
+		narrowLimiter = 15;
 		randLimiter = 0;
 		rapidLimiter = 0;
 		levelSelector = NARROW_SELECTOR;
