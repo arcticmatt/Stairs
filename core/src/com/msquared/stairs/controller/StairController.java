@@ -353,7 +353,7 @@ public class StairController {
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
 			currLevel = randLevel;
-			randLimiter = 25;
+			randLimiter = 40;
 			randLimiterMin = 30;
 			randLimiterMax = 50;
 		} else if (Stairs.getSharedPrefs().getBoolean("earlyOn", true)) {
@@ -937,11 +937,11 @@ public class StairController {
 
 	public void onlyCustom() {
 		straightLimiter = 0;
-		zigZagLimiter = 14;
-		sidesLimiter = 14;
-		narrowLimiter = 10;
-		randLimiter = 14;
-		rapidLimiter = 10;
+		zigZagLimiter = 10;
+		sidesLimiter = 10;
+		narrowLimiter = 8;
+		randLimiter = 10;
+		rapidLimiter = 8;
 		levelSelector = ZIG_ZAG_SELECTOR;
 		currLevel = zigZagLevel;
 	}

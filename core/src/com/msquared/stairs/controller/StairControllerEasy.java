@@ -87,19 +87,6 @@ public class StairControllerEasy extends StairController {
 	    randMinMaxWidths[5][1] = 50;
 	    
 
-/*	    randMinMaxTimes[0][0] = 850;
-	    randMinMaxTimes[0][1] = 950;
-	    randMinMaxTimes[1][0] = 775;
-	    randMinMaxTimes[1][1] = 875;
-	    randMinMaxTimes[2][0] = 700;
-	    randMinMaxTimes[2][1] = 800;
-	    randMinMaxTimes[3][0] = 625;
-	    randMinMaxTimes[3][1] = 725;
-	    randMinMaxTimes[4][0] = 550;
-	    randMinMaxTimes[4][1] = 650;
-	    randMinMaxTimes[5][0] = 550;
-	    randMinMaxTimes[5][1] = 650;*/
-
         randMinMaxTimes[0][0] = 1050;
 	    randMinMaxTimes[0][1] = 1150;
 	    randMinMaxTimes[1][0] = 935;
@@ -149,28 +136,28 @@ public class StairControllerEasy extends StairController {
 
 		// Zig zag level init
 		numZigZag = 50;
-		zigZagLimiter = 12;
+		zigZagLimiter = 10;
 		zigZagLimiterMin = 10;
 		zigZagLimiterMax = 15;
-		zigZagWidthOriginal = 375;
+		zigZagWidthOriginal = 380;
 
 		// Sides level init
 		numSides = 50;
-		sidesLimiter = 12;
+		sidesLimiter = 10;
 		sidesLimiterMin = 10;
 		sidesLimiterMax = 15;
 		sidesWidthOriginal = 375;
 
 		// Rand level init
 		numRand = 50;
-		randLimiter = 12;
+		randLimiter = 10;
 		randLimiterMin = 10;
 		randLimiterMax = 15;
 		randTimeInterval = 500;
 
 		// Rapid level init
 		numRapid = 50;
-		rapidLimiter = 10;
+		rapidLimiter = 8;
 		rapidLimiterMin = 8;
 		rapidLimiterMax = 12;
 		rapidWidthOriginal = 1200;
@@ -196,8 +183,6 @@ public class StairControllerEasy extends StairController {
 			levelSelector = STRAIGHT_SELECTOR;
 			currLevel = straightLevel;
 		}
-
-		//onlyCustom();
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
