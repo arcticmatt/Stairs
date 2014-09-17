@@ -271,7 +271,7 @@ public class StairController {
 		randMinMaxWidths[4][1] = 47;
 		randMinMaxWidths[5][0] = 40;
 		randMinMaxWidths[5][1] = 47;
-		
+
 		randMinMaxTimes[0][0] = 0;
 		randMinMaxTimes[0][1] = 0;
 		randMinMaxTimes[1][0] = 600;
@@ -372,34 +372,34 @@ public class StairController {
 	}
 
 	public void initColors() {
-		zigZagColors = new ArrayList<Color>(asList(new Color(255f / 255f,
-				242f / 255f, 204f / 255f, 1), new Color(255f / 255f,
-				235f / 255f, 176f / 255f, 1), new Color(255f / 255f,
-				227f / 255f, 145f / 255f, 1), new Color(255f / 255f,
-				217f / 255f, 108f / 255f, 1), new Color(232f / 255f,
-				188f / 255f, 63f / 255f, 1), new Color(232f / 255f,
-				188f / 255f, 63f / 255f, 1)));
-		sidesColors = new ArrayList<Color>(asList(new Color(255f / 255f,
-				212f / 255f, 216f / 255f, 1), new Color(255f / 255f,
-				189f / 255f, 195f / 255f, 1), new Color(255f / 255f,
-				133f / 255f, 145f / 255f, 1), new Color(255f / 255f,
-				108f / 255f, 123f / 255f, 1), new Color(255f / 255f,
-				71f / 255f, 90f / 255f, 1), new Color(255f / 255f, 71f / 255f,
-				90f / 255f, 1)));
-		rapidColors = new ArrayList<Color>(asList(new Color(228f / 255f,
-				199f / 255f, 255f / 255f, 1), new Color(213f / 255f,
-				168f / 255f, 255f / 255f, 1), new Color(192f / 255f,
-				134f / 255f, 247f / 255f, 1), new Color(163f / 255f,
-				96f / 255f, 226f / 255f, 1), new Color(140f / 255f, 60f / 255f,
-				214f / 255f, 1), new Color(140f / 255f, 60f / 255f,
-				214f / 255f, 1)));
-		narrowColors = new ArrayList<Color>(asList(new Color(201f / 255f,
-				229f / 255f, 255f / 255f, 1), new Color(179f / 255f,
-				218f / 255f, 255f / 255f, 1), new Color(148f / 255f,
-				203f / 255f, 255f / 255f, 1), new Color(108f / 255f,
-				184f / 255f, 255f / 255f, 1), new Color(75f / 255f,
-				158f / 255f, 235f / 255f, 1), new Color(75f / 255f,
-				158f / 255f, 235f / 255f, 1)));
+		zigZagColors = new ArrayList<Color>(asList(
+            new Color(255f / 255f, 242f / 255f, 204f / 255f, 1),
+            new Color(255f / 255f, 235f / 255f, 176f / 255f, 1),
+            new Color(255f / 255f, 227f / 255f, 145f / 255f, 1),
+            new Color(255f / 255f, 217f / 255f, 108f / 255f, 1),
+            new Color(232f / 255f, 188f / 255f, 63f / 255f, 1),
+            new Color(232f / 255f, 188f / 255f, 63f / 255f, 1)));
+		sidesColors = new ArrayList<Color>(asList(
+            new Color(255f / 255f, 212f / 255f, 216f / 255f, 1),
+            new Color(255f / 255f, 189f / 255f, 195f / 255f, 1),
+            new Color(255f / 255f, 133f / 255f, 145f / 255f, 1),
+            new Color(255f / 255f, 108f / 255f, 123f / 255f, 1),
+            new Color(255f / 255f, 71f / 255f, 90f / 255f, 1),
+            new Color(255f / 255f, 71f / 255f, 90f / 255f, 1)));
+		rapidColors = new ArrayList<Color>(asList(
+            new Color(228f / 255f, 199f / 255f, 255f / 255f, 1),
+            new Color(213f / 255f, 168f / 255f, 255f / 255f, 1),
+            new Color(192f / 255f, 134f / 255f, 247f / 255f, 1),
+            new Color(163f / 255f, 96f / 255f, 226f / 255f, 1),
+            new Color(140f / 255f, 60f / 255f, 214f / 255f, 1),
+            new Color(140f / 255f, 60f / 255f, 214f / 255f, 1)));
+		narrowColors = new ArrayList<Color>(asList(
+            new Color(201f / 255f, 229f / 255f, 255f / 255f, 1),
+            new Color(179f / 255f, 218f / 255f, 255f / 255f, 1),
+            new Color(148f / 255f, 203f / 255f, 255f / 255f, 1),
+            new Color(108f / 255f, 184f / 255f, 255f / 255f, 1),
+            new Color(75f / 255f, 158f / 255f, 235f / 255f, 1),
+            new Color(75f / 255f, 158f / 255f, 235f / 255f, 1)));
 	}
 
 	/** The main update method */
