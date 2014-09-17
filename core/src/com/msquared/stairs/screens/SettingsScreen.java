@@ -40,16 +40,24 @@ public class SettingsScreen extends AbstractScreen {
 	Texture blockTexOn;
 	Texture blockTexChecked;
 	ImageButton blockToggle;
+	Texture invertTexOn;
+	Texture invertTexChecked;
+	ImageButton invertToggle;
 	Texture lockedTex;
 	Profile profile;
 	Preferences prefs;
 
 	public SettingsScreen(Stairs game) {
 		super(game);
+		// Locked/Paid textures
 		blockTexOn = new Texture("images/buttons/toggles/btn_block_on.png");
 		blockTexChecked = new Texture("images/buttons/toggles/btn_block_off.png");
 		invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
 		invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
+		invertTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
+		invertTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
+		
+		// Regular textures
 		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");
 		earlyTexChecked = new Texture("images/buttons/toggles/btn_early_off.png");
 		songTexOn = new Texture("images/buttons/toggles/btn_song1.png");
@@ -341,16 +349,75 @@ public class SettingsScreen extends AbstractScreen {
 	}
 
 	public void addUnlockableButtons(float padding, final float settingWidth, final float settingHeight) {
-        // Make new row
-        table.row().expandX().fillX();
-
-        // Add dummy button
-		table.add().size(settingWidth, settingHeight).colspan(1)
-				.align(Align.center).padLeft(padding);
-
-        // Add insane button
+        int mediumHighScoreLevels = profile.getHighScore(4);
+        int mediumHighScoreClassic = profile.getHighScore(16);
+        int hardHighScoreLevels = profile.getHighScore(7);
+        int hardHighScoreClassic = profile.getHighScore(19);
 		int insaneHighScoreLevels = profile.getHighScore(10);
 		int insaneHighScoreClassic = profile.getHighScore(22);
+		
+        // Make new row
+        table.row().expandX().fillX();
+		
+		// Add color scheme toggle button
+		boolean showInvert = hardHighScoreLevels >= 50 || hardHighScoreClassic >= 50 || Stairs.PAID_VERSION;
+		TextureRegionDrawable invertUp;
+        TextureRegionDrawable invertChecked;
+        if (showInvert) {
+        	invertUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
+        	invertChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
+        } else {
+        	invertUp = new TextureRegionDrawable(new TextureRegion(lockedTex));
+        	invertChecked = new TextureRegionDrawable(new TextureRegion(lockedTex));
+        }
+        final ImageButtonStyle invertStyleOn = new ImageButtonStyle();
+        invertStyleOn.up = invertUp;
+        invertStyleOn.down = invertChecked;
+        invertStyleOn.checked = invertChecked;
+        final ImageButtonStyle invertStyleOff = new ImageButtonStyle();
+        invertStyleOff.up = invertUp;
+        invertStyleOff.down = invertUp;
+        invertStyleOff.checked = invertChecked;
+        invertToggle = new ImageButton(invertStyleOn);
+        if (prefs.getBoolean("invertOn", false)) {
+        	invertToggle.setChecked(false);
+        	invertToggle.setStyle(invertStyleOn);
+        } else {
+        	invertToggle.setChecked(true);
+        	invertToggle.setStyle(invertStyleOff);
+        }
+        if (showInvert) {
+        	invertToggle.addListener(new DefaultActorListener() {
+                @Override
+                public void touchUp(InputEvent event, float x, float y,
+                    int pointer, int button) {
+                    if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+                        boolean invincOn = prefs.getBoolean("invertOn", false);
+                        if (invincOn) {
+                            prefs.putBoolean("invertOn", false);
+                            prefs.flush();
+                            invertToggle.setChecked(true);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            invertToggle.setStyle(invertStyleOff);
+                        } else {
+                            prefs.putBoolean("invertOn", true);
+                            prefs.flush();
+                            invertToggle.setChecked(false);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            invertToggle.setStyle(invertStyleOn);
+                        }
+                    }
+                }
+            });
+        }
+		table.add(invertToggle).size(settingWidth, settingHeight).colspan(1)
+			.align(Align.center).padLeft(padding);
+
+        // Add insane button
 		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50 || Stairs.PAID_VERSION;
         TextureRegionDrawable invincUp;
         TextureRegionDrawable invincChecked;
@@ -409,8 +476,6 @@ public class SettingsScreen extends AbstractScreen {
 				.align(Align.center);
 
         // Add block button
-        int mediumHighScoreLevels = profile.getHighScore(4);
-        int mediumHighScoreClassic = profile.getHighScore(16);
         boolean showBlock = mediumHighScoreLevels >= 50 || mediumHighScoreClassic >= 50 || Stairs.PAID_VERSION;
         TextureRegionDrawable blockUp;
         TextureRegionDrawable blockChecked;
