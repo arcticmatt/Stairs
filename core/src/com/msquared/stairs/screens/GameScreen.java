@@ -286,6 +286,11 @@ public class GameScreen extends AbstractScreen implements Screen {
 					int pointer, int button) {
 				if (!Stairs.getSharedPrefs().getBoolean("invincOn", false)) {
 					game.paused = !game.paused;
+					if (game.paused) {
+						game.musicManager.pause();
+					} else {
+						game.musicManager.play();
+					}
 				} else {
 					GameOverScreen gameOverScreen = new GameOverScreen(game,
 							difficulty, stage);

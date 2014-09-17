@@ -76,6 +76,26 @@ public class MusicManager
             enabled = true;
         }
     }
+    
+    /**
+     * Pauses the current music being played
+     */
+    public void pause()
+    {
+    	if (musicBeingPlayed != null) {
+    		musicBeingPlayed.pause();
+    	}
+    }
+    
+    /**
+     * Plays the current music being played
+     */
+    public void play()
+    {
+    	if (musicBeingPlayed != null) {
+    		musicBeingPlayed.play();
+    	}
+    }
 
     /**
      * Sets the music volume which must be inside the range [0,1].
