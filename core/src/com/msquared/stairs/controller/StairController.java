@@ -180,7 +180,7 @@ public class StairController {
 		}
 
 		stairColor = white;
-		initInvertedColors();
+		initColors();
 	}
 
 	public StairController(World world) {
@@ -195,7 +195,7 @@ public class StairController {
 			levels = false;
 		}
 
-		initInvertedColors();
+		initColors();
 
 		highXSpeeds = new ArrayList<Integer>(asList(0, 250, 300, 400, 495,
 				495));
@@ -950,7 +950,7 @@ public class StairController {
 		sidesLimiter = 0;
 		narrowLimiter = 0;
 		randLimiter = 0;
-		rapidLimiter = 14;
+		rapidLimiter = 10;
 		levelSelector = RAPID_SELECTOR;
 		currLevel = rapidLevel;
 	}
@@ -959,7 +959,7 @@ public class StairController {
 		straightLimiter = 0;
 		zigZagLimiter = 0;
 		sidesLimiter = 0;
-		narrowLimiter = 15;
+		narrowLimiter = 10;
 		randLimiter = 0;
 		rapidLimiter = 0;
 		levelSelector = NARROW_SELECTOR;

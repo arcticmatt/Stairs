@@ -36,20 +36,20 @@ public class StairControllerInsane extends StairController {
 	    zzBufferDeltas[2][0] = 150;
 	    zzBufferDeltas[2][1] = 140;
 	    zzBufferDeltas[3][0] = 170;
-	    zzBufferDeltas[3][1] = 170;
+	    zzBufferDeltas[3][1] = 165;
 	    zzBufferDeltas[4][0] = 190;
-	    zzBufferDeltas[4][1] = 190;
+	    zzBufferDeltas[4][1] = 185;
 	    zzBufferDeltas[5][0] = 190;
-	    zzBufferDeltas[5][1] = 190;
+	    zzBufferDeltas[5][1] = 185;
 		zzTimes = new ArrayList<Integer>(asList(250, 250, 250, 240, 230, 230));
 
 		// SIDES
-		sidesWidthMults = new ArrayList<Float>(asList(1f, .98f, .94f, .92f, .90f, .90f));
+		sidesWidthMults = new ArrayList<Float>(asList(1f, .98f, .92f, .91f, .88f, .88f));
 		sidesTimes = new ArrayList<Integer>(asList(250, 250, 270, 260, 250, 250));
 
 		// RAPID
 		rapidWidthMults = new ArrayList<Float>(asList(1f, .9f, .8f, .6f, .5f, .5f));
-		rapidTimes = new ArrayList<Integer>(asList(250, 250, 180, 160, 140, 140));
+		rapidTimes = new ArrayList<Integer>(asList(250, 250, 210, 190, 170, 170));
 
 		// NARROW
 		narrowWidthMults = new ArrayList<Float>(asList(1f, .95f, .9f, .9f, .9f, .9f));
@@ -74,8 +74,8 @@ public class StairControllerInsane extends StairController {
 	    randMinMaxWidths[0][1] = 70;
 	    randMinMaxWidths[1][0] = 40;
 	    randMinMaxWidths[1][1] = 60;
-	    randMinMaxWidths[2][0] = 35;
-	    randMinMaxWidths[2][1] = 55;
+	    randMinMaxWidths[2][0] = 47;
+	    randMinMaxWidths[2][1] = 50;
 	    // Classic starts here
 	    randMinMaxWidths[3][0] = 44;
 	    randMinMaxWidths[3][1] = 47;
@@ -109,13 +109,7 @@ public class StairControllerInsane extends StairController {
 
 		stairSelector = 0;
 		prevRoundSelector = 0;
-		int mostRecent = Stairs.getSharedPrefs().getInteger("mostRecent", 1);
-		if (mostRecent == 8) {
-			roundSelector = 3;
-		} else {
-			roundSelector = 2;
-		}
-		Gdx.app.log(Stairs.LOG, "Round selector" + roundSelector);
+		roundSelector = 3;
 		levelChangeTime = 0;
 		roundChangeTime = 0;
 		maxRound = 5;
@@ -139,10 +133,8 @@ public class StairControllerInsane extends StairController {
 		zigZagLimiterMin = 12;
 		zigZagLimiterMax = 18;
 		zigZagWidthOriginal = 350;
-		// UNDO
-		zigZagLimiter = 25;
 
-        // Sides levle init
+        // Sides level init
 		numSides = 50;
 		sidesLimiter = 10;
 		sidesLimiterMin = 8;
@@ -168,7 +160,7 @@ public class StairControllerInsane extends StairController {
 		narrowLimiter = 6;
 		narrowLimiterMin = 5;
 		narrowLimiterMax = 7;
-		narrowWidthOriginal = 220;
+		narrowWidthOriginal = 245;
 
 		// Set up initial level (overriden in the hard and easy controllers)
 		if (!levels) {
@@ -186,6 +178,8 @@ public class StairControllerInsane extends StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
+		
+		//onlySides();
 
         // Make levels corresponding to round selector
 		makeNewRound(false);
