@@ -106,7 +106,13 @@ public class GameScreen extends AbstractScreen implements Screen {
 
 		/* Set up score label */
 		scoreString = "" + world.score;
-		scoreLabel = new Label(scoreString, getSkin(), "mscore");
+		String labelStyle;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			labelStyle = "mscoreblack";
+		} else {
+			labelStyle = "mscore";
+		}
+		scoreLabel = new Label(scoreString, getSkin(), labelStyle);
 		float labelHeight = scoreLabel.getTextBounds().height;
 		float xPos = 12;
 		float yPos = WorldRenderer.CAMERA_HEIGHT - 21;
@@ -279,7 +285,11 @@ public class GameScreen extends AbstractScreen implements Screen {
 
 		// Pause button/kill button
 		if (!Stairs.getSharedPrefs().getBoolean("invincOn", false)) {
-			pauseTex = new Texture("images/buttons/misc/btn_pause.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				pauseTex = new Texture("images/buttons/misc_inverted/btn_pause_inverted.png");
+			} else {
+				pauseTex = new Texture("images/buttons/misc/btn_pause.png");
+			}
 		} else {
 			pauseTex = new Texture("images/buttons/misc/btn_stop.png");
 		}

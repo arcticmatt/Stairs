@@ -48,6 +48,7 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: { font: default-font, fontColor: white },
 	score: {font: smaller-font, fontColor: white},
 	mscore: {font: medium-font, fontColor: white},
+	mscoreblack: {font: medium-font, fontColor: black},
 	highscore: {font: highscore-font, fontColor: green}
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {

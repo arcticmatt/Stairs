@@ -71,6 +71,7 @@ public class StairController {
 	public int randMaxPosition;
 
 	Color white = new Color(255, 255, 255, 1);
+	Color black = new Color(0, 0, 0, 1);
 
 	/*
 	 * Dimensions for the different levels. The first column is the x position,
@@ -161,6 +162,7 @@ public class StairController {
 	protected List<Color> narrowColors;
 
 	protected int[] randMinColors = { 220, 170, 130, 90, 0, 0 };
+	protected int[] randMaxColors = { 25, 85, 125, 165, 255, 255 };
 
 	boolean levels;
 
@@ -179,11 +181,12 @@ public class StairController {
 			levels = false;
 		}
 
-		stairColor = white;
 		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
 			initInvertedColors();
+			stairColor = black;
 		} else {
 			initColors();
+			stairColor = white;
 		}
 	}
 
@@ -201,8 +204,10 @@ public class StairController {
 
 		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
 			initInvertedColors();
+			stairColor = black;
 		} else {
 			initColors();
+			stairColor = white;
 		}
 
 		highXSpeeds = new ArrayList<Integer>(asList(0, 250, 300, 400, 495,
@@ -450,7 +455,6 @@ public class StairController {
 		boolean levelChange = false;
 		switch (levelSelector) {
 		case STRAIGHT_SELECTOR:
-			stairColor = white;
 			currLevel = straightLevel;
 			timeInterval = straightTimes.get(roundSelector);
 			if (stairSelector >= straightLimiter) {
@@ -512,30 +516,7 @@ public class StairController {
 			}
 			break;
 		case RAND_SELECTOR:
-			int randInt = random.nextInt(3);
-			float randColor1 = random
-					.nextInt(255 - randMinColors[roundSelector] + 1)
-					+ randMinColors[roundSelector];
-			float randColor2 = random
-					.nextInt(255 - randMinColors[roundSelector] + 1)
-					+ randMinColors[roundSelector];
-			float randColor3 = random
-					.nextInt(255 - randMinColors[roundSelector] + 1)
-					+ randMinColors[roundSelector];
-			switch (randInt) {
-			case 0:
-				stairColor = new Color(255f, randColor2 / 255f,
-						randColor3 / 255f, 1);
-				break;
-			case 1:
-				stairColor = new Color(randColor1 / 255f, 255f,
-						randColor3 / 255f, 1);
-				break;
-			case 2:
-				stairColor = new Color(randColor1 / 255f, randColor2 / 255f,
-						255f, 1);
-				break;
-			}
+			selectStairColorForRand();
 			currLevel = randLevel;
 			timeInterval = getRandTimeInterval();
 			if (stairSelector >= randLimiter) {
@@ -915,6 +896,42 @@ public class StairController {
         if (classic) {
             makeNewRound(true);
         }
+	}
+	
+	public void selectStairColorForRand() {
+		int randInt = random.nextInt(3);
+		float randColor1;
+		float randColor2;
+		float randColor3;
+		float placeholderColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			randColor1 = random.nextInt(randMaxColors[roundSelector]);
+			randColor2 = random.nextInt(randMaxColors[roundSelector]);
+			randColor3 = random.nextInt(randMaxColors[roundSelector]);
+			placeholderColor = 0f;
+		} else {
+			randColor1 = random.nextInt(255 - randMinColors[roundSelector] + 1)
+					+ randMinColors[roundSelector];
+			randColor2 = random.nextInt(255 - randMinColors[roundSelector] + 1)
+					+ randMinColors[roundSelector];
+			randColor3 = random.nextInt(255 - randMinColors[roundSelector] + 1)
+					+ randMinColors[roundSelector];
+			placeholderColor = 255f;
+		}
+		switch (randInt) {
+		case 0:
+			stairColor = new Color(placeholderColor, randColor2 / 255f, randColor3 / 255f,
+					1);
+			break;
+		case 1:
+			stairColor = new Color(randColor1 / 255f, placeholderColor, randColor3 / 255f,
+					1);
+			break;
+		case 2:
+			stairColor = new Color(randColor1 / 255f, randColor2 / 255f, placeholderColor,
+					1);
+			break;
+		}
 	}
 
 	/* Testing Methods */
