@@ -54,8 +54,8 @@ public class SettingsScreen extends AbstractScreen {
 		blockTexChecked = new Texture("images/buttons/toggles/btn_block_off.png");
 		invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
 		invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
-		invertTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
-		invertTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
+		invertTexOn = new Texture("images/buttons/toggles/btn_invert_on2.png");
+		invertTexChecked = new Texture("images/buttons/toggles/btn_invert_off2.png");
 		
 		// Regular textures
 		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");
@@ -364,8 +364,8 @@ public class SettingsScreen extends AbstractScreen {
 		TextureRegionDrawable invertUp;
         TextureRegionDrawable invertChecked;
         if (showInvert) {
-        	invertUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
-        	invertChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
+        	invertUp = new TextureRegionDrawable(new TextureRegion(invertTexOn));
+        	invertChecked = new TextureRegionDrawable(new TextureRegion(invertTexChecked));
         } else {
         	invertUp = new TextureRegionDrawable(new TextureRegion(lockedTex));
         	invertChecked = new TextureRegionDrawable(new TextureRegion(lockedTex));
