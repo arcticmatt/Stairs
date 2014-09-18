@@ -135,7 +135,7 @@ public class StairControllerInsane extends StairController {
 
         // Zig zag level init
 		numZigZag = 50;
-		zigZagLimiter = 15;
+		zigZagLimiter = 10;
 		zigZagLimiterMin = 12;
 		zigZagLimiterMax = 18;
 		zigZagWidthOriginal = 350;
@@ -144,14 +144,14 @@ public class StairControllerInsane extends StairController {
 
         // Sides levle init
 		numSides = 50;
-		sidesLimiter = 12;
+		sidesLimiter = 10;
 		sidesLimiterMin = 8;
 		sidesLimiterMax = 16;
 		sidesWidthOriginal = 358;
 
         // Rand level init
 		numRand = 50;
-		randLimiter = 15;
+		randLimiter = 10;
 		randLimiterMin = 12;
 		randLimiterMax = 18;
 		randTimeInterval = 500;
@@ -186,8 +186,6 @@ public class StairControllerInsane extends StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
-		
-		//onlyRapid();
 
         // Make levels corresponding to round selector
 		makeNewRound(false);

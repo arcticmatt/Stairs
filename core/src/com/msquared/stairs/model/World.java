@@ -63,7 +63,7 @@ public class World {
 
 			{ 583, 626,
 			655, 678, 696, 712, 727, 741, 755,
-			769, 784, 798, 812, 826, 840, 853 }
+			769, 784, 798, 812, 826, 840, 857 }
 	};
 
     protected int[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186 };
@@ -194,7 +194,7 @@ public class World {
 	}
 
 	public void addInsaneClassic() {
-		addClassicLevel(3, 3, 35, 47);
+		addClassicLevel(3, 3, 44, 47);
 	}
 
 	public void addClassicLevel(int round, int diff, int minWidth, int maxWidth) {
