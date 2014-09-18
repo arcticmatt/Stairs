@@ -180,7 +180,11 @@ public class StairController {
 		}
 
 		stairColor = white;
-		initInvertedColors();
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			initInvertedColors();
+		} else {
+			initColors();
+		}
 	}
 
 	public StairController(World world) {
@@ -195,7 +199,11 @@ public class StairController {
 			levels = false;
 		}
 
-		initInvertedColors();
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			initInvertedColors();
+		} else {
+			initColors();
+		}
 
 		highXSpeeds = new ArrayList<Integer>(asList(0, 250, 300, 400, 495,
 				495));

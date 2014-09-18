@@ -189,7 +189,11 @@ public class GameScreen extends AbstractScreen implements Screen {
 				}
 			}
 
-			Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				Gdx.gl.glClearColor(.9f, .9f, .9f, 1);
+			} else {
+				Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+			}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 			stairsController.update(delta);
@@ -210,7 +214,11 @@ public class GameScreen extends AbstractScreen implements Screen {
 			stairsController.levelChangeTime += change;
 			stairsController.roundChangeTime += change;
 			stairsController.time += change;
-			Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				Gdx.gl.glClearColor(.9f, .9f, .9f, 1);
+			} else {
+				Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+			}
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 			stage.draw();
 			renderer.render();
