@@ -34,7 +34,7 @@ public class StairControllerInsane extends StairController {
 	    zzBufferDeltas[1][0] = 150;
 	    zzBufferDeltas[1][1] = 150;
 	    zzBufferDeltas[2][0] = 150;
-	    zzBufferDeltas[2][1] = 150;
+	    zzBufferDeltas[2][1] = 140;
 	    zzBufferDeltas[3][0] = 170;
 	    zzBufferDeltas[3][1] = 170;
 	    zzBufferDeltas[4][0] = 190;
@@ -62,6 +62,7 @@ public class StairControllerInsane extends StairController {
 	    randMinMaxPositions[1][1] = 327;
 	    randMinMaxPositions[2][0] = 162;
 	    randMinMaxPositions[2][1] = 318;
+	    // Classic starts here
 	    randMinMaxPositions[3][0] = 151;
 	    randMinMaxPositions[3][1] = 328;
 	    randMinMaxPositions[4][0] = 138;
@@ -75,12 +76,13 @@ public class StairControllerInsane extends StairController {
 	    randMinMaxWidths[1][1] = 60;
 	    randMinMaxWidths[2][0] = 35;
 	    randMinMaxWidths[2][1] = 55;
-	    randMinMaxWidths[3][0] = 35;
+	    // Classic starts here
+	    randMinMaxWidths[3][0] = 44;
 	    randMinMaxWidths[3][1] = 47;
-	    randMinMaxWidths[4][0] = 35;
+	    randMinMaxWidths[4][0] = 43;
 	    randMinMaxWidths[4][1] = 45;
-	    randMinMaxWidths[5][0] = 35;
-	    randMinMaxWidths[5][1] = 43;
+	    randMinMaxWidths[5][0] = 43;
+	    randMinMaxWidths[5][1] = 45;
 
 	    randMinMaxTimes[0][0] = 450;
 	    randMinMaxTimes[0][1] = 700;
@@ -88,6 +90,7 @@ public class StairControllerInsane extends StairController {
 	    randMinMaxTimes[1][1] = 550;
 	    randMinMaxTimes[2][0] = 250;
 	    randMinMaxTimes[2][1] = 325;
+	    // Classic starts here
 	    randMinMaxTimes[3][0] = 260;
 	    randMinMaxTimes[3][1] = 310;
 	    randMinMaxTimes[4][0] = 250;
@@ -144,7 +147,7 @@ public class StairControllerInsane extends StairController {
 		sidesLimiter = 12;
 		sidesLimiterMin = 8;
 		sidesLimiterMax = 16;
-		sidesWidthOriginal = 350;
+		sidesWidthOriginal = 358;
 
         // Rand level init
 		numRand = 50;
