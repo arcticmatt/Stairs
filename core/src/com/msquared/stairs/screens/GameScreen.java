@@ -196,7 +196,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 			}
 
 			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
-				Gdx.gl.glClearColor(.9f, .9f, .9f, 1);
+				Gdx.gl.glClearColor(.95f, .95f, .95f, 1);
 			} else {
 				Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
 			}
@@ -221,7 +221,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 			stairsController.roundChangeTime += change;
 			stairsController.time += change;
 			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
-				Gdx.gl.glClearColor(.9f, .9f, .9f, 1);
+				Gdx.gl.glClearColor(.95f, .95f, .95f, 1);
 			} else {
 				Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
 			}
