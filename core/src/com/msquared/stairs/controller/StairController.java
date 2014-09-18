@@ -180,7 +180,7 @@ public class StairController {
 		}
 
 		stairColor = white;
-		initColors();
+		initInvertedColors();
 	}
 
 	public StairController(World world) {
@@ -195,7 +195,7 @@ public class StairController {
 			levels = false;
 		}
 
-		initColors();
+		initInvertedColors();
 
 		highXSpeeds = new ArrayList<Integer>(asList(0, 250, 300, 400, 495,
 				495));
@@ -400,6 +400,37 @@ public class StairController {
             new Color(108f / 255f, 184f / 255f, 255f / 255f, 1),
             new Color(75f / 255f, 158f / 255f, 235f / 255f, 1),
             new Color(75f / 255f, 158f / 255f, 235f / 255f, 1)));
+	}
+	
+	public void initInvertedColors() {
+		zigZagColors = new ArrayList<Color>(asList(
+			new Color(0f / 255f, 13f / 255f, 51f/ 255f, 1),
+			new Color(0f / 255f, 20f / 255f, 79f / 255f, 1),
+			new Color(0f / 255f, 28f / 255f, 110f / 255f, 1),
+			new Color(0f / 255f, 38f / 255f, 147f / 255f, 1),
+			new Color(23f / 255f, 67f / 255f, 192f / 255f, 1),
+			new Color(23f / 255f, 67f / 255f, 192f / 255f, 1)));
+		sidesColors = new ArrayList<Color>(asList(
+	        new Color(0f / 255f, 43f / 255f, 39f / 255f, 1),
+	        new Color(0f / 255f, 66f / 255f, 60f / 255f, 1),
+	        new Color(0f / 255f, 122f / 255f, 110f / 255f, 1),
+	        new Color(0f / 255f, 147f / 255f, 132f / 255f, 1),
+	        new Color(0f / 255f, 184f / 255f, 165f / 255f, 1),
+	        new Color(0f / 255f, 184f / 255f, 165f / 255f, 1)));
+		rapidColors = new ArrayList<Color>(asList(
+	        new Color(27f / 255f, 56f / 255f, 0f / 255f, 1),
+	        new Color(42f / 255f, 87f / 255f, 0f / 255f, 1),
+	        new Color(63f / 255f, 121f / 255f, 8f / 255f, 1),
+	        new Color(92f / 255f, 159f / 255f, 29f / 255f, 1),
+	        new Color(115f / 255f, 195f / 255f, 41f / 255f, 1),
+	        new Color(115f / 255f, 195f / 255f, 41f / 255f, 1)));
+		narrowColors = new ArrayList<Color>(asList(
+	        new Color(54f / 255f, 26f / 255f, 0f / 255f, 1),
+	        new Color(76f / 255f, 37f / 255f, 0f / 255f, 1),
+	        new Color(107f / 255f, 52f / 255f, 0f / 255f, 1),
+	        new Color(147f / 255f, 71f / 255f, 0f / 255f, 1),
+	        new Color(180f / 255f, 97f / 255f, 20f / 255f, 1),
+	        new Color(180f / 255f, 97f / 255f, 20f / 255f, 1)));
 	}
 
 	/** The main update method */

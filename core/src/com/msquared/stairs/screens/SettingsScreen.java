@@ -54,8 +54,8 @@ public class SettingsScreen extends AbstractScreen {
 		blockTexChecked = new Texture("images/buttons/toggles/btn_block_off.png");
 		invincTexOn = new Texture("images/buttons/toggles/btn_invinc_on.png");
 		invincTexChecked = new Texture("images/buttons/toggles/btn_invinc_off.png");
-		invertTexOn = new Texture("images/buttons/toggles/btn_invert_on2.png");
-		invertTexChecked = new Texture("images/buttons/toggles/btn_invert_off2.png");
+		invertTexOn = new Texture("images/buttons/toggles/btn_invert_on.png");
+		invertTexChecked = new Texture("images/buttons/toggles/btn_invert_off.png");
 		
 		// Regular textures
 		earlyTexOn = new Texture("images/buttons/toggles/btn_early_on.png");
@@ -349,6 +349,8 @@ public class SettingsScreen extends AbstractScreen {
 	}
 
 	public void addUnlockableButtons(float padding, final float settingWidth, final float settingHeight) {
+		int easyHighScoreLevels = profile.getHighScore(1);
+		int easyHighScoreClassic = profile.getHighScore(13);
         int mediumHighScoreLevels = profile.getHighScore(4);
         int mediumHighScoreClassic = profile.getHighScore(16);
         int hardHighScoreLevels = profile.getHighScore(7);
@@ -360,7 +362,8 @@ public class SettingsScreen extends AbstractScreen {
         table.row().expandX().fillX();
 		
 		// Add color scheme toggle button
-		boolean showInvert = hardHighScoreLevels >= 50 || hardHighScoreClassic >= 50 || Stairs.PAID_VERSION;
+		boolean showInvert = easyHighScoreLevels >= 10 || easyHighScoreClassic >= 10
+				|| mediumHighScoreLevels >= 5 || mediumHighScoreLevels >= 5 || Stairs.PAID_VERSION;
 		TextureRegionDrawable invertUp;
         TextureRegionDrawable invertChecked;
         if (showInvert) {
@@ -536,9 +539,12 @@ public class SettingsScreen extends AbstractScreen {
         }
 		table.add(blockToggle).size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center);
-
-        // Add last dummy button
-		table.add().size(settingWidth, settingHeight).colspan(1)
+		
+        // Add dummy button
+		TextureRegionDrawable lockedUp = new TextureRegionDrawable(
+                new TextureRegion(lockedTex));
+		ImageButton lockedButton = new ImageButton(lockedUp);
+		table.add(lockedButton).size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center).padRight(padding);
 	}
 
