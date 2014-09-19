@@ -26,17 +26,17 @@ public class HighScoresScreen extends AbstractScreen {
 	Table table;
 	Profile profile;
 	LabelStyle scoreStyle;
+	String headerStyleString;
 
 	// Constructor to keep a reference to the main Game class
 	public HighScoresScreen(Stairs game) {
 		super(game);
 		skin = getSkin();
-		scoreStyle = skin.get("score", LabelStyle.class);
 	}
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+		clearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 	}
@@ -66,8 +66,15 @@ public class HighScoresScreen extends AbstractScreen {
 		}
 		
 		table.row();
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
+		TextureRegionDrawable menuUp;
+		TextureRegionDrawable menuDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
+		} else {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
+		}
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -99,11 +106,17 @@ public class HighScoresScreen extends AbstractScreen {
 		table.add(scoreLabel).colspan(2).center().expandX().fillX();
 		table.row().spaceTop(10f).spaceBottom(10f);
 		
-		// Easy high scores
-		table.add("E Levels").align(Align.left).padLeft(titlePadding);
-		table.add("E Classic").align(Align.right).padRight(titlePadding);
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			scoreStyle = skin.get("scoreblack", LabelStyle.class);
+			headerStyleString = "headerblack";
+		} else {
+			scoreStyle = skin.get("score", LabelStyle.class);
+			headerStyleString = "header";
+		}
 		
-		labelStyle = skin.get("score", LabelStyle.class);
+		// Easy high scores
+		table.add("E Levels", headerStyleString).align(Align.left).padLeft(titlePadding);
+		table.add("E Classic", headerStyleString).align(Align.right).padRight(titlePadding);
 		
 		table.row();
 		Label firstEasyLabel = getScoreLabelProfile(1, 1);
@@ -125,8 +138,8 @@ public class HighScoresScreen extends AbstractScreen {
 		
 		// Medium high scores
 		table.row();
-		table.add("M Levels").align(Align.left).padLeft(titlePadding);
-		table.add("M Classic").align(Align.right).padRight(titlePadding);
+		table.add("M Levels", headerStyleString).align(Align.left).padLeft(titlePadding);
+		table.add("M Classic", headerStyleString).align(Align.right).padRight(titlePadding);
 		
 		table.row();
 		Label firstMediumLabel = getScoreLabelProfile(1, 4);
@@ -148,8 +161,8 @@ public class HighScoresScreen extends AbstractScreen {
 		
 		// Hard high scores
 		table.row();
-		table.add("H Levels").align(Align.left).padLeft(titlePadding);
-		table.add("H Classic").align(Align.right).padRight(titlePadding);
+		table.add("H Levels", headerStyleString).align(Align.left).padLeft(titlePadding);
+		table.add("H Classic", headerStyleString).align(Align.right).padRight(titlePadding);
 		
 		table.row();
 		Label firstHardLabel = getScoreLabelProfile(1, 7);
@@ -171,8 +184,8 @@ public class HighScoresScreen extends AbstractScreen {
 		
 		// Insane high scores
 		table.row();
-		table.add("I Levels").align(Align.left).padLeft(titlePadding);
-		table.add("I Classic").align(Align.right).padRight(titlePadding);
+		table.add("I Levels", headerStyleString).align(Align.left).padLeft(titlePadding);
+		table.add("I Classic", headerStyleString).align(Align.right).padRight(titlePadding);
 		
 		table.row();
 		Label firstInsaneLabel = getScoreLabelProfile(1, 10);

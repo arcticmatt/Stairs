@@ -50,6 +50,8 @@ public class Stairs extends Game {
 	public IActivityRequestHandler myRequestHandler;
 	public Texture menuTex;
 	public Texture menuTexDown;
+	public Texture menuTexInverted;
+	public Texture menuTexDownInverted;
 	
 	public AssetManager assetManager;
 	private ProfileManager profileManager;
@@ -77,6 +79,9 @@ public class Stairs extends Game {
 		menuTex = new Texture("images/buttons/misc/btn_menu.png");
 		menuTexDown = new Texture(
 				"images/buttons/misc/btn_menu_down.png");
+		menuTexInverted = new Texture("images/buttons/misc_inverted/btn_menu_inverted.png");
+		menuTexDownInverted = new Texture(
+				"images/buttons/misc_inverted/btn_menu_down_inverted.png");
 		prefs = Gdx.app.getPreferences("Preferences");
 		
 		if (!htmlGame) {
