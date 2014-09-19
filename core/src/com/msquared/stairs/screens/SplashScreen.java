@@ -22,6 +22,7 @@ public class SplashScreen extends AbstractScreen implements Screen {
 		game = g;
 		staticFrame = new Texture(Gdx.files.internal("images/anis/splash_ani/tern180.png"));
 		game.assetManager.load("images/anis/menu_ani/menu_ani.pack", TextureAtlas.class);	
+		game.assetManager.load("images/anis/menu_ani_inverted/menu_ani_inverted.pack", TextureAtlas.class);	
 		splashWidth = (float) WorldRenderer.CAMERA_WIDTH;
 		splashHeight = (float) WorldRenderer.CAMERA_HEIGHT;
 	}

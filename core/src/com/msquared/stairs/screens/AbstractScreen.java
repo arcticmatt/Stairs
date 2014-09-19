@@ -122,6 +122,14 @@ public class AbstractScreen implements Screen {
 			skin.dispose();
 		}
 	}
+	
+	public void clearColor() {
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			Gdx.gl.glClearColor(.949f, .949f, .949f, 1);
+		} else {
+			Gdx.gl.glClearColor(.101f, .101f, .101f, 1);
+		}
+	}
 
 
 }
