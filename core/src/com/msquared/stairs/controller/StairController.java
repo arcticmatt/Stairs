@@ -291,7 +291,7 @@ public class StairController {
 		rapidTimeInterval = 220l;
 		timeInterval = regTimeInterval;
 		levelTransitionTime = 1000l;
-		roundTransitionTime = 1500l;
+		roundTransitionTime = 1750l;
 		roundChangeTime = 0;
 
 		stairSelector = 0;
@@ -353,9 +353,11 @@ public class StairController {
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
 			currLevel = randLevel;
-			randLimiter = 40;
+			randLimiter = 20;
 			randLimiterMin = 30;
 			randLimiterMax = 50;
+			levelTransitionTime = 1300l;
+			roundTransitionTime = 1300l;
 		} else if (Stairs.getSharedPrefs().getBoolean("earlyOn", true)) {
 			levelSelector = SIDES_SELECTOR;
 			currLevel = sidesLevel;
@@ -363,6 +365,8 @@ public class StairController {
 			levelSelector = ZIG_ZAG_SELECTOR;
 			currLevel = zigZagLevel;
 		}
+		
+		//onlyCustom();
 
 		// Make levels corresponding to round selector
 		makeNewRound(false);
@@ -973,6 +977,17 @@ public class StairController {
 		narrowLimiter = 8;
 		randLimiter = 10;
 		rapidLimiter = 8;
+		levelSelector = ZIG_ZAG_SELECTOR;
+		currLevel = zigZagLevel;
+	}
+	
+	public void onlyCustomShort() {
+		straightLimiter = 0;
+		zigZagLimiter = 2;
+		sidesLimiter = 2;
+		narrowLimiter = 2;
+		randLimiter = 2;
+		rapidLimiter = 2;
 		levelSelector = ZIG_ZAG_SELECTOR;
 		currLevel = zigZagLevel;
 	}

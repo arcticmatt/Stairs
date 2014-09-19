@@ -104,7 +104,7 @@ public class StairControllerHard extends StairController {
 		regTimeInterval = 420l;
 		rapidTimeInterval = 220l;
 		timeInterval = regTimeInterval;
-		levelTransitionTime = 700l;
+		levelTransitionTime = 800l;
 		roundTransitionTime = levelTransitionTime;
 		roundChangeTime = 0;
 
@@ -182,6 +182,8 @@ public class StairControllerHard extends StairController {
 			randLimiter = 30;
 			randLimiterMin = 20;
 			randLimiterMax = 40;
+			levelTransitionTime = 1000l;
+			roundTransitionTime = 1000l;
 		} else {
 			do {
 				levelSelector = random.nextInt(NUM_LEVELS) + 1;

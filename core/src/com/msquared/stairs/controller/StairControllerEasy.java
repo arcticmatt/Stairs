@@ -105,7 +105,7 @@ public class StairControllerEasy extends StairController {
 		regTimeInterval = 420l;
 		rapidTimeInterval = 220l;
 		timeInterval = regTimeInterval;
-		levelTransitionTime = 1250l;
+		levelTransitionTime = 1350l;
 		roundTransitionTime = 2500l;
 		roundChangeTime = 0;
 
@@ -126,7 +126,7 @@ public class StairControllerEasy extends StairController {
 
 		// Straight level init
 		numStraight = 50;
-		straightLimiter = 12;
+		straightLimiter = 10;
 		straightLimiterMin = 10;
 		straightLimiterMax = 15;
 		straightWidthOriginal = 1000;
