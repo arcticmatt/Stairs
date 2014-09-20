@@ -27,6 +27,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	CharSequence gameScore;
 	private static final float FRAME_DURATION = 0.05f;
 	private Animation stairsAnimation;
+	private Animation stairsAnimationInverted;
 	float stateTime;
 	TextureRegion currentFrame;
 	GameScreen gameScreen;
@@ -44,7 +45,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	float aniHeight;
 	float aniXPos;
 	float aniYPos;
-	
+
 	// Textures
 	Texture levelsTex;
 	Texture levelsTexDown;
@@ -56,11 +57,21 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	Texture highScoresTexDown;
 	Texture settingsTex;
 	Texture settingsTexDown;
-	TextureAtlas atlas;
-	
+
+	Texture levelsTexInverted;
+	Texture levelsTexDownInverted;
+	Texture classicTexInverted;
+	Texture classicTexDownInverted;
+	Texture mostRecentTexInverted;
+	Texture mostRecentTexDownInverted;
+	Texture highScoresTexInverted;
+	Texture highScoresTexDownInverted;
+	Texture settingsTexInverted;
+	Texture settingsTexDownInverted;
+
 	SpriteBatch spriteBatch;
 	boolean loaded;
-	
+
 	// Constructor to keep a reference to the main Game class
 	public MenuScreen(final Stairs game) {
 		super(game);
@@ -68,6 +79,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		heightRatio = 1;
 		widthRatio = 1;
 		loaded = false;
+		// Normal Textures
 		levelsTex = new Texture("images/buttons/levels/btn_levels.png");
 		levelsTexDown = new Texture(
 				"images/buttons/levels/btn_levels_down.png");
@@ -83,29 +95,59 @@ public class MenuScreen extends AbstractScreen implements Screen {
 				"images/buttons/misc/btn_settings.png");
 		settingsTexDown = new Texture(
 				"images/buttons/misc/btn_settings_down.png");
+
+		// Inverted Textures
+		levelsTexInverted = new Texture("images/buttons/levels_inverted/btn_levels_inverted.png");
+		levelsTexDownInverted = new Texture(
+				"images/buttons/levels_inverted/btn_levels_down_inverted.png");
+		classicTexInverted = new Texture(
+				"images/buttons/classic_inverted/btn_classic_inverted.png");
+		classicTexDownInverted = new Texture(
+				"images/buttons/classic_inverted/btn_classic_down_inverted.png");
+		highScoresTexInverted = new Texture(
+				"images/buttons/misc_inverted/btn_highscores_inverted.png");
+		highScoresTexDownInverted = new Texture(
+				"images/buttons/misc_inverted/btn_highscores_down_inverted.png");
+		settingsTexInverted = new Texture(
+				"images/buttons/misc_inverted/btn_settings_inverted.png");
+		settingsTexDownInverted = new Texture(
+				"images/buttons/misc_inverted/btn_settings_down_inverted.png");
 	}
-	
+
 	private void loadTextures() {
 		int num = 96;
-		if (!game.iphoneGame) { 
+		// Can't dispose of these, otherwise the animations disappear
+		TextureAtlas atlas;
+		TextureAtlas atlasInverted;
+		if (!game.iphoneGame) {
+			Gdx.app.log(Stairs.LOG, "Loading textures");
 			atlas = game.assetManager.get("images/anis/menu_ani/menu_ani.pack", TextureAtlas.class);
+			atlasInverted = game.assetManager.get("images/anis/menu_ani_inverted/menu_ani_inverted.pack", TextureAtlas.class);
 		} else {
 			atlas = new TextureAtlas(Gdx.files.internal("images/anis/menu_ani/menu_ani.pack"));
+			atlasInverted = new TextureAtlas(Gdx.files.internal("images/anis/menu_ani_inverted/menu_ani_inverted.pack"));
 		}
 		TextureRegion[] frames = new TextureRegion[num];
+		TextureRegion[] framesInverted = new TextureRegion[num];
 		for (int i = 1; i <= num; i++) {
 			frames[i-1] = atlas.findRegion("ani" + i);
+			framesInverted[i-1] = atlasInverted.findRegion("ani" + i);
 		}
 		stairsAnimation = new Animation(FRAME_DURATION, frames);
+		stairsAnimationInverted = new Animation(FRAME_DURATION, framesInverted);
 	}
-	
+
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.101f, .101f, .101f, 1);
+		clearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		stateTime += delta;
-		currentFrame = stairsAnimation.getKeyFrame(stateTime, true);
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			currentFrame = stairsAnimationInverted.getKeyFrame(stateTime, true);
+		} else {
+			currentFrame = stairsAnimation.getKeyFrame(stateTime, true);
+		}
 		spriteBatch.begin();
 		spriteBatch.draw(currentFrame, aniXPos, aniYPos, aniWidth, aniHeight);
      	spriteBatch.end();
@@ -115,12 +157,13 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		
-		/* 
-		 * Add listener so that when user clicks on animation area, he gets taken to 
+		Gdx.app.log(Stairs.LOG, "Menu Screen shown");
+
+		/*
+		 * Add listener so that when user clicks on animation area, he gets taken to
 		 * tutorial video
 		 */
-		stage.addListener(new InputListener() {     
+		stage.addListener(new InputListener() {
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if (x >= aniXPos && x <= aniXPos + aniWidth
 	        			&& y >= aniYPos && y <= aniYPos + aniHeight) {
@@ -135,10 +178,10 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	        	}
 	        }
 		});
-		
+
 		// Show ads
 		game.myRequestHandler.showAds(true);
-		
+
 		if (!loaded) {
 			loadTextures();
 			loaded = true;
@@ -147,7 +190,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		spriteBatch = new SpriteBatch();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		spriteBatch.disableBlending();
-		
+
 		table = new Table(getSkin());
 
 		this.width = Gdx.graphics.getWidth();
@@ -180,10 +223,19 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		 * Levels buttons
 		 */
 		table.row();
-		TextureRegionDrawable levelsTR = new TextureRegionDrawable(
-				new TextureRegion(levelsTex));
-		TextureRegionDrawable levelsTRDown = new TextureRegionDrawable(
-				new TextureRegion(levelsTexDown));
+        TextureRegionDrawable levelsTR;
+        TextureRegionDrawable levelsTRDown;
+        if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+        	levelsTR = new TextureRegionDrawable(
+        			new TextureRegion(levelsTexInverted));
+        	levelsTRDown = new TextureRegionDrawable(
+        			new TextureRegion(levelsTexDownInverted));
+        } else {
+        	levelsTR = new TextureRegionDrawable(
+    				new TextureRegion(levelsTex));
+    		levelsTRDown = new TextureRegionDrawable(
+    				new TextureRegion(levelsTexDown));
+        }
 		ImageButtonStyle levelsStyle = new ImageButtonStyle();
 		levelsStyle.up = levelsTR;
 		levelsStyle.down = levelsTRDown;
@@ -202,10 +254,19 @@ public class MenuScreen extends AbstractScreen implements Screen {
 				.expandX().fillX();
 		table.row();
 
-		TextureRegionDrawable classicTR = new TextureRegionDrawable(
-				new TextureRegion(classicTex));
-		TextureRegionDrawable classicTRDown = new TextureRegionDrawable(
-				new TextureRegion(classicTexDown));
+		TextureRegionDrawable classicTR;
+		TextureRegionDrawable classicTRDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			classicTR = new TextureRegionDrawable(
+					new TextureRegion(classicTexInverted));
+			classicTRDown = new TextureRegionDrawable(
+					new TextureRegion(classicTexDownInverted));
+		} else {
+			classicTR = new TextureRegionDrawable(
+					new TextureRegion(classicTex));
+			classicTRDown = new TextureRegionDrawable(
+					new TextureRegion(classicTexDown));
+		}
 		ImageButtonStyle classicStyle = new ImageButtonStyle();
 		classicStyle.up = classicTR;
 		classicStyle.down = classicTRDown;
@@ -254,10 +315,19 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		/*
 		 * Misc buttons
 		 */
-		TextureRegionDrawable highScoresUp = new TextureRegionDrawable(
-				new TextureRegion(highScoresTex));
-		TextureRegionDrawable highScoresDown = new TextureRegionDrawable(
-				new TextureRegion(highScoresTexDown));
+		TextureRegionDrawable highScoresUp;
+		TextureRegionDrawable highScoresDown;
+        if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            highScoresUp = new TextureRegionDrawable(
+                    new TextureRegion(highScoresTexInverted));
+            highScoresDown = new TextureRegionDrawable(
+                    new TextureRegion(highScoresTexDownInverted));
+        } else {
+            highScoresUp = new TextureRegionDrawable(
+                    new TextureRegion(highScoresTex));
+            highScoresDown = new TextureRegionDrawable(
+                    new TextureRegion(highScoresTexDown));
+        }
 		ImageButtonStyle highScoresStyle = new ImageButtonStyle();
 		highScoresStyle.up = highScoresUp;
 		highScoresStyle.down = highScoresDown;
@@ -274,10 +344,19 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		table.add(highScoresImagButton).size(imagWidth, imagHeight)
 				.align(Align.left).padLeft(imagPadding);
 
-		TextureRegionDrawable settingsUp = new TextureRegionDrawable(
-				new TextureRegion(settingsTex));
-		TextureRegionDrawable settingsDown = new TextureRegionDrawable(
-				new TextureRegion(settingsTexDown));
+		TextureRegionDrawable settingsUp;
+		TextureRegionDrawable settingsDown;
+        if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            settingsUp = new TextureRegionDrawable(
+                    new TextureRegion(settingsTexInverted));
+            settingsDown = new TextureRegionDrawable(
+                    new TextureRegion(settingsTexDownInverted));
+        } else {
+            settingsUp = new TextureRegionDrawable(
+                    new TextureRegion(settingsTex));
+            settingsDown = new TextureRegionDrawable(
+                    new TextureRegion(settingsTexDown));
+        }
 		ImageButtonStyle settingsStyle = new ImageButtonStyle();
 		settingsStyle.up = settingsUp;
 		settingsStyle.down = settingsDown;
@@ -295,58 +374,114 @@ public class MenuScreen extends AbstractScreen implements Screen {
 				.align(Align.right).padRight(imagPadding);
 		stage.addActor(table);
 	}
-	
+
 	public ArrayList<String> getMostRecentLevel() {
 		ArrayList<String> mostRecentLevels = new ArrayList<String>();
 		String mostRecentUp;
 		String mostRecentDown;
 		if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.EASY_LEVELS) {
-			mostRecentUp = "images/buttons/levels/btn_easy_levels.png";
-			mostRecentDown = "images/buttons/levels/btn_easy_levels_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
-			return mostRecentLevels;
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/levels_inverted/btn_easy_levels_inverted.png";
+                mostRecentDown = "images/buttons/levels_inverted/btn_easy_levels_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/levels/btn_easy_levels.png";
+                mostRecentDown = "images/buttons/levels/btn_easy_levels_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
+            return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.MEDIUM_LEVELS) {
-			mostRecentUp = "images/buttons/levels/btn_medium_levels.png";
-			mostRecentDown = "images/buttons/levels/btn_medium_levels_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/levels_inverted/btn_medium_levels_inverted.png";
+                mostRecentDown = "images/buttons/levels_inverted/btn_medium_levels_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/levels/btn_medium_levels.png";
+                mostRecentDown = "images/buttons/levels/btn_medium_levels_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.HARD_LEVELS) {
-			mostRecentUp = "images/buttons/levels/btn_hard_levels.png";
-			mostRecentDown = "images/buttons/levels/btn_hard_levels_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/levels_inverted/btn_hard_levels_inverted.png";
+                mostRecentDown = "images/buttons/levels_inverted/btn_hard_levels_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/levels/btn_hard_levels.png";
+                mostRecentDown = "images/buttons/levels/btn_hard_levels_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.INSANE_LEVELS) {
-			mostRecentUp = "images/buttons/levels/btn_insane_levels.png";
-			mostRecentDown = "images/buttons/levels/btn_insane_levels_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/levels_inverted/btn_insane_levels_inverted.png";
+                mostRecentDown = "images/buttons/levels_inverted/btn_insane_levels_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/levels/btn_insane_levels.png";
+                mostRecentDown = "images/buttons/levels/btn_insane_levels_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.EASY_CLASSIC) {
-			mostRecentUp = "images/buttons/classic/btn_easy_classic.png";
-			mostRecentDown = "images/buttons/classic/btn_easy_classic_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/classic_inverted/btn_easy_classic_inverted.png";
+                mostRecentDown = "images/buttons/classic_inverted/btn_easy_classic_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/classic/btn_easy_classic.png";
+                mostRecentDown = "images/buttons/classic/btn_easy_classic_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.MEDIUM_CLASSIC) {
-			mostRecentUp = "images/buttons/classic/btn_medium_classic.png";
-			mostRecentDown = "images/buttons/classic/btn_medium_classic_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/classic_inverted/btn_medium_classic_inverted.png";
+                mostRecentDown = "images/buttons/classic_inverted/btn_medium_classic_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/classic/btn_medium_classic.png";
+                mostRecentDown = "images/buttons/classic/btn_medium_classic_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.HARD_CLASSIC) {
-			mostRecentUp = "images/buttons/classic/btn_hard_classic.png";
-			mostRecentDown = "images/buttons/classic/btn_hard_classic_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/classic_inverted/btn_hard_classic_inverted.png";
+                mostRecentDown = "images/buttons/classic_inverted/btn_hard_classic_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/classic/btn_hard_classic.png";
+                mostRecentDown = "images/buttons/classic/btn_hard_classic_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.INSANE_CLASSIC) {
-			mostRecentUp = "images/buttons/classic/btn_insane_classic.png";
-			mostRecentDown = "images/buttons/classic/btn_insane_classic_down.png";
-			mostRecentLevels.add(mostRecentUp);
-			mostRecentLevels.add(mostRecentDown);
+            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+                mostRecentUp = "images/buttons/classic_inverted/btn_insane_classic_inverted.png";
+                mostRecentDown = "images/buttons/classic_inverted/btn_insane_classic_down_inverted.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            } else {
+                mostRecentUp = "images/buttons/classic/btn_insane_classic.png";
+                mostRecentDown = "images/buttons/classic/btn_insane_classic_down.png";
+                mostRecentLevels.add(mostRecentUp);
+                mostRecentLevels.add(mostRecentDown);
+            }
 			return mostRecentLevels;
 		}
 		return mostRecentLevels;

@@ -33,8 +33,20 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 	Texture mediumTexLevelsDown;
 	Texture hardTexLevels;
 	Texture hardTexLevelsDown;
+	Texture hardTexLevelsLocked;
 	Texture insaneTexLevels;
 	Texture insaneTexLevelsDown;
+	Texture insaneTexLevelsLocked;
+	Texture easyTexLevelsInverted;
+	Texture easyTexLevelsDownInverted;
+	Texture mediumTexLevelsInverted;
+	Texture mediumTexLevelsDownInverted;
+	Texture hardTexLevelsInverted;
+	Texture hardTexLevelsDownInverted;
+	Texture hardTexLevelsLockedInverted;
+	Texture insaneTexLevelsInverted;
+	Texture insaneTexLevelsDownInverted;
+	Texture insaneTexLevelsLockedInverted;
 	
 	// Constructor to keep a reference to the main Game class
 	public LevelsScreen(Stairs game) {
@@ -48,11 +60,44 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 				"images/buttons/levels/btn_medium_levels.png");
 		mediumTexLevelsDown = new Texture(
 				"images/buttons/levels/btn_medium_levels_down.png");
+		hardTexLevels = new Texture(
+				"images/buttons/levels/btn_hard_levels.png");
+		hardTexLevelsDown = new Texture(
+				"images/buttons/levels/btn_hard_levels_down.png");
+		hardTexLevelsLocked = new Texture(
+				"images/buttons/levels/btn_hard_levels_locked.png");
+		insaneTexLevels = new Texture(
+				"images/buttons/levels/btn_insane_levels.png");
+		insaneTexLevelsDown = new Texture(
+				"images/buttons/levels/btn_insane_levels_down.png");
+		insaneTexLevelsLocked = new Texture(
+				"images/buttons/levels/btn_insane_levels_locked.png");
+		
+		easyTexLevelsInverted = new Texture(
+				"images/buttons/levels_inverted/btn_easy_levels_inverted.png");
+		easyTexLevelsDownInverted = new Texture(
+				"images/buttons/levels_inverted/btn_easy_levels_down_inverted.png");
+		mediumTexLevelsInverted = new Texture(
+				"images/buttons/levels_inverted/btn_medium_levels_inverted.png");
+		mediumTexLevelsDownInverted = new Texture(
+				"images/buttons/levels_inverted/btn_medium_levels_down_inverted.png");
+		hardTexLevelsInverted = new Texture(
+				"images/buttons/levels_inverted/btn_hard_levels_inverted.png");
+		hardTexLevelsDownInverted = new Texture(
+				"images/buttons/levels_inverted/btn_hard_levels_down_inverted.png");
+		hardTexLevelsLockedInverted = new Texture(
+				"images/buttons/levels_inverted/btn_hard_levels_locked_inverted.png");
+		insaneTexLevelsInverted = new Texture(
+				"images/buttons/levels_inverted/btn_insane_levels_inverted.png");
+		insaneTexLevelsDownInverted = new Texture(
+				"images/buttons/levels_inverted/btn_insane_levels_down_inverted.png");
+		insaneTexLevelsLockedInverted = new Texture(
+				"images/buttons/levels_inverted/btn_insane_levels_locked_inverted.png");
 	}
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+		clearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.input.setInputProcessor(stage);
 		stage.draw();
@@ -90,10 +135,19 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		 * Levels buttons
 		 */
 		table.row();
-		TextureRegionDrawable easyLevelsUp = new TextureRegionDrawable(
-				new TextureRegion(easyTexLevels));
-		TextureRegionDrawable easyLevelsDown = new TextureRegionDrawable(
-				new TextureRegion(easyTexLevelsDown));
+		TextureRegionDrawable easyLevelsUp;
+		TextureRegionDrawable easyLevelsDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			easyLevelsUp = new TextureRegionDrawable(
+				new TextureRegion(easyTexLevelsInverted));
+			easyLevelsDown = new TextureRegionDrawable(
+				new TextureRegion(easyTexLevelsDownInverted));
+		} else {
+			easyLevelsUp = new TextureRegionDrawable(
+					new TextureRegion(easyTexLevels));
+			easyLevelsDown = new TextureRegionDrawable(
+					new TextureRegion(easyTexLevelsDown));
+		}
 		ImageButtonStyle easyLevelsStyle = new ImageButtonStyle();
 		easyLevelsStyle.up = easyLevelsUp;
 		easyLevelsStyle.down = easyLevelsDown;
@@ -115,10 +169,19 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 				.expandX().fillX();
 		table.row();
 
-		TextureRegionDrawable mediumLevelsUp = new TextureRegionDrawable(
-				new TextureRegion(mediumTexLevels));
-		TextureRegionDrawable mediumLevelsDown = new TextureRegionDrawable(
-				new TextureRegion(mediumTexLevelsDown));
+		TextureRegionDrawable mediumLevelsUp;
+		TextureRegionDrawable mediumLevelsDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			mediumLevelsUp = new TextureRegionDrawable(
+				new TextureRegion(mediumTexLevelsInverted));
+			mediumLevelsDown = new TextureRegionDrawable(
+				new TextureRegion(mediumTexLevelsDownInverted));
+		} else {
+			mediumLevelsUp = new TextureRegionDrawable(
+					new TextureRegion(mediumTexLevels));
+			mediumLevelsDown = new TextureRegionDrawable(
+					new TextureRegion(mediumTexLevelsDown));
+		}
 		ImageButtonStyle mediumLevelsStyle = new ImageButtonStyle();
 		mediumLevelsStyle.up = mediumLevelsUp;
 		mediumLevelsStyle.down = mediumLevelsDown;
@@ -141,21 +204,33 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 
 		mediumHighScore = profile.getHighScore(4);
 		hardUnlocked = mediumHighScore >= 150 || Stairs.PAID_VERSION;
+		TextureRegionDrawable hardLevelsUp;
+		TextureRegionDrawable hardLevelsDown;
 		if (hardUnlocked) {
-			hardTexLevels = new Texture(
-					"images/buttons/levels/btn_hard_levels.png");
-			hardTexLevelsDown = new Texture(
-					"images/buttons/levels/btn_hard_levels_down.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				hardLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsInverted));
+				hardLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsDownInverted));
+			} else {
+				hardLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevels));
+				hardLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsDown));
+			}
 		} else {
-			hardTexLevels = new Texture(
-					"images/buttons/levels/btn_hard_levels_locked.png");
-			hardTexLevelsDown = new Texture(
-					"images/buttons/levels/btn_hard_levels_locked.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				hardLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsLockedInverted));
+				hardLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsLockedInverted));
+			} else {
+				hardLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsLocked));
+				hardLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexLevelsLocked));
+			}
 		}
-		TextureRegionDrawable hardLevelsUp = new TextureRegionDrawable(
-				new TextureRegion(hardTexLevels));
-		TextureRegionDrawable hardLevelsDown = new TextureRegionDrawable(
-				new TextureRegion(hardTexLevelsDown));
 		ImageButtonStyle hardLevelsStyle = new ImageButtonStyle();
 		hardLevelsStyle.up = hardLevelsUp;
 		hardLevelsStyle.down = hardLevelsDown;
@@ -179,21 +254,33 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 
 		hardHighScore = profile.getHighScore(7);
 		insaneUnlocked = hardHighScore >= 100 || Stairs.PAID_VERSION;
+		TextureRegionDrawable insaneLevelsUp;
+		TextureRegionDrawable insaneLevelsDown;
 		if (insaneUnlocked) {
-			insaneTexLevels = new Texture(
-					"images/buttons/levels/btn_insane_levels.png");
-			insaneTexLevelsDown = new Texture(
-					"images/buttons/levels/btn_insane_levels_down.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				insaneLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsInverted));
+				insaneLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsDownInverted));
+			} else {
+				insaneLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevels));
+				insaneLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsDown));
+			}
 		} else {
-			insaneTexLevels = new Texture(
-					"images/buttons/levels/btn_insane_levels_locked.png");
-			insaneTexLevelsDown = new Texture(
-					"images/buttons/levels/btn_insane_levels_locked.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				insaneLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsLockedInverted));
+				insaneLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsLockedInverted));
+			} else {
+				insaneLevelsUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsLocked));
+				insaneLevelsDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexLevelsLocked));
+			}
 		}
-		TextureRegionDrawable insaneLevelsUp = new TextureRegionDrawable(
-				new TextureRegion(insaneTexLevels));
-		TextureRegionDrawable insaneLevelsDown = new TextureRegionDrawable(
-				new TextureRegion(insaneTexLevelsDown));
 		ImageButtonStyle insaneLevelsStyle = new ImageButtonStyle();
 		insaneLevelsStyle.up = insaneLevelsUp;
 		insaneLevelsStyle.down = insaneLevelsDown;
@@ -218,10 +305,15 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		/*
 		 * Menu button
 		 */
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(
-				new TextureRegion(game.menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(
-				new TextureRegion(game.menuTexDown));
+		TextureRegionDrawable menuUp;
+		TextureRegionDrawable menuDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
+		} else {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
+		}
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -244,9 +336,5 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 	@Override
 	public void hide() {
 		super.hide();
-		hardTexLevels.dispose();
-		hardTexLevelsDown.dispose();
-		insaneTexLevels.dispose();
-		insaneTexLevelsDown.dispose();
 	}
 }

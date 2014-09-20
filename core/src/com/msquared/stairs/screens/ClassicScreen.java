@@ -33,8 +33,20 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 	Texture mediumTexClassicDown;
 	Texture hardTexClassic;
 	Texture hardTexClassicDown;
+	Texture hardTexClassicLocked;
 	Texture insaneTexClassic;
 	Texture insaneTexClassicDown;
+	Texture insaneTexClassicLocked;
+	Texture easyTexClassicInverted;
+	Texture easyTexClassicDownInverted;
+	Texture mediumTexClassicInverted;
+	Texture mediumTexClassicDownInverted;
+	Texture hardTexClassicInverted;
+	Texture hardTexClassicDownInverted;
+	Texture hardTexClassicLockedInverted;
+	Texture insaneTexClassicInverted;
+	Texture insaneTexClassicDownInverted;
+	Texture insaneTexClassicLockedInverted;
 	
 	// Constructor to keep a reference to the main Game class
 	public ClassicScreen(Stairs game) {
@@ -48,11 +60,44 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 				"images/buttons/classic/btn_medium_classic.png");
 		mediumTexClassicDown = new Texture(
 				"images/buttons/classic/btn_medium_classic_down.png");
+		hardTexClassic = new Texture(
+				"images/buttons/classic/btn_hard_classic.png");
+		hardTexClassicDown = new Texture(
+				"images/buttons/classic/btn_hard_classic_down.png");
+		hardTexClassicLocked = new Texture(
+				"images/buttons/classic/btn_hard_classic_locked.png");
+		insaneTexClassic = new Texture(
+				"images/buttons/classic/btn_insane_classic.png");
+		insaneTexClassicDown = new Texture(
+				"images/buttons/classic/btn_insane_classic_down.png");
+		insaneTexClassicLocked = new Texture(
+				"images/buttons/classic/btn_insane_classic_locked.png");
+		
+		easyTexClassicInverted = new Texture(
+				"images/buttons/classic_inverted/btn_easy_classic_inverted.png");
+		easyTexClassicDownInverted = new Texture(
+				"images/buttons/classic_inverted/btn_easy_classic_down_inverted.png");
+		mediumTexClassicInverted = new Texture(
+				"images/buttons/classic_inverted/btn_medium_classic_inverted.png");
+		mediumTexClassicDownInverted = new Texture(
+				"images/buttons/classic_inverted/btn_medium_classic_down_inverted.png");
+		hardTexClassicInverted = new Texture(
+				"images/buttons/classic_inverted/btn_hard_classic_inverted.png");
+		hardTexClassicDownInverted = new Texture(
+				"images/buttons/classic_inverted/btn_hard_classic_down_inverted.png");
+		hardTexClassicLockedInverted = new Texture(
+				"images/buttons/classic_inverted/btn_hard_classic_locked_inverted.png");
+		insaneTexClassicInverted = new Texture(
+				"images/buttons/classic_inverted/btn_insane_classic_inverted.png");
+		insaneTexClassicDownInverted = new Texture(
+				"images/buttons/classic_inverted/btn_insane_classic_down_inverted.png");
+		insaneTexClassicLockedInverted = new Texture(
+				"images/buttons/classic_inverted/btn_insane_classic_locked_inverted.png");
 	}
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+		clearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.input.setInputProcessor(stage);
 		stage.draw();
@@ -90,10 +135,19 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		 * Classic buttons
 		 */
 		table.row();
-		TextureRegionDrawable easyClassicUp = new TextureRegionDrawable(
-				new TextureRegion(easyTexClassic));
-		TextureRegionDrawable easyClassicDown = new TextureRegionDrawable(
-				new TextureRegion(easyTexClassicDown));
+		TextureRegionDrawable easyClassicUp;
+		TextureRegionDrawable easyClassicDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			easyClassicUp = new TextureRegionDrawable(
+				new TextureRegion(easyTexClassicInverted));
+			easyClassicDown = new TextureRegionDrawable(
+				new TextureRegion(easyTexClassicDownInverted));
+		} else {
+			easyClassicUp = new TextureRegionDrawable(
+					new TextureRegion(easyTexClassic));
+			easyClassicDown = new TextureRegionDrawable(
+					new TextureRegion(easyTexClassicDown));
+		}
 		ImageButtonStyle easyClassicStyle = new ImageButtonStyle();
 		easyClassicStyle.up = easyClassicUp;
 		easyClassicStyle.down = easyClassicDown;
@@ -115,10 +169,19 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 				.expandX().fillX();
 		table.row();
 
-		TextureRegionDrawable mediumClassicUp = new TextureRegionDrawable(
-				new TextureRegion(mediumTexClassic));
-		TextureRegionDrawable mediumClassicDown = new TextureRegionDrawable(
-				new TextureRegion(mediumTexClassicDown));
+		TextureRegionDrawable mediumClassicUp;
+		TextureRegionDrawable mediumClassicDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			mediumClassicUp = new TextureRegionDrawable(
+				new TextureRegion(mediumTexClassicInverted));
+			mediumClassicDown = new TextureRegionDrawable(
+				new TextureRegion(mediumTexClassicDownInverted));
+		} else {
+			mediumClassicUp = new TextureRegionDrawable(
+					new TextureRegion(mediumTexClassic));
+			mediumClassicDown = new TextureRegionDrawable(
+					new TextureRegion(mediumTexClassicDown));
+		}
 		ImageButtonStyle mediumClassicStyle = new ImageButtonStyle();
 		mediumClassicStyle.up = mediumClassicUp;
 		mediumClassicStyle.down = mediumClassicDown;
@@ -141,22 +204,34 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		mediumHighScore = profile.getHighScore(16);
-		hardUnlocked = mediumHighScore >= 150 || Stairs.PAID_VERSION;
+		hardUnlocked = mediumHighScore >= 100 || Stairs.PAID_VERSION;
+		TextureRegionDrawable hardClassicUp;
+		TextureRegionDrawable hardClassicDown;
 		if (hardUnlocked) {
-			hardTexClassic = new Texture(
-					"images/buttons/classic/btn_hard_classic.png");
-			hardTexClassicDown = new Texture(
-					"images/buttons/classic/btn_hard_classic_down.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				hardClassicUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicInverted));
+				hardClassicDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicDownInverted));
+			} else {
+				hardClassicUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassic));
+				hardClassicDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicDown));
+			}
 		} else {
-			hardTexClassic = new Texture(
-					"images/buttons/classic/btn_hard_classic_locked.png");
-			hardTexClassicDown = new Texture(
-					"images/buttons/classic/btn_hard_classic_locked.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				hardClassicUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicLockedInverted));
+				hardClassicDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicLockedInverted));
+			} else {
+				hardClassicUp = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicLocked));
+				hardClassicDown = new TextureRegionDrawable(
+						new TextureRegion(hardTexClassicLocked));
+			}
 		}
-		TextureRegionDrawable hardClassicUp = new TextureRegionDrawable(
-				new TextureRegion(hardTexClassic));
-		TextureRegionDrawable hardClassicDown = new TextureRegionDrawable(
-				new TextureRegion(hardTexClassicDown));
 		ImageButtonStyle hardClassicStyle = new ImageButtonStyle();
 		hardClassicStyle.up = hardClassicUp;
 		hardClassicStyle.down = hardClassicDown;
@@ -179,22 +254,34 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		hardHighScore = profile.getHighScore(19);
-		insaneUnlocked = hardHighScore >= 100 || Stairs.PAID_VERSION;
+		insaneUnlocked = hardHighScore >= 75 || Stairs.PAID_VERSION;
+		TextureRegionDrawable insaneClassicUp;
+		TextureRegionDrawable insaneClassicDown;
 		if (insaneUnlocked) {
-			insaneTexClassic = new Texture(
-					"images/buttons/classic/btn_insane_classic.png");
-			insaneTexClassicDown = new Texture(
-					"images/buttons/classic/btn_insane_classic_down.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				insaneClassicUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicInverted));
+				insaneClassicDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicDownInverted));
+			} else {
+				insaneClassicUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassic));
+				insaneClassicDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicDown));
+			}
 		} else {
-			insaneTexClassic = new Texture(
-					"images/buttons/classic/btn_insane_classic_locked.png");
-			insaneTexClassicDown = new Texture(
-					"images/buttons/classic/btn_insane_classic_locked.png");
+			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+				insaneClassicUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicLockedInverted));
+				insaneClassicDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicLockedInverted));
+			} else {
+				insaneClassicUp = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicLocked));
+				insaneClassicDown = new TextureRegionDrawable(
+						new TextureRegion(insaneTexClassicLocked));
+			}
 		}
-		TextureRegionDrawable insaneClassicUp = new TextureRegionDrawable(
-				new TextureRegion(insaneTexClassic));
-		TextureRegionDrawable insaneClassicDown = new TextureRegionDrawable(
-				new TextureRegion(insaneTexClassicDown));
 		ImageButtonStyle insaneClassicStyle = new ImageButtonStyle();
 		insaneClassicStyle.up = insaneClassicUp;
 		insaneClassicStyle.down = insaneClassicDown;
@@ -220,10 +307,15 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		/*
 		 * Menu button
 		 */
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(
-				new TextureRegion(game.menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(
-				new TextureRegion(game.menuTexDown));
+		TextureRegionDrawable menuUp;
+		TextureRegionDrawable menuDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
+		} else {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
+		}
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -247,10 +339,6 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 	@Override
 	public void hide() {
 		super.hide();
-		hardTexClassic.dispose();
-		hardTexClassicDown.dispose();
-		insaneTexClassic.dispose();
-		insaneTexClassicDown.dispose();
 	}
 
 }

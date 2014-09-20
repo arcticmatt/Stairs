@@ -3,6 +3,7 @@ com.badlogic.gdx.graphics.g2d.BitmapFont: {
 	default-font: { file: fonts/monospaced.fnt },
 	smaller-font: { file: fonts/monospaced-30.fnt },
 	medium-font: { file: fonts/monospaced-40.fnt },
+	header-font: { file: fonts/monospaced-32.fnt },
 	highscore-font: {file: fonts/monospaced-54-bold.fnt }
 },
 com.badlogic.gdx.graphics.Color: {
@@ -47,7 +48,11 @@ com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: { font: default-font, fontColor: white },
 	score: {font: smaller-font, fontColor: white},
+	scoreblack: {font: smaller-font, fontColor: black},
 	mscore: {font: medium-font, fontColor: white},
+	mscoreblack: {font: medium-font, fontColor: black},
+	header: {font: header-font, fontColor: white},
+	headerblack: {font: header-font, fontColor: black},
 	highscore: {font: highscore-font, fontColor: green}
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {

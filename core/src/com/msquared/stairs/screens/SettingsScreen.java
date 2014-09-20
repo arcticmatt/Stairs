@@ -9,9 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
+import com.esotericsoftware.tablelayout.Cell;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.profile.Profile;
 import com.msquared.stairs.utils.DefaultActorListener;
@@ -46,6 +49,8 @@ public class SettingsScreen extends AbstractScreen {
 	Texture lockedTex;
 	Profile profile;
 	Preferences prefs;
+	ImageButton menuImagButton;
+	ImageButton menuImagButtonInverted;
 
 	public SettingsScreen(Stairs game) {
 		super(game);
@@ -71,7 +76,7 @@ public class SettingsScreen extends AbstractScreen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+		clearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 //		table.debug();
 //		Table.drawDebug(stage);
@@ -111,6 +116,48 @@ public class SettingsScreen extends AbstractScreen {
 		table.defaults().spaceBottom(defaultSpaceBottom);
 		table.defaults().padLeft(0f);
 		table.defaults().padRight(0f);
+		
+		/*
+		 * Initialize menu button stuff
+		 */
+		// Main menu button
+		TextureRegionDrawable menuUp;
+		TextureRegionDrawable menuDown;
+		TextureRegionDrawable menuUpInverted;
+		TextureRegionDrawable menuDownInverted;
+		menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+		menuDown = new TextureRegionDrawable(
+				new TextureRegion(game.menuTexDown));
+		menuUpInverted = new TextureRegionDrawable(new TextureRegion(
+				game.menuTexInverted));
+		menuDownInverted = new TextureRegionDrawable(new TextureRegion(
+				game.menuTexDownInverted));
+		ImageButtonStyle menuStyle = new ImageButtonStyle();
+		menuStyle.up = menuUp;
+		menuStyle.down = menuDown;
+		ImageButtonStyle menuStyleInverted = new ImageButtonStyle();
+		menuStyleInverted.up = menuUpInverted;
+		menuStyleInverted.down = menuDownInverted;
+		menuImagButton = new ImageButton(menuStyle);
+		menuImagButtonInverted = new ImageButton(menuStyleInverted);
+		menuImagButton.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > imagWidth || y < 0 || y > imagWidth)) {
+					game.setScreen(game.menuScreen);
+				}
+			}
+		});
+		menuImagButtonInverted.addListener(new DefaultActorListener() {
+			@Override
+			public void touchUp(InputEvent event, float x, float y,
+					int pointer, int button) {
+				if (!(x < 0 || x > imagWidth || y < 0 || y > imagWidth)) {
+					game.setScreen(game.menuScreen);
+				}
+			}
+		});
 
 		/*
 		 * Add unlockable buttons (invincible toggle, block mode toggle). Adds 
@@ -316,23 +363,12 @@ public class SettingsScreen extends AbstractScreen {
 				.align(Align.center).colspan(1).uniform().padRight(settingPadding);
 		table.row().expandX().fillX().spaceTop(mainButtonspaceTop);
 
-		// Main menu button
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
-		ImageButtonStyle menuStyle = new ImageButtonStyle();
-		menuStyle.up = menuUp;
-		menuStyle.down = menuDown;
-		ImageButton menuImagButton = new ImageButton(menuStyle);
-		menuImagButton.addListener(new DefaultActorListener() {
-			@Override
-			public void touchUp(InputEvent event, float x, float y,
-					int pointer, int button) {
-				if (!(x < 0 || x > imagWidth || y < 0 || y > imagWidth)) {
-					game.setScreen(game.menuScreen);
-				}
-			}
-		});
-		table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4);
+		// Actually add the menu button
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			table.add(menuImagButtonInverted).size(imagWidth, imagHeight).align(Align.center).colspan(4);
+		} else {
+			table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4);
+		}
 
 		if (prefs.getBoolean("showTutorialAdvice", true)) {
 			Label tutorialAdvice = new Label("To watch a tutorial, touch the animation on the main menu",
@@ -363,7 +399,7 @@ public class SettingsScreen extends AbstractScreen {
 		
 		// Add color scheme toggle button
 		boolean showInvert = easyHighScoreLevels >= 10 || easyHighScoreClassic >= 10
-				|| mediumHighScoreLevels >= 5 || mediumHighScoreLevels >= 5 || Stairs.PAID_VERSION;
+				|| mediumHighScoreLevels >= 5 || mediumHighScoreClassic >= 5 || Stairs.PAID_VERSION;
 		TextureRegionDrawable invertUp;
         TextureRegionDrawable invertChecked;
         if (showInvert) {
@@ -395,8 +431,10 @@ public class SettingsScreen extends AbstractScreen {
                 public void touchUp(InputEvent event, float x, float y,
                     int pointer, int button) {
                     if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-                        boolean invincOn = prefs.getBoolean("invertOn", false);
-                        if (invincOn) {
+                        boolean invertOn = prefs.getBoolean("invertOn", false);
+                        if (invertOn) {
+                        	Cell<ImageButton> cell = table.getCell(menuImagButtonInverted);
+                        	cell.setWidget(menuImagButton);
                             prefs.putBoolean("invertOn", false);
                             prefs.flush();
                             invertToggle.setChecked(true);
@@ -405,6 +443,8 @@ public class SettingsScreen extends AbstractScreen {
                             sleep(200);
                             invertToggle.setStyle(invertStyleOff);
                         } else {
+                        	Cell<ImageButton> cell = table.getCell(menuImagButton);
+                        	cell.setWidget(menuImagButtonInverted);
                             prefs.putBoolean("invertOn", true);
                             prefs.flush();
                             invertToggle.setChecked(false);

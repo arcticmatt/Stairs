@@ -50,11 +50,13 @@ public class Stairs extends Game {
 	public IActivityRequestHandler myRequestHandler;
 	public Texture menuTex;
 	public Texture menuTexDown;
+	public Texture menuTexInverted;
+	public Texture menuTexDownInverted;
 	
 	public AssetManager assetManager;
 	private ProfileManager profileManager;
 	public static final Random randomGenerator = new Random();
-	public static final boolean PAID_VERSION = true;
+	public static final boolean PAID_VERSION = false;
 	public static Preferences prefs;
 	
 	public Stairs(boolean html, boolean iphone, IActivityRequestHandler handler) {
@@ -77,6 +79,9 @@ public class Stairs extends Game {
 		menuTex = new Texture("images/buttons/misc/btn_menu.png");
 		menuTexDown = new Texture(
 				"images/buttons/misc/btn_menu_down.png");
+		menuTexInverted = new Texture("images/buttons/misc_inverted/btn_menu_inverted.png");
+		menuTexDownInverted = new Texture(
+				"images/buttons/misc_inverted/btn_menu_down_inverted.png");
 		prefs = Gdx.app.getPreferences("Preferences");
 		
 		if (!htmlGame) {

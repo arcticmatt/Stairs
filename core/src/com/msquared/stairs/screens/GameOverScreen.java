@@ -31,6 +31,8 @@ public class GameOverScreen extends AbstractScreen{
 	Stage stageDispose;
 	Texture restartTex;
 	Texture restartTexDown;
+	Texture restartTexInverted;
+	Texture restartTexDownInverted;
 	
 	// Constructor to keep a reference to the main Game class
 	// Also keeps a reference to the Stage from the GameScreen to dispose.
@@ -38,6 +40,11 @@ public class GameOverScreen extends AbstractScreen{
 		super(game);
 		stageDispose = stageToDispose;
 		this.difficulty = difficulty;
+		
+		restartTex = new Texture("images/buttons/misc/btn_restart.png");
+		restartTexDown = new Texture("images/buttons/misc/btn_restart_down.png");
+		restartTexInverted = new Texture("images/buttons/misc_inverted/btn_restart_inverted.png");
+		restartTexDownInverted = new Texture("images/buttons/misc_inverted/btn_restart_down_inverted.png");
 		
 		stage.addListener(new InputListener() {
 	        @Override
@@ -53,7 +60,7 @@ public class GameOverScreen extends AbstractScreen{
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
+		clearColor();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 	}
@@ -84,10 +91,15 @@ public class GameOverScreen extends AbstractScreen{
 		}
 			
 		table.row();
-		restartTex = new Texture("images/buttons/misc/btn_restart.png");
-		restartTexDown = new Texture("images/buttons/misc/btn_restart_down.png");
-		TextureRegionDrawable restartUp = new TextureRegionDrawable(new TextureRegion(restartTex));
-		TextureRegionDrawable restartDown = new TextureRegionDrawable(new TextureRegion(restartTexDown));
+		TextureRegionDrawable restartUp;
+		TextureRegionDrawable restartDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			restartUp = new TextureRegionDrawable(new TextureRegion(restartTexInverted));
+			restartDown = new TextureRegionDrawable(new TextureRegion(restartTexDownInverted));
+		} else {
+			restartUp = new TextureRegionDrawable(new TextureRegion(restartTex));
+			restartDown = new TextureRegionDrawable(new TextureRegion(restartTexDown));
+		}
 		ImageButtonStyle restartStyle = new ImageButtonStyle();
 		restartStyle.up = restartUp;
 		restartStyle.down = restartDown;
@@ -103,8 +115,15 @@ public class GameOverScreen extends AbstractScreen{
 		});
 		table.add(restartImagButton).size(imagWidth, imagHeight).align(Align.left).padLeft(imagPadding);;
 		
-		TextureRegionDrawable menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
-		TextureRegionDrawable menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
+		TextureRegionDrawable menuUp;
+		TextureRegionDrawable menuDown;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
+		} else {
+			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTex));
+			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDown));
+		}
 		ImageButtonStyle menuStyle = new ImageButtonStyle();
 		menuStyle.up = menuUp;
 		menuStyle.down = menuDown;
@@ -115,7 +134,9 @@ public class GameOverScreen extends AbstractScreen{
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagHeight)) {
 					// Stop and dispose of the current music
+					Gdx.app.log(Stairs.LOG, "Menu buton pressed");
 					game.musicManager.stop();
+					Gdx.app.log(Stairs.LOG, "Music stopped and disposed");
 					game.setScreen(game.menuScreen);
 					stage.dispose();
 				}
@@ -128,6 +149,12 @@ public class GameOverScreen extends AbstractScreen{
 	
 	// Show score using highscores from profile
 	public void showScoreProfile(int difficulty) {
+		String scoreStyleString;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			scoreStyleString = "mscoreblack";
+		} else {
+			scoreStyleString = "mscore";
+		}
 		int levelNum = Stairs.getSharedPrefs().getInteger("mostRecent", Stairs.EASY_LEVELS);
 		boolean levels;
 		if (levelNum <= 4) {
@@ -213,13 +240,13 @@ public class GameOverScreen extends AbstractScreen{
 			table.add(scoreLabel).colspan(2).center().expandX().fillX();
 			table.row();
 		}
-		Label highScoresLabel = new Label(highScoresString, getSkin(), "mscore");
+		Label highScoresLabel = new Label(highScoresString, getSkin(), scoreStyleString);
 		table.add(highScoresLabel).colspan(2).center().spaceTop(50f);
 		table.row();
 		
 		// First high score
 		String firstHighScore = "1. " + profile.getHighScore(places[0]);
-		Label firstHighScoreLabel = new Label(firstHighScore, getSkin(), "mscore");
+		Label firstHighScoreLabel = new Label(firstHighScore, getSkin(), scoreStyleString);
 		firstHighScoreLabel.setAlignment(Align.center, Align.center);
 		if (place == 1)
 			firstHighScoreLabel.setColor(winningColor);
@@ -228,7 +255,7 @@ public class GameOverScreen extends AbstractScreen{
 		
 		// First high score
 		String secondHighScore = "2. " + profile.getHighScore(places[1]);
-		Label secondHighScoreLabel = new Label(secondHighScore, getSkin(), "mscore");
+		Label secondHighScoreLabel = new Label(secondHighScore, getSkin(), scoreStyleString);
 		secondHighScoreLabel.setAlignment(Align.center, Align.center);
 		if (place == 2)
 			secondHighScoreLabel.setColor(winningColor);
@@ -237,7 +264,7 @@ public class GameOverScreen extends AbstractScreen{
 
 		// First high score
 		String thirdHighScore = "3. " + profile.getHighScore(places[2]);
-		Label thirdHighScoreLabel = new Label(thirdHighScore, getSkin(), "mscore");
+		Label thirdHighScoreLabel = new Label(thirdHighScore, getSkin(), scoreStyleString);
 		thirdHighScoreLabel.setAlignment(Align.center, Align.center);
 		if (place == 3) 
 			thirdHighScoreLabel.setColor(winningColor);
@@ -247,6 +274,12 @@ public class GameOverScreen extends AbstractScreen{
 	
 	// Show score using highscores from prefs
 	public void showScorePrefs(int difficulty) {
+		String scoreStyleString;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			scoreStyleString = "mscoreblack";
+		} else {
+			scoreStyleString = "mscore";
+		}
 		Preferences prefs = Stairs.getSharedPrefs();
 		String highScoresLabel = "";
 		int[] scores = new int[3];
@@ -356,12 +389,12 @@ public class GameOverScreen extends AbstractScreen{
 			table.add(scoreLabel).colspan(2).center().expandX().fillX();
 			table.row();
 		}
-		table.add(highScoresLabel).colspan(2).center().spaceTop(50f);
+		table.add(highScoresLabel, scoreStyleString).colspan(2).center().spaceTop(50f);
 		table.row();
 		
 		// First high score
 		String firstHighScore = "1. " + scores[0];
-		Label firstHighScoreLabel = new Label(firstHighScore, getSkin());
+		Label firstHighScoreLabel = new Label(firstHighScore, getSkin(), scoreStyleString);
 		firstHighScoreLabel.setAlignment(Align.center, Align.center);
 		if (place == 1)
 			firstHighScoreLabel.setColor(winningColor);
@@ -370,7 +403,7 @@ public class GameOverScreen extends AbstractScreen{
 		
 		// First high score
 		String secondHighScore = "2. " + scores[1];
-		Label secondHighScoreLabel = new Label(secondHighScore, getSkin());
+		Label secondHighScoreLabel = new Label(secondHighScore, getSkin(), scoreStyleString);
 		secondHighScoreLabel.setAlignment(Align.center, Align.center);
 		if (place == 2)
 			secondHighScoreLabel.setColor(winningColor);
@@ -379,7 +412,7 @@ public class GameOverScreen extends AbstractScreen{
 
 		// First high score
 		String thirdHighScore = "3. " + scores[2];
-		Label thirdHighScoreLabel = new Label(thirdHighScore, getSkin());
+		Label thirdHighScoreLabel = new Label(thirdHighScore, getSkin(), scoreStyleString);
 		thirdHighScoreLabel.setAlignment(Align.center, Align.center);
 		if (place == 3) 
 			thirdHighScoreLabel.setColor(winningColor);
@@ -398,6 +431,8 @@ public class GameOverScreen extends AbstractScreen{
 		}
 		restartTex.dispose();
 		restartTexDown.dispose();
+		restartTexInverted.dispose();
+		restartTexDownInverted.dispose();
 		dispose();
 	}
 
