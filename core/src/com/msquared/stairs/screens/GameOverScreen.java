@@ -134,7 +134,9 @@ public class GameOverScreen extends AbstractScreen{
 					int pointer, int button) {
 				if (!(x < 0 || x > imagWidth || y < 0 || y > imagHeight)) {
 					// Stop and dispose of the current music
+					Gdx.app.log(Stairs.LOG, "Menu buton pressed");
 					game.musicManager.stop();
+					Gdx.app.log(Stairs.LOG, "Music stopped and disposed");
 					game.setScreen(game.menuScreen);
 					stage.dispose();
 				}

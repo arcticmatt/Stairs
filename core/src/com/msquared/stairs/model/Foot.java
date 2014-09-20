@@ -39,7 +39,11 @@ public class Foot {
 
 		Foot.footGravity = -400;
 		Foot.jumpVelo = 500;
-		color = new Color(0, 1, 0, 1);
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			color = new Color(0, .8f, 0, 1);
+		} else {
+			color = new Color(0, 1, 0, 1);
+		}
 	}
 
 	/*

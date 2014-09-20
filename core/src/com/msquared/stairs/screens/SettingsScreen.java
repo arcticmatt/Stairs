@@ -399,7 +399,7 @@ public class SettingsScreen extends AbstractScreen {
 		
 		// Add color scheme toggle button
 		boolean showInvert = easyHighScoreLevels >= 10 || easyHighScoreClassic >= 10
-				|| mediumHighScoreLevels >= 5 || mediumHighScoreLevels >= 5 || Stairs.PAID_VERSION;
+				|| mediumHighScoreLevels >= 5 || mediumHighScoreClassic >= 5 || Stairs.PAID_VERSION;
 		TextureRegionDrawable invertUp;
         TextureRegionDrawable invertChecked;
         if (showInvert) {

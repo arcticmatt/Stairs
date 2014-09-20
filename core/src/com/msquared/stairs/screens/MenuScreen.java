@@ -157,6 +157,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
+		Gdx.app.log(Stairs.LOG, "Menu Screen shown");
 
 		/*
 		 * Add listener so that when user clicks on animation area, he gets taken to

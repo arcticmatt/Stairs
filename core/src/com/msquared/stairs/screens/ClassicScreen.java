@@ -204,7 +204,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		mediumHighScore = profile.getHighScore(16);
-		hardUnlocked = mediumHighScore >= 150 || Stairs.PAID_VERSION;
+		hardUnlocked = mediumHighScore >= 100 || Stairs.PAID_VERSION;
 		TextureRegionDrawable hardClassicUp;
 		TextureRegionDrawable hardClassicDown;
 		if (hardUnlocked) {
@@ -214,7 +214,6 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 				hardClassicDown = new TextureRegionDrawable(
 						new TextureRegion(hardTexClassicDownInverted));
 			} else {
-				Gdx.app.log(Stairs.LOG, "hardTexClassic texture");
 				hardClassicUp = new TextureRegionDrawable(
 						new TextureRegion(hardTexClassic));
 				hardClassicDown = new TextureRegionDrawable(
@@ -255,7 +254,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		hardHighScore = profile.getHighScore(19);
-		insaneUnlocked = hardHighScore >= 100 || Stairs.PAID_VERSION;
+		insaneUnlocked = hardHighScore >= 75 || Stairs.PAID_VERSION;
 		TextureRegionDrawable insaneClassicUp;
 		TextureRegionDrawable insaneClassicDown;
 		if (insaneUnlocked) {
