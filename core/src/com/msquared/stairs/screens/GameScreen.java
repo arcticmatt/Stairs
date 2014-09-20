@@ -100,7 +100,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 			stairsController = new StairControllerInsane(world, true);
 			break;
 		}
-		Gdx.app.log("BLAH", "EARLYSELECTOR = " + world.earlySelector + " and " + stairsController.earlySelector);
 		feetController = new FootController(world);
 		prevScore = 0;
 
@@ -356,7 +355,6 @@ public class GameScreen extends AbstractScreen implements Screen {
         Float heightRatio = this.height / WorldRenderer.CAMERA_HEIGHT;
         Float widthRatio = this.width / WorldRenderer.CAMERA_WIDTH;
         Float newFootHeight = world.leftFoot.height * widthRatio * (1 / heightRatio);
-        Gdx.app.log(Stairs.LOG, "Resize feet");
 		world.leftFoot.height = newFootHeight;
 		world.rightFoot.height = newFootHeight;
 	}

@@ -120,7 +120,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		TextureAtlas atlas;
 		TextureAtlas atlasInverted;
 		if (!game.iphoneGame) {
-			Gdx.app.log(Stairs.LOG, "Loading textures");
 			atlas = game.assetManager.get("images/anis/menu_ani/menu_ani.pack", TextureAtlas.class);
 			atlasInverted = game.assetManager.get("images/anis/menu_ani_inverted/menu_ani_inverted.pack", TextureAtlas.class);
 		} else {
@@ -157,7 +156,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
-		Gdx.app.log(Stairs.LOG, "Menu Screen shown");
 
 		/*
 		 * Add listener so that when user clicks on animation area, he gets taken to
@@ -209,10 +207,8 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		Float imagWidthOrig = 65f;
 		Float imagHeightOrig = 65f;
-		Gdx.app.log(Stairs.LOG, "Height ratio = " + heightRatio + ", width ratio = " + widthRatio);
 		final Float imagWidth = imagWidthOrig * heightRatio * (1 / widthRatio);
 		final Float imagHeight = imagHeightOrig;
-		Gdx.app.log(Stairs.LOG, "Height = " + imagHeight + ", width = " + imagWidth);
 		Float imagPadding = 180f - (imagWidth - imagWidthOrig);
 
 		final Float buttonWidth = 400f * heightRatio * (1 / widthRatio);
