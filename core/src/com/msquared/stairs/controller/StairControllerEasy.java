@@ -188,7 +188,6 @@ public class StairControllerEasy extends StairController {
 		makeNewRound(false);
 		// Change constants corresponding to round selector
 		changeRoundSpeeds(roundSelector);
-		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 
 

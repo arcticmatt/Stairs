@@ -172,8 +172,6 @@ public class StairControllerHard extends StairController {
 				+ narrowLimiterMin;
 		narrowWidthOriginal = 227;
 
-		Gdx.app.log(Stairs.LOG, "levelSelector before = " + levelSelector);
-		Gdx.app.log(Stairs.LOG, "earlySelector = " + earlySelector);
 		// Hard has its own level stuff because it starts random
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
@@ -188,7 +186,6 @@ public class StairControllerHard extends StairController {
 				levelSelector = random.nextInt(NUM_LEVELS) + 1;
 			} while (levelSelector == earlySelector);
 		}
-		Gdx.app.log(Stairs.LOG, "levelSelector after = " + levelSelector);
 		
 		//onlyNarrow();
 
@@ -196,8 +193,6 @@ public class StairControllerHard extends StairController {
 		makeNewRound(false);
         // Change constants corresponding to round selector
 		changeRoundSpeeds(roundSelector);
-
-		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 
 }

@@ -385,7 +385,6 @@ public class StairController {
 		makeNewRound(false);
         // Change constants corresponding to round selector
 		changeRoundSpeeds(roundSelector);
-		Gdx.app.log(Stairs.LOG, "Done making levels");
 	}
 
 	public void initColors() {
@@ -475,7 +474,6 @@ public class StairController {
 				}
 				timeInterval = regTimeInterval;
 				levelChange = true;
-				Gdx.app.log(Stairs.LOG, "Level change: Zig zag");
 			}
 			break;
 		case ZIG_ZAG_SELECTOR:
@@ -496,7 +494,6 @@ public class StairController {
 				}
 				timeInterval = regTimeInterval;
 				levelChange = true;
-				Gdx.app.log(Stairs.LOG, "Level change: Sides");
 			}
 			break;
 		case SIDES_SELECTOR:
@@ -516,7 +513,6 @@ public class StairController {
 							+ sidesLimiterMin;
 				}
 				levelChange = true;
-				Gdx.app.log(Stairs.LOG, "Level change: Random");
 			}
 			break;
 		case RAND_SELECTOR:
@@ -555,7 +551,6 @@ public class StairController {
 					}
 				}
 				levelChange = true;
-				Gdx.app.log(Stairs.LOG, "Level change: Rapid");
 			}
 			break;
 		case RAPID_SELECTOR:
@@ -575,7 +570,6 @@ public class StairController {
 							+ rapidLimiterMin;
 				}
 				levelChange = true;
-				Gdx.app.log(Stairs.LOG, "Level change: narrow");
 			}
 			break;
 		case NARROW_SELECTOR:
@@ -599,7 +593,6 @@ public class StairController {
 							+ narrowLimiterMin;
 				}
 				levelChange = true;
-				Gdx.app.log(Stairs.LOG, "Level change: zig zag");
 			}
 			break;
 		default:
@@ -623,7 +616,6 @@ public class StairController {
 			}
 			prevRoundSelector++;
 			world.roundChangeStairs.poll();
-			Gdx.app.log(Stairs.LOG, "Change constants");
 		}
 		// Update all the stairs
 		for (Stair stair : world.stairs) {
@@ -643,7 +635,6 @@ public class StairController {
 			world.addStair(xPos, startingYPos, width, startingHeight,
 					stairColor);
 			stairSelector++;
-			Gdx.app.log(Stairs.LOG, "Stair gravity: " + Stair.lowYSpeed);
 		}
 	}
 
@@ -841,12 +832,9 @@ public class StairController {
 				randMinMaxPositions[roundSelector][1]);
 		randMinTime = randMinMaxTimes[roundSelector][0];
 		randMaxTime = randMinMaxTimes[roundSelector][1];
-
-		Gdx.app.log(Stairs.LOG, "Making new levels");
 	}
 
 	public void changeRoundSpeeds(int round) {
-		Gdx.app.log(Stairs.LOG, "Changing round speed " + round);
 		// Changing gravity, x speed, jump speed
 		Foot.footGravity = lowYSpeeds.get(round);
 		Foot.jumpVelo = jumpSpeeds.get(round);
@@ -889,7 +877,6 @@ public class StairController {
 		if (roundSelector < maxRound) {
 			roundSelector++;
 			makeNewRound(false);
-			Gdx.app.log(Stairs.LOG, "ROUND #" + roundSelector);
 		} else {
 			roundTransitionTime = levelTransitionTime;
 		}

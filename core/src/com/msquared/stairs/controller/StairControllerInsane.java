@@ -17,8 +17,6 @@ public class StairControllerInsane extends StairController {
 	public StairControllerInsane(World world, boolean bool) {
 		super(world, bool);
 
-		Gdx.app.log(Stairs.LOG, "Insane");
-
 		highXSpeeds = new ArrayList<Integer>(asList(600, 300, 600, 760, 1100, 1100));
 		lowYSpeeds = new ArrayList<Integer>(asList(-1000, -500, -1000, -1100, -1200, -1200));
 		jumpSpeeds = new ArrayList<Integer>(asList(700, 700, 700, 700, 700, 700));

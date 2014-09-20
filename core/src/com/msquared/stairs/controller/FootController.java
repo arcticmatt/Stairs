@@ -104,7 +104,6 @@ public class FootController {
 			deadOrAlive = ALIVE;
 		}
 		if (!world.gameOver && deadOrAlive != 0) {
-			Gdx.app.log(Stairs.LOG, "Checking for death");
 			chooseDeath(deadOrAlive);
 		}
 	}
@@ -262,7 +261,6 @@ public class FootController {
 						} else if (rightFoot.state.equals(State.JUMPING)) {
 							dead_flag_right = true;
 							world.deleteFirstStair();
-							Gdx.app.log(Stairs.LOG, "Delayed death");
 							return ALIVE;
 						}
 					}
@@ -287,7 +285,6 @@ public class FootController {
 						} else if (leftFoot.state.equals(State.JUMPING)) {
 							dead_flag_left = true;
 							world.deleteFirstStair();
-							Gdx.app.log(Stairs.LOG, "Delayed death");
 							return ALIVE;
 						}
 					}
