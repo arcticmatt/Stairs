@@ -253,7 +253,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		hardHighScore = profile.getHighScore(7);
-		insaneUnlocked = hardHighScore >= 100 || Stairs.PAID_VERSION;
+		insaneUnlocked = hardHighScore >= 75 || Stairs.PAID_VERSION;
 		TextureRegionDrawable insaneLevelsUp;
 		TextureRegionDrawable insaneLevelsDown;
 		if (insaneUnlocked) {

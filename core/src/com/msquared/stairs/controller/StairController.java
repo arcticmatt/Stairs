@@ -350,7 +350,7 @@ public class StairController {
 
 		// Rapid level init
 		numRapid = 50;
-		rapidLimiter = 12;
+		rapidLimiter = 10;
 		rapidLimiterMin = 9;
 		rapidLimiterMax = 12;
 		rapidWidthOriginal = 1200;
@@ -366,8 +366,8 @@ public class StairController {
 		if (!levels) {
 			levelSelector = RAND_SELECTOR;
 			currLevel = randLevel;
-			randLimiter = 20;
-			randLimiterMin = 30;
+			randLimiter = 40;
+			randLimiterMin = 35;
 			randLimiterMax = 50;
 			levelTransitionTime = 1300l;
 			roundTransitionTime = 1300l;

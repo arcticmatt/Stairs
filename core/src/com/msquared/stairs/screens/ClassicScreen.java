@@ -204,7 +204,7 @@ public class ClassicScreen extends AbstractScreen implements Screen {
 		table.row();
 
 		mediumHighScore = profile.getHighScore(16);
-		hardUnlocked = mediumHighScore >= 100 || Stairs.PAID_VERSION;
+		hardUnlocked = mediumHighScore >= 120 || Stairs.PAID_VERSION;
 		TextureRegionDrawable hardClassicUp;
 		TextureRegionDrawable hardClassicDown;
 		if (hardUnlocked) {

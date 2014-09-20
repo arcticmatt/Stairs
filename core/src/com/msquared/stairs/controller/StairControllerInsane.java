@@ -129,21 +129,21 @@ public class StairControllerInsane extends StairController {
 
         // Zig zag level init
 		numZigZag = 50;
-		zigZagLimiter = 10;
+		zigZagLimiter = 15;
 		zigZagLimiterMin = 12;
 		zigZagLimiterMax = 18;
 		zigZagWidthOriginal = 350;
 
         // Sides level init
 		numSides = 50;
-		sidesLimiter = 10;
+		sidesLimiter = 12;
 		sidesLimiterMin = 8;
 		sidesLimiterMax = 16;
 		sidesWidthOriginal = 358;
 
         // Rand level init
 		numRand = 50;
-		randLimiter = 10;
+		randLimiter = 15;
 		randLimiterMin = 12;
 		randLimiterMax = 18;
 		randTimeInterval = 500;
@@ -157,9 +157,9 @@ public class StairControllerInsane extends StairController {
 
         // Narrow level init
 		numNarrow = 50;
-		narrowLimiter = 6;
-		narrowLimiterMin = 5;
-		narrowLimiterMax = 7;
+		narrowLimiter = 7;
+		narrowLimiterMin = 6;
+		narrowLimiterMax = 8;
 		narrowWidthOriginal = 245;
 
 		// Set up initial level (overriden in the hard and easy controllers)

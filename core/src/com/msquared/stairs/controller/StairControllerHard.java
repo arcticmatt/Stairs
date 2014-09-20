@@ -165,7 +165,6 @@ public class StairControllerHard extends StairController {
 
         // Narrow level init
 		numNarrow = 50;
-		narrowLimiter = 10;
 		narrowLimiterMin = 8;
 		narrowLimiterMax = 12;
 		narrowLimiter = random.nextInt(narrowLimiterMax
