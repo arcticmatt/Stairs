@@ -24,12 +24,14 @@ public class World {
 	public int numStairs;
 	public int gameOverType;
 	Color white = new Color(255, 255, 255, 1);
+	Color black = new Color(0, 0, 0, 1);
 	public Stair lastStair;
 	public static int difficulty;
 	Random random;
 	public int earlySelector;
 
 	protected int[] randMinColors = { 220, 170, 130, 90, 0, 0 };
+	protected int[] randMaxColors = { 25, 85, 125, 165, 255, 255 };
 
 	protected int[][] classicXPositions = {
 
@@ -199,10 +201,6 @@ public class World {
 
 	public void addClassicLevel(int round, int diff, int minWidth, int maxWidth) {
 		Color stairColor = white;
-		int randInt;
-		float randColor1;
-		float randColor2;
-		float randColor3;
 
 		int maxX;
 		int minX;
@@ -211,30 +209,7 @@ public class World {
 		int randWidth;
 		int randBool = 0;
 		for (int i = 0; i < classicXPositions[diff].length; i++) {
-			randInt = random.nextInt(3);
-			randColor1 = random
-					.nextInt(255 - randMinColors[round] + 1)
-					+ randMinColors[round];
-			randColor2 = random
-					.nextInt(255 - randMinColors[round] + 1)
-					+ randMinColors[round];
-			randColor3 = random
-					.nextInt(255 - randMinColors[round] + 1)
-					+ randMinColors[round];
-			switch (randInt) {
-			case 0:
-				stairColor = new Color(255f, randColor2 / 255f,
-						randColor3 / 255f, 1);
-				break;
-			case 1:
-				stairColor = new Color(randColor1 / 255f, 255f,
-						randColor3 / 255f, 1);
-				break;
-			case 2:
-				stairColor = new Color(randColor1 / 255f, randColor2 / 255f,
-						255f, 1);
-				break;
-			}
+			stairColor = selectStairColorForRand(round);
 
 			x = (int) classicXPositions[diff][i];
 			y = (int) classicYPositions[diff][i];
@@ -262,6 +237,12 @@ public class World {
 	}
 
     public void addEasyStraight() {
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = black;
+        } else {
+            stairColor = white;
+        }
         int x;
         int y;
 
@@ -269,13 +250,19 @@ public class World {
         for (int i = 0; i < easyStraightXPositions.length - 1; i++) {
             x = (int) easyStraightXPositions[i];
             y = (int) easyStraightYPositions[i] + 10;
-            addStair(x, y, width, 2, white);
+            addStair(x, y, width, 2, stairColor);
         }
     }
 
 	public void addMediumZigZag() {
-		Color stairColor = new Color(255f / 255f,
-				235f / 255f, 176f / 255f, 1);
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = new Color(0f / 255f,
+                    13f / 255f, 51f / 255f, 1);
+        } else {
+            stairColor = new Color(255f / 255f,
+                    235f / 255f, 176f / 255f, 1);
+        }
 		int x;
 		int y;
         /*
@@ -292,8 +279,14 @@ public class World {
 	}
 
     public void addHardZigZag() {
-		Color stairColor = new Color(232f / 255f,
-				188f / 255f, 63f / 255f, 1);
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = new Color(23f / 255f,
+                    67f / 255f, 192f / 255f, 1);
+        } else {
+            stairColor = new Color(232f / 255f,
+                    188f / 255f, 63f / 255f, 1);
+        }
 		int x;
 		int y;
         /*
@@ -310,8 +303,14 @@ public class World {
 	}
 
     public void addHardSides() {
-		Color stairColor = new Color(255f / 255f,
-				71f / 255f, 90f / 255f, 1);
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = new Color(0f / 255f,
+                    184f / 255f, 165f / 255f, 1);
+        } else {
+            stairColor = new Color(255f / 255f,
+                    71f / 255f, 90f / 255f, 1);
+        }
 		int x;
 		int y;
         /*
@@ -328,8 +327,14 @@ public class World {
 	}
 
     public void addHardRapid() {
-		Color stairColor = new Color(140f / 255f,
-				60f / 255f, 214f / 255f, 1);
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = new Color(115f / 255f,
+                    195f / 255f, 41f / 255f, 1);
+        } else {
+            stairColor = new Color(140f / 255f,
+                    60f / 255f, 214f / 255f, 1);
+        }
 		int x;
 		int y;
         /*
@@ -346,8 +351,14 @@ public class World {
 	}
 
     public void addHardNarrow() {
-		Color stairColor = new Color(75f / 255f,
-				158f / 255f, 235f / 255f, 1);
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = new Color(180f / 255f,
+                    97f / 255f, 20f / 255f, 1);
+        } else {
+            stairColor = new Color(75f / 255f,
+                    158f / 255f, 235f / 255f, 1);
+        }
 		int x;
 		int y;
         /*
@@ -364,8 +375,14 @@ public class World {
 	}
 
 	public void addInsaneZigZag() {
-		Color stairColor = new Color(255f / 255f,
-				227f / 255f, 145f / 255f, 1);
+        Color stairColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            stairColor = new Color(0f / 255f,
+                    38f / 255f, 147f / 255f, 1);
+        } else {
+            stairColor = new Color(255f / 255f,
+                    227f / 255f, 145f / 255f, 1);
+        }
 		int x;
 		int y;
         /*
@@ -379,5 +396,46 @@ public class World {
 			y = (int) insaneZigZagYPositions[i];
 			addStair(x, y, width, 2, stairColor);
 		}
+	}
+
+    public Color selectStairColorForRand(int roundSelector) {
+    	Color stairColor;
+		int randInt = random.nextInt(3);
+		float randColor1;
+		float randColor2;
+		float randColor3;
+		float placeholderColor;
+		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			randColor1 = random.nextInt(randMaxColors[roundSelector]);
+			randColor2 = random.nextInt(randMaxColors[roundSelector]);
+			randColor3 = random.nextInt(randMaxColors[roundSelector]);
+			placeholderColor = 0f;
+		} else {
+			randColor1 = random.nextInt(255 - randMinColors[roundSelector] + 1)
+					+ randMinColors[roundSelector];
+			randColor2 = random.nextInt(255 - randMinColors[roundSelector] + 1)
+					+ randMinColors[roundSelector];
+			randColor3 = random.nextInt(255 - randMinColors[roundSelector] + 1)
+					+ randMinColors[roundSelector];
+			placeholderColor = 255f;
+		}
+		switch (randInt) {
+		case 0:
+			stairColor = new Color(placeholderColor, randColor2 / 255f, randColor3 / 255f,
+					1);
+			break;
+		case 1:
+			stairColor = new Color(randColor1 / 255f, placeholderColor, randColor3 / 255f,
+					1);
+			break;
+		case 2:
+			stairColor = new Color(randColor1 / 255f, randColor2 / 255f, placeholderColor,
+					1);
+			break;
+		default:
+			stairColor = new Color(randColor1 / 255f, randColor2 / 255f, placeholderColor,
+					1);
+		}
+		return stairColor;
 	}
 }
