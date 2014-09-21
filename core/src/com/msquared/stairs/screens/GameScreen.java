@@ -81,6 +81,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 		FootController.jump_left = false;
 		FootController.jump_right = false;
 		difficulty = diff;
+		Stair.blockOn = Stairs.getSharedPrefs().getBoolean("blockOn", false);
 
 		// Initialize world, renderer, controllers
 		world = new World();
@@ -182,6 +183,9 @@ public class GameScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		if (delta > .04)
+			Gdx.app.log(Stairs.LOG, "delta = " + delta + " and num stairs = " + world.stairs.size());
+		
 		if (!game.paused) {
 			if (world.gameOver) {
 				Gdx.input.setInputProcessor(null);

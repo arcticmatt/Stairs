@@ -115,7 +115,7 @@ public class World {
 		}
 	};
 
-	public void addStair(float xPos, float yPos, float width, float height, Color stairColor) {
+	public void addStair(float xPos, float yPos, int width, int height, Color stairColor) {
 		Stair stair = stairPool.obtain();
 		stair.init(xPos, yPos, width, height, stairColor);
 		stairs.add(stair);

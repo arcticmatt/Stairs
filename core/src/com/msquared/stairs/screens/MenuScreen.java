@@ -157,6 +157,11 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
 
+		if (!loaded) {
+			loadTextures();
+			loaded = true;
+		}
+
 		/*
 		 * Add listener so that when user clicks on animation area, he gets taken to
 		 * tutorial video
@@ -180,10 +185,6 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		// Show ads
 		game.myRequestHandler.showAds(true);
 
-		if (!loaded) {
-			loadTextures();
-			loaded = true;
-		}
 		camera = getCamera();
 		spriteBatch = new SpriteBatch();
 		spriteBatch.setProjectionMatrix(camera.combined);
