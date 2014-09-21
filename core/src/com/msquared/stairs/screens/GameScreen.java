@@ -105,21 +105,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 		feetController = new FootController(world);
 		prevScore = 0;
 
-		/* Set up score label */
-		scoreString = "" + world.score;
-		String labelStyle;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
-			labelStyle = "mscoreblack";
-		} else {
-			labelStyle = "mscore";
-		}
-		scoreLabel = new Label(scoreString, getSkin(), labelStyle);
-		float labelHeight = scoreLabel.getTextBounds().height;
-		float xPos = 12;
-		float yPos = WorldRenderer.CAMERA_HEIGHT - 21;
-		scoreLabel.setPosition(xPos, yPos - labelHeight);
-		stage.addActor(scoreLabel);
-
 		// Add controls to stage
 		stage.addListener(new InputListener() {
 	        public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -272,16 +257,32 @@ public class GameScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void show() {
+		super.show();
 		Gdx.input.setInputProcessor(stage);
 		// NO ADS!
 		game.myRequestHandler.showAds(false);
 
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
+		
+		// Score Label
+		scoreString = "" + world.score;
+		String labelStyle;
+		if (invertOn) {
+			labelStyle = "mscoreblack";
+		} else {
+			labelStyle = "mscore";
+		}
+		scoreLabel = new Label(scoreString, getSkin(), labelStyle);
+		float scoreHeight = scoreLabel.getTextBounds().height;
+		float scoreXPos = 12;
+		float scoreYPos = WorldRenderer.CAMERA_HEIGHT - 21;
+		scoreLabel.setPosition(scoreXPos, scoreYPos - scoreHeight);
+		stage.addActor(scoreLabel);
 
 		// Pause button/kill button
 		if (!Stairs.getSharedPrefs().getBoolean("invincOn", false)) {
-			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			if (invertOn) {
 				pauseTex = new Texture("images/buttons/misc_inverted/btn_pause_inverted.png");
 			} else {
 				pauseTex = new Texture("images/buttons/misc/btn_pause.png");
@@ -290,10 +291,10 @@ public class GameScreen extends AbstractScreen implements Screen {
 			pauseTex = new Texture("images/buttons/misc/btn_stop.png");
 		}
 		Image pauseButton = new Image(pauseTex);
-		float labelHeight = pauseButton.getHeight();
-		float xPos = WorldRenderer.CAMERA_WIDTH - pauseButton.getWidth() - 14;
-		float yPos = WorldRenderer.CAMERA_HEIGHT - 14;
-		pauseButton.setPosition(xPos, yPos - labelHeight);
+		float pauseHeight = pauseButton.getHeight();
+		float pauseXPos = WorldRenderer.CAMERA_WIDTH - pauseButton.getWidth() - 14;
+		float pauseYPos = WorldRenderer.CAMERA_HEIGHT - 14;
+		pauseButton.setPosition(pauseXPos, pauseYPos - pauseHeight);
 		pauseButton.addListener(new DefaultActorListener() {
 			@Override
 			public void touchUp(InputEvent event, float x, float y,

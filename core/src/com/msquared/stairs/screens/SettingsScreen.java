@@ -86,6 +86,7 @@ public class SettingsScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
+		super.show();
 		Gdx.input.setInputProcessor(stage);
 		profile = game.getProfileManager().retrieveProfile();
 		prefs = Stairs.getSharedPrefs();
@@ -364,7 +365,7 @@ public class SettingsScreen extends AbstractScreen {
 		table.row().expandX().fillX().spaceTop(mainButtonspaceTop);
 
 		// Actually add the menu button
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			table.add(menuImagButtonInverted).size(imagWidth, imagHeight).align(Align.center).colspan(4);
 		} else {
 			table.add(menuImagButton).size(imagWidth, imagHeight).align(Align.center).colspan(4);
@@ -431,10 +432,11 @@ public class SettingsScreen extends AbstractScreen {
                 public void touchUp(InputEvent event, float x, float y,
                     int pointer, int button) {
                     if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-                        boolean invertOn = prefs.getBoolean("invertOn", false);
-                        if (invertOn) {
+                        boolean invertOnPrefs = prefs.getBoolean("invertOn", false);
+                        if (invertOnPrefs) {
                         	Cell<ImageButton> cell = table.getCell(menuImagButtonInverted);
                         	cell.setWidget(menuImagButton);
+                        	invertOn = false;
                             prefs.putBoolean("invertOn", false);
                             prefs.flush();
                             invertToggle.setChecked(true);
@@ -445,6 +447,7 @@ public class SettingsScreen extends AbstractScreen {
                         } else {
                         	Cell<ImageButton> cell = table.getCell(menuImagButton);
                         	cell.setWidget(menuImagButtonInverted);
+                        	invertOn = true;
                             prefs.putBoolean("invertOn", true);
                             prefs.flush();
                             invertToggle.setChecked(false);

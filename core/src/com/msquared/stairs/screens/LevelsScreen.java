@@ -105,6 +105,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void show() {
+		super.show();
 		profile = game.getProfileManager().retrieveProfile();
 		Gdx.input.setInputProcessor(stage);
 		// Show ads
@@ -137,7 +138,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		table.row();
 		TextureRegionDrawable easyLevelsUp;
 		TextureRegionDrawable easyLevelsDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			easyLevelsUp = new TextureRegionDrawable(
 				new TextureRegion(easyTexLevelsInverted));
 			easyLevelsDown = new TextureRegionDrawable(
@@ -171,7 +172,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 
 		TextureRegionDrawable mediumLevelsUp;
 		TextureRegionDrawable mediumLevelsDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			mediumLevelsUp = new TextureRegionDrawable(
 				new TextureRegion(mediumTexLevelsInverted));
 			mediumLevelsDown = new TextureRegionDrawable(
@@ -207,7 +208,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		TextureRegionDrawable hardLevelsUp;
 		TextureRegionDrawable hardLevelsDown;
 		if (hardUnlocked) {
-			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			if (invertOn) {
 				hardLevelsUp = new TextureRegionDrawable(
 						new TextureRegion(hardTexLevelsInverted));
 				hardLevelsDown = new TextureRegionDrawable(
@@ -219,7 +220,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 						new TextureRegion(hardTexLevelsDown));
 			}
 		} else {
-			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			if (invertOn) {
 				hardLevelsUp = new TextureRegionDrawable(
 						new TextureRegion(hardTexLevelsLockedInverted));
 				hardLevelsDown = new TextureRegionDrawable(
@@ -257,7 +258,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		TextureRegionDrawable insaneLevelsUp;
 		TextureRegionDrawable insaneLevelsDown;
 		if (insaneUnlocked) {
-			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			if (invertOn) {
 				insaneLevelsUp = new TextureRegionDrawable(
 						new TextureRegion(insaneTexLevelsInverted));
 				insaneLevelsDown = new TextureRegionDrawable(
@@ -269,7 +270,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 						new TextureRegion(insaneTexLevelsDown));
 			}
 		} else {
-			if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+			if (invertOn) {
 				insaneLevelsUp = new TextureRegionDrawable(
 						new TextureRegion(insaneTexLevelsLockedInverted));
 				insaneLevelsDown = new TextureRegionDrawable(
@@ -307,7 +308,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		 */
 		TextureRegionDrawable menuUp;
 		TextureRegionDrawable menuDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
 			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
 		} else {

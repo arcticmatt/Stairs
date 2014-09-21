@@ -142,7 +142,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		stateTime += delta;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			currentFrame = stairsAnimationInverted.getKeyFrame(stateTime, true);
 		} else {
 			currentFrame = stairsAnimation.getKeyFrame(stateTime, true);
@@ -155,6 +155,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 	@Override
 	public void show() {
+		super.show();
 		Gdx.input.setInputProcessor(stage);
 
 		if (!loaded) {
@@ -222,7 +223,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		table.row();
         TextureRegionDrawable levelsTR;
         TextureRegionDrawable levelsTRDown;
-        if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+        if (invertOn) {
         	levelsTR = new TextureRegionDrawable(
         			new TextureRegion(levelsTexInverted));
         	levelsTRDown = new TextureRegionDrawable(
@@ -253,7 +254,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		TextureRegionDrawable classicTR;
 		TextureRegionDrawable classicTRDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			classicTR = new TextureRegionDrawable(
 					new TextureRegion(classicTexInverted));
 			classicTRDown = new TextureRegionDrawable(
@@ -314,7 +315,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		 */
 		TextureRegionDrawable highScoresUp;
 		TextureRegionDrawable highScoresDown;
-        if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+        if (invertOn) {
             highScoresUp = new TextureRegionDrawable(
                     new TextureRegion(highScoresTexInverted));
             highScoresDown = new TextureRegionDrawable(
@@ -343,7 +344,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 
 		TextureRegionDrawable settingsUp;
 		TextureRegionDrawable settingsDown;
-        if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+        if (invertOn) {
             settingsUp = new TextureRegionDrawable(
                     new TextureRegion(settingsTexInverted));
             settingsDown = new TextureRegionDrawable(
@@ -377,7 +378,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 		String mostRecentUp;
 		String mostRecentDown;
 		if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.EASY_LEVELS) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/levels_inverted/btn_easy_levels_inverted.png";
                 mostRecentDown = "images/buttons/levels_inverted/btn_easy_levels_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -390,7 +391,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
             return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.MEDIUM_LEVELS) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/levels_inverted/btn_medium_levels_inverted.png";
                 mostRecentDown = "images/buttons/levels_inverted/btn_medium_levels_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -403,7 +404,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.HARD_LEVELS) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/levels_inverted/btn_hard_levels_inverted.png";
                 mostRecentDown = "images/buttons/levels_inverted/btn_hard_levels_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -416,7 +417,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.INSANE_LEVELS) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/levels_inverted/btn_insane_levels_inverted.png";
                 mostRecentDown = "images/buttons/levels_inverted/btn_insane_levels_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -429,7 +430,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.EASY_CLASSIC) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/classic_inverted/btn_easy_classic_inverted.png";
                 mostRecentDown = "images/buttons/classic_inverted/btn_easy_classic_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -442,7 +443,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.MEDIUM_CLASSIC) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/classic_inverted/btn_medium_classic_inverted.png";
                 mostRecentDown = "images/buttons/classic_inverted/btn_medium_classic_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -455,7 +456,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.HARD_CLASSIC) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/classic_inverted/btn_hard_classic_inverted.png";
                 mostRecentDown = "images/buttons/classic_inverted/btn_hard_classic_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
@@ -468,7 +469,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
             }
 			return mostRecentLevels;
 		} else if (Stairs.getSharedPrefs().getInteger("mostRecent", 1) == Stairs.INSANE_CLASSIC) {
-            if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+            if (invertOn) {
                 mostRecentUp = "images/buttons/classic_inverted/btn_insane_classic_inverted.png";
                 mostRecentDown = "images/buttons/classic_inverted/btn_insane_classic_down_inverted.png";
                 mostRecentLevels.add(mostRecentUp);
