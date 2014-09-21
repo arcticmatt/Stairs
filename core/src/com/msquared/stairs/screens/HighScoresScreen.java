@@ -43,6 +43,7 @@ public class HighScoresScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
+		super.show();
 		Gdx.input.setInputProcessor(stage);
 		// Don't show ads
 		game.myRequestHandler.showAds(false);
@@ -68,7 +69,7 @@ public class HighScoresScreen extends AbstractScreen {
 		table.row();
 		TextureRegionDrawable menuUp;
 		TextureRegionDrawable menuDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
 			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
 		} else {
@@ -100,13 +101,18 @@ public class HighScoresScreen extends AbstractScreen {
 		float scorePaddingRight = 125f;
 		profile = game.getProfileManager().retrieveProfile();
 		Skin skin = getSkin();
-		LabelStyle labelStyle = skin.get("highscore", LabelStyle.class);
+		LabelStyle labelStyle;
+		if (invertOn) {
+			labelStyle = skin.get("highscoredarker", LabelStyle.class);
+		} else {
+			labelStyle = skin.get("highscore", LabelStyle.class);
+		}
 		Label scoreLabel = new Label("Highscores", labelStyle);
 		scoreLabel.setAlignment(Align.center, Align.center);
 		table.add(scoreLabel).colspan(2).center().expandX().fillX();
 		table.row().spaceTop(10f).spaceBottom(10f);
 		
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			scoreStyle = skin.get("scoreblack", LabelStyle.class);
 			headerStyleString = "headerblack";
 		} else {

@@ -70,6 +70,7 @@ public class GameScreen extends AbstractScreen implements Screen {
 	// Also keeps a reference to the Stage from the GameOverScreen to dispose.
 	public GameScreen(Stairs game, int diff, Stage stageToDispose) {
 		super(game);
+		difficulty = diff;
 
 		// Initialize Stair vars and FootController vars
 		stageDispose = stageToDispose;
@@ -81,7 +82,6 @@ public class GameScreen extends AbstractScreen implements Screen {
 		FootController.jump_left = false;
 		FootController.jump_right = false;
 		FootController.soundsOn = Stairs.getSharedPrefs().getBoolean("soundsOn", true);
-		difficulty = diff;
 		Stair.blockOn = Stairs.getSharedPrefs().getBoolean("blockOn", false);
 
 		// Initialize world, renderer, controllers

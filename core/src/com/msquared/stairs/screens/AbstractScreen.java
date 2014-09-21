@@ -25,6 +25,7 @@ public class AbstractScreen implements Screen {
 	protected Table table;
 	protected Stage stage;
 	protected OrthographicCamera cam;
+	protected boolean invertOn = false;
 	
 	public AbstractScreen(Stairs game) {
 		this.game = game;
@@ -96,6 +97,7 @@ public class AbstractScreen implements Screen {
 
 	@Override
 	public void show() {
+		invertOn = (Stairs.getSharedPrefs().getBoolean("invertOn"));
 	}
 
 	@Override

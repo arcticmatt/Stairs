@@ -67,6 +67,7 @@ public class GameOverScreen extends AbstractScreen{
 	
 	@Override
 	public void show() {
+		super.show();
 		Gdx.input.setInputProcessor(stage);
 		// Don't show ads
 		game.myRequestHandler.showAds(true);
@@ -93,7 +94,7 @@ public class GameOverScreen extends AbstractScreen{
 		table.row();
 		TextureRegionDrawable restartUp;
 		TextureRegionDrawable restartDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			restartUp = new TextureRegionDrawable(new TextureRegion(restartTexInverted));
 			restartDown = new TextureRegionDrawable(new TextureRegion(restartTexDownInverted));
 		} else {
@@ -117,7 +118,7 @@ public class GameOverScreen extends AbstractScreen{
 		
 		TextureRegionDrawable menuUp;
 		TextureRegionDrawable menuDown;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			menuUp = new TextureRegionDrawable(new TextureRegion(game.menuTexInverted));
 			menuDown = new TextureRegionDrawable(new TextureRegion(game.menuTexDownInverted));
 		} else {
@@ -150,7 +151,7 @@ public class GameOverScreen extends AbstractScreen{
 	// Show score using highscores from profile
 	public void showScoreProfile(int difficulty) {
 		String scoreStyleString;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			scoreStyleString = "mscoreblack";
 		} else {
 			scoreStyleString = "mscore";
@@ -228,7 +229,12 @@ public class GameOverScreen extends AbstractScreen{
 		
 		if (place != 0) {
 			Skin skin = getSkin();
-			LabelStyle labelStyle = skin.get("highscore", LabelStyle.class);
+			LabelStyle labelStyle;
+			if (invertOn) {
+				labelStyle = skin.get("highscoredarker", LabelStyle.class);
+			} else {
+				labelStyle = skin.get("highscore", LabelStyle.class);
+			}
 			Label scoreLabel = new Label("NEW HIGH SCORE!", labelStyle);
 			scoreLabel.setAlignment(Align.center, Align.center);
 			table.add(scoreLabel).colspan(2).center().expandX().fillX();
@@ -275,7 +281,7 @@ public class GameOverScreen extends AbstractScreen{
 	// Show score using highscores from prefs
 	public void showScorePrefs(int difficulty) {
 		String scoreStyleString;
-		if (Stairs.getSharedPrefs().getBoolean("invertOn")) {
+		if (invertOn) {
 			scoreStyleString = "mscoreblack";
 		} else {
 			scoreStyleString = "mscore";
