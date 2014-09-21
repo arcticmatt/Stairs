@@ -110,6 +110,7 @@ public class LevelsScreen extends AbstractScreen implements Screen {
 		Gdx.input.setInputProcessor(stage);
 		// Show ads
 		game.myRequestHandler.showAds(true);
+		profile.resetScores();
 		
 		table = new Table(getSkin());
 

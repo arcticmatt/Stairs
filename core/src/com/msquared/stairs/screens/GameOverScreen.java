@@ -150,6 +150,7 @@ public class GameOverScreen extends AbstractScreen{
 	
 	// Show score using highscores from profile
 	public void showScoreProfile(int difficulty) {
+		String scoreStyleGreenString = "mscoregreen";
 		String scoreStyleString;
 		if (invertOn) {
 			scoreStyleString = "mscoreblack";
@@ -252,27 +253,39 @@ public class GameOverScreen extends AbstractScreen{
 		
 		// First high score
 		String firstHighScore = "1. " + profile.getHighScore(places[0]);
-		Label firstHighScoreLabel = new Label(firstHighScore, getSkin(), scoreStyleString);
+		Label firstHighScoreLabel;
+		if (place == 1 && invertOn)
+			firstHighScoreLabel = new Label(firstHighScore, getSkin(), scoreStyleGreenString);
+		else
+			firstHighScoreLabel = new Label(firstHighScore, getSkin(), scoreStyleString);
 		firstHighScoreLabel.setAlignment(Align.center, Align.center);
-		if (place == 1)
+		if (place == 1 && !invertOn)
 			firstHighScoreLabel.setColor(winningColor);
 		table.row();
 		table.add(firstHighScoreLabel).colspan(2).center();
 		
 		// First high score
 		String secondHighScore = "2. " + profile.getHighScore(places[1]);
-		Label secondHighScoreLabel = new Label(secondHighScore, getSkin(), scoreStyleString);
+		Label secondHighScoreLabel;
+		if (place == 2 && invertOn)
+			secondHighScoreLabel = new Label(secondHighScore, getSkin(), scoreStyleGreenString);
+		else
+			secondHighScoreLabel = new Label(secondHighScore, getSkin(), scoreStyleString);
 		secondHighScoreLabel.setAlignment(Align.center, Align.center);
-		if (place == 2)
+		if (place == 2 && !invertOn)
 			secondHighScoreLabel.setColor(winningColor);
 		table.row();
 		table.add(secondHighScoreLabel).colspan(2).center();
 
 		// First high score
 		String thirdHighScore = "3. " + profile.getHighScore(places[2]);
-		Label thirdHighScoreLabel = new Label(thirdHighScore, getSkin(), scoreStyleString);
+		Label thirdHighScoreLabel;
+		if (place == 3 && invertOn)
+			thirdHighScoreLabel = new Label(thirdHighScore, getSkin(), scoreStyleGreenString);
+		else
+			thirdHighScoreLabel = new Label(thirdHighScore, getSkin(), scoreStyleString);
 		thirdHighScoreLabel.setAlignment(Align.center, Align.center);
-		if (place == 3) 
+		if (place == 3 && !invertOn) 
 			thirdHighScoreLabel.setColor(winningColor);
 		table.row();
 		table.add(thirdHighScoreLabel).colspan(2).center().spaceBottom(50f);
