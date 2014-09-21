@@ -25,6 +25,8 @@ public class FootController {
 	public static boolean jump_right = false;
 	public static boolean dead_flag_left;
 	public static boolean dead_flag_right;
+	
+	public static boolean soundsOn = false;
 
 	enum Keys {
 		LEFT, RIGHT, RESTART
@@ -84,7 +86,7 @@ public class FootController {
 			leftFoot.yVelo = 0f;
 			leftFoot.state = State.IDLE;
 			leftFoot.grounded = true;
-			if (Stairs.getSharedPrefs().getBoolean("soundsOn", true)) {
+			if (soundsOn) {
 				stepSound.play(1f);
 			}
 		}
@@ -93,7 +95,7 @@ public class FootController {
 			rightFoot.yVelo = 0f;
 			rightFoot.state = State.IDLE;
 			rightFoot.grounded = true;
-			if (Stairs.getSharedPrefs().getBoolean("soundsOn", true)) {
+			if (soundsOn) {
 				stepSound.play(1f);
 			}
 		}
