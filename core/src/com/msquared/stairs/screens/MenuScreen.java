@@ -25,7 +25,7 @@ import com.msquared.stairs.view.WorldRenderer;
 
 public class MenuScreen extends AbstractScreen implements Screen {
 	CharSequence gameScore;
-	private static final float FRAME_DURATION = 0.05f;
+	private static final float FRAME_DURATION = 0.083f;
 	private Animation stairsAnimation;
 	private Animation stairsAnimationInverted;
 	float stateTime;
@@ -115,7 +115,7 @@ public class MenuScreen extends AbstractScreen implements Screen {
 	}
 
 	private void loadTextures() {
-		int num = 96;
+		int num = 48;
 		// Can't dispose of these, otherwise the animations disappear
 		TextureAtlas atlas;
 		TextureAtlas atlasInverted;

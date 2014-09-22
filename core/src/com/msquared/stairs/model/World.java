@@ -373,7 +373,7 @@ public class World {
                     38f / 255f, 147f / 255f, 1);
         } else {
             stairColor = new Color(255f / 255f,
-                    227f / 255f, 145f / 255f, 1);
+                    217f / 255f, 108f / 255f, 1);
         }
 		int x;
 		int y;
@@ -382,7 +382,7 @@ public class World {
          * zigZagWidth = (int) ((zigZagWidthOriginal * zzWidthMults
          * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
          */
-		int width = 47;
+		int width = 45;
 		for (int i = 0; i < insaneZigZagXPositions.length - 2; i++) {
 			x = (int) insaneZigZagXPositions[i];
 			y = (int) insaneZigZagYPositions[i];

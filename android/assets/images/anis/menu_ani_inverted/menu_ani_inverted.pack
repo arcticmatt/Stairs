@@ -3,147 +3,140 @@ menu_ani_inverted.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ani95
+ani44
   rotate: false
   xy: 1, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani44
+ani2
   rotate: false
   xy: 1, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani78
+ani14
   rotate: false
   xy: 365, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani2
+ani47
   rotate: false
   xy: 1, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani14
+ani35
   rotate: false
   xy: 365, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani59
+ani6
   rotate: false
   xy: 729, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani47
-  rotate: false
-  xy: 1, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani48
-  rotate: false
-  xy: 1, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani35
-  rotate: false
-  xy: 365, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani6
-  rotate: false
-  xy: 729, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
 ani24
   rotate: false
-  xy: 1093, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani66
-  rotate: false
-  xy: 365, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani64
-  rotate: false
-  xy: 729, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani57
-  rotate: false
-  xy: 1093, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani81
-  rotate: false
-  xy: 1457, 1453
+  xy: 1, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani28
   rotate: false
-  xy: 729, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani70
-  rotate: false
-  xy: 1093, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani94
-  rotate: false
-  xy: 1457, 969
+  xy: 365, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani8
   rotate: false
-  xy: 1093, 1
+  xy: 729, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani41
   rotate: false
+  xy: 1093, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani1
+  rotate: false
+  xy: 365, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani33
+  rotate: false
+  xy: 729, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani39
+  rotate: false
+  xy: 1093, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani5
+  rotate: false
+  xy: 1457, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani19
+  rotate: false
+  xy: 729, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani40
+  rotate: false
+  xy: 1093, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani11
+  rotate: false
+  xy: 1457, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani45
+  rotate: false
+  xy: 1093, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani27
+  rotate: false
   xy: 1457, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani68
+ani32
   rotate: false
   xy: 1457, 1
   size: 362, 482
@@ -155,140 +148,147 @@ menu_ani_inverted2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ani58
+ani12
   rotate: false
   xy: 1, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani1
+ani38
   rotate: false
   xy: 1, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani33
+ani15
   rotate: false
   xy: 365, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani67
+ani17
   rotate: false
   xy: 1, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani39
+ani10
   rotate: false
   xy: 365, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani5
+ani13
   rotate: false
   xy: 729, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani19
+ani22
   rotate: false
   xy: 1, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani69
+ani25
   rotate: false
   xy: 365, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani40
+ani18
   rotate: false
   xy: 729, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani53
+ani21
   rotate: false
   xy: 1093, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani11
+ani29
   rotate: false
   xy: 365, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani45
+ani3
   rotate: false
   xy: 729, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani27
+ani23
   rotate: false
   xy: 1093, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani52
+ani7
   rotate: false
   xy: 1457, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani32
+ani48
   rotate: false
   xy: 729, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani85
+ani42
   rotate: false
   xy: 1093, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani55
+ani26
   rotate: false
   xy: 1457, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani12
+ani36
   rotate: false
   xy: 1093, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani38
+ani37
+  rotate: false
+  xy: 1093, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani20
   rotate: false
   xy: 1457, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani61
+ani4
   rotate: false
   xy: 1457, 1
   size: 362, 482
@@ -300,397 +300,51 @@ menu_ani_inverted3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ani15
-  rotate: false
-  xy: 1, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani17
-  rotate: false
-  xy: 1, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani54
-  rotate: false
-  xy: 365, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani87
-  rotate: false
-  xy: 1, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani80
-  rotate: false
-  xy: 365, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani10
-  rotate: false
-  xy: 729, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani13
-  rotate: false
-  xy: 1, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani77
-  rotate: false
-  xy: 365, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani63
-  rotate: false
-  xy: 729, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani65
-  rotate: false
-  xy: 1093, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani96
-  rotate: false
-  xy: 365, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani90
-  rotate: false
-  xy: 729, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani22
-  rotate: false
-  xy: 1093, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani76
-  rotate: false
-  xy: 1457, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani25
-  rotate: false
-  xy: 729, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani71
-  rotate: false
-  xy: 1093, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani74
-  rotate: false
-  xy: 1093, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani72
-  rotate: false
-  xy: 1093, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani73
-  rotate: false
-  xy: 1093, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani50
-  rotate: false
-  xy: 1457, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani18
-  rotate: false
-  xy: 1093, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani21
-  rotate: false
-  xy: 1457, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani29
-  rotate: false
-  xy: 1457, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-
-menu_ani_inverted4.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-ani79
-  rotate: false
-  xy: 1, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani3
-  rotate: false
-  xy: 1, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani23
-  rotate: false
-  xy: 365, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani84
-  rotate: false
-  xy: 1, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani91
-  rotate: false
-  xy: 365, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani7
-  rotate: false
-  xy: 729, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani82
-  rotate: false
-  xy: 1, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani56
-  rotate: false
-  xy: 365, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani75
-  rotate: false
-  xy: 729, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani92
-  rotate: false
-  xy: 1093, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani89
-  rotate: false
-  xy: 365, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani42
-  rotate: false
-  xy: 729, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani51
-  rotate: false
-  xy: 1093, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani88
-  rotate: false
-  xy: 1457, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani26
-  rotate: false
-  xy: 729, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani36
-  rotate: false
-  xy: 1093, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani20
-  rotate: false
-  xy: 1457, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani4
-  rotate: false
-  xy: 1093, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
 ani43
   rotate: false
-  xy: 1457, 485
+  xy: 1, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani31
   rotate: false
-  xy: 1457, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-
-menu_ani_inverted5.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-ani62
-  rotate: false
-  xy: 1, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani49
-  rotate: false
-  xy: 1, 969
+  xy: 1, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani9
   rotate: false
-  xy: 365, 1453
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani93
-  rotate: false
-  xy: 1, 485
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani86
-  rotate: false
-  xy: 365, 969
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani37
-  rotate: false
-  xy: 729, 1453
+  xy: 365, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani46
   rotate: false
-  xy: 1, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani83
-  rotate: false
-  xy: 365, 485
+  xy: 365, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani34
   rotate: false
-  xy: 729, 969
+  xy: 729, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani16
   rotate: false
-  xy: 1093, 1453
+  xy: 729, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
 ani30
   rotate: false
-  xy: 365, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani60
-  rotate: false
-  xy: 729, 485
+  xy: 1093, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
