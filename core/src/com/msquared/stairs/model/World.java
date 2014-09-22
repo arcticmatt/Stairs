@@ -147,7 +147,7 @@ public class World {
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
-				addHardNarrow();
+				addHardClassicForLevels();
 				/*switch (earlySelector) {
 				case 1:
 					addHardZigZag();
@@ -180,22 +180,26 @@ public class World {
 	}
 
 	public void addEasyClassic() {
-		addClassicLevel(0, 0, 60, 70);
+		addClassicLevel(0, 0, 60, 70, 0);
 	}
 
 	public void addMediumClassic() {
-		addClassicLevel(1, 1, 55, 65);
+		addClassicLevel(1, 1, 55, 65, 0);
 	}
 
 	public void addHardClassic() {
-		addClassicLevel(5, 2, 37, 45);
+		addClassicLevel(5, 2, 37, 45, 0);
+	}
+	
+	public void addHardClassicForLevels() {
+		addClassicLevel(5, 2, 37, 45, 2);
 	}
 
 	public void addInsaneClassic() {
-		addClassicLevel(3, 3, 44, 47);
+		addClassicLevel(3, 3, 44, 47, 0);
 	}
 
-	public void addClassicLevel(int round, int diff, int minWidth, int maxWidth) {
+	public void addClassicLevel(int round, int diff, int minWidth, int maxWidth, int stairsToSubtract) {
 		Color stairColor = white;
 
 		int maxX;
@@ -204,7 +208,7 @@ public class World {
 		int y;
 		int randWidth;
 		int randBool = 0;
-		for (int i = 0; i < classicXPositions[diff].length; i++) {
+		for (int i = 0; i < classicXPositions[diff].length - stairsToSubtract; i++) {
 			stairColor = selectStairColorForRand(round);
 
 			x = (int) classicXPositions[diff][i];
