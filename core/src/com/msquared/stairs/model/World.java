@@ -134,7 +134,7 @@ public class World {
 		leftFoot = new Foot(160, 0, true);
 		rightFoot = new Foot(380 - Foot.footSize, 0, false);
 		this.random = Stairs.randomGenerator;
-		earlySelector = random.nextInt(4) + 1;
+		earlySelector = random.nextInt(5) + 1;
 	}
 
 	public void createDemoWorld() {
@@ -160,6 +160,9 @@ public class World {
 					break;
 				case 4:
 					addHardRapid();
+					break;
+				case 5:
+					addHardClassic();
 					break;
 				}*/
 			} else if (difficulty == Stairs.INSANE_LEVELS) {
