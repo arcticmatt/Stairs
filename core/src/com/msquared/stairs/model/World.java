@@ -95,11 +95,11 @@ public class World {
     protected int[] hardNarrowYPositions = { 644, 661, 677, 694, 711, 727, 744,
         761, 778, 794, 811, 828, 844, 860 };
 
-	protected int[] insaneZigZagXPositions = { 246, 380, 476, 330, 184, 37,
-			0, 152, 302, 452, 492, 342, 192, 42, 2, 152, 302,  452, 492 };
+	protected int[] insaneZigZagXPositions = { 253, 418, 513, 348, 183, 18, -17,
+			148, 313, 478, 513, 348, 183, 18, -17, 148, 313, 478, 513, 348 };
 
-	protected int[] insaneZigZagYPositions = { 538, 586, 624, 651, 673,
-			691, 706, 719, 732, 744, 758, 771, 783, 797, 809, 823, 835, 848, 860 };
+	protected int[] insaneZigZagYPositions = { 565, 606, 638, 662, 680, 697, 711,
+			723, 736, 748, 761, 773, 786, 798, 811, 823, 836, 848, 860 };
 
 	private final Pool<Stair> stairPool = new Pool<Stair>() {
 		@Override
@@ -383,7 +383,7 @@ public class World {
          * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
          */
 		int width = 45;
-		for (int i = 0; i < insaneZigZagXPositions.length - 2; i++) {
+		for (int i = 0; i < insaneZigZagXPositions.length - 3; i++) {
 			x = (int) insaneZigZagXPositions[i];
 			y = (int) insaneZigZagYPositions[i];
 			addStair(x, y, width, 2, stairColor);
