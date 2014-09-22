@@ -89,11 +89,11 @@ public class World {
     protected int[] hardRapidYPositions = { 709, 721, 733, 744, 756, 768, 779,
         791, 803, 814, 826, 838, 849, 860 };
 
-    protected int[] hardNarrowXPositions = { 248, 250, 252, 253, 255, 256,
-        256, 256, 256, 256, 256, 256, 256, 256 };
+    protected int[] hardNarrowXPositions = { 254, 254, 254, 254, 254, 254, 254,
+    		254, 254, 254, 254, 254, 254, 254, 254 };
 
-    protected int[] hardNarrowYPositions = { 644, 661, 677, 694, 711, 727, 744,
-        761, 778, 794, 811, 828, 844, 860 };
+    protected int[] hardNarrowYPositions = { 492, 547, 586, 619, 644, 666, 687,
+    		709, 731, 753, 774, 796, 818, 839, 860 };
 
 	protected int[] insaneZigZagXPositions = { 253, 418, 513, 348, 183, 18, -17,
 			148, 313, 478, 513, 348, 183, 18, -17, 148, 313, 478, 513 };
@@ -147,7 +147,7 @@ public class World {
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
-				addHardSides();
+				addHardNarrow();
 				/*switch (earlySelector) {
 				case 1:
 					addHardZigZag();
@@ -362,7 +362,7 @@ public class World {
          * narrowWidth = (int) ((narrowWidthOriginal * narrowWidthMults
 		 * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
          */
-		int width = 29;
+		int width = 33;
 		for (int i = 0; i < hardNarrowXPositions.length - 1; i++) {
 			x = (int) hardNarrowXPositions[i];
 			y = (int) hardNarrowYPositions[i];
