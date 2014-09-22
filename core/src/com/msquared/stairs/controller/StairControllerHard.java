@@ -80,9 +80,9 @@ public class StairControllerHard extends StairController {
 		randMinMaxWidths[3][0] = 35;
 		randMinMaxWidths[3][1] = 47;
 
-		randMinMaxWidths[4][0] = 35;
+		randMinMaxWidths[4][0] = 37;
 		randMinMaxWidths[4][1] = 45;
-		randMinMaxWidths[5][0] = 35;
+		randMinMaxWidths[5][0] = 37;
 		randMinMaxWidths[5][1] = 45;
 
 		randMinMaxTimes[0][0] = 450;

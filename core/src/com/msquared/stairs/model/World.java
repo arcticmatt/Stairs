@@ -187,7 +187,7 @@ public class World {
 	}
 
 	public void addHardClassic() {
-		addClassicLevel(5, 2, 35, 45);
+		addClassicLevel(5, 2, 37, 45);
 	}
 
 	public void addInsaneClassic() {
