@@ -71,11 +71,11 @@ public class World {
 	protected int[] mediumZigZagYPositions = { 519, 586, 632, 666, 698, 731,
 			763, 796, 828, 860 };
 
-    protected int[] hardZigZagXPositions = { 250, 400, 506, 341, 174, 7, -30,
-    		143, 315, 485, 525, 355, 185, 15, -22 };
+    protected int[] hardZigZagXPositions = { 257, 427, 519, 349, 179, 9, -23,
+    		147, 317, 487, 519, 349, 179, 9, -23 };
 
-    protected int[] hardZigZagYPositions = { 492, 547, 588, 619, 644, 666,
-    		688, 709, 731, 753, 774, 796, 818, 839, 860 };
+    protected int[] hardZigZagYPositions = { 489, 547, 586, 619, 644, 666, 687,
+    		709, 731, 752, 774, 796, 817, 839, 860 };
 
     protected int[] hardSidesXPositions = { 78, 351, 93, 362, 103, 370, 110,
     		377, 115, 379, 115, 379, 115, 379, 115 };
@@ -96,7 +96,7 @@ public class World {
         761, 778, 794, 811, 828, 844, 860 };
 
 	protected int[] insaneZigZagXPositions = { 253, 418, 513, 348, 183, 18, -17,
-			148, 313, 478, 513, 348, 183, 18, -17, 148, 313, 478, 513, 348 };
+			148, 313, 478, 513, 348, 183, 18, -17, 148, 313, 478, 513 };
 
 	protected int[] insaneZigZagYPositions = { 565, 606, 638, 662, 680, 697, 711,
 			723, 736, 748, 761, 773, 786, 798, 811, 823, 836, 848, 860 };
@@ -147,7 +147,8 @@ public class World {
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
-				switch (earlySelector) {
+				addHardZigZag();
+				/*switch (earlySelector) {
 				case 1:
 					addHardZigZag();
 					break;
@@ -160,7 +161,7 @@ public class World {
 				case 4:
 					addHardRapid();
 					break;
-				}
+				}*/
 			} else if (difficulty == Stairs.INSANE_LEVELS) {
 				addInsaneZigZag();
 			} else if (difficulty == Stairs.EASY_CLASSIC) {
@@ -286,8 +287,8 @@ public class World {
          * zigZagWidth = (int) ((zigZagWidthOriginal * zzWidthMults
          * .get(roundSelector)) / Stair.MAX_WIDTH_SCALAR);
          */
-		int width = 41;
-		for (int i = 0; i < hardZigZagXPositions.length - 1; i++) {
+		int width = 44;
+		for (int i = 0; i < hardZigZagXPositions.length - 2; i++) {
 			x = (int) hardZigZagXPositions[i];
 			y = (int) hardZigZagYPositions[i];
 			addStair(x, y, width, 2, stairColor);

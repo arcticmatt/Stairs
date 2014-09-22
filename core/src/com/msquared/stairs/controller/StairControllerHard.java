@@ -187,7 +187,7 @@ public class StairControllerHard extends StairController {
 			} while (levelSelector == earlySelector);
 		}
 		
-		//onlyNarrow();
+		//onlyZigZag();
 
 		// Make levels corresonding to round selector
 		makeNewRound(false);
