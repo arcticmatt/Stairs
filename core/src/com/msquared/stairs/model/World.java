@@ -61,9 +61,9 @@ public class World {
 			769, 784, 798, 812, 826, 840, 857 }
 	};
 
-    protected int[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186, 186 };
+    protected int[] easyStraightXPositions = { 186, 186, 186, 186, 186, 186 };
 
-    protected int[] easyStraightYPositions = { 570, 635, 681, 726, 771, 816, 860 };
+    protected int[] easyStraightYPositions = { 544, 633, 691, 748, 804, 860 };
 
 	protected int[] mediumZigZagXPositions = { 244, 336, 465, 471, 357,
         241, 126, 9, -1, 119, 239, 359, 479 };
