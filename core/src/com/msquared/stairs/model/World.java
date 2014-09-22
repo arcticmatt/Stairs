@@ -147,8 +147,7 @@ public class World {
 			} else if (difficulty == Stairs.MEDIUM_LEVELS) {
 				addMediumZigZag();
 			} else if (difficulty == Stairs.HARD_LEVELS) {
-				addHardRapid();
-				/*switch (earlySelector) {
+				switch (earlySelector) {
 				case 1:
 					addHardZigZag();
 					break;
@@ -162,9 +161,9 @@ public class World {
 					addHardRapid();
 					break;
 				case 5:
-					addHardClassic();
+					addHardClassicForLevels();
 					break;
-				}*/
+				}
 			} else if (difficulty == Stairs.INSANE_LEVELS) {
 				addInsaneZigZag();
 			} else if (difficulty == Stairs.EASY_CLASSIC) {
