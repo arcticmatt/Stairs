@@ -115,7 +115,7 @@ public class RobovmLauncher extends IOSApplication.Delegate
 			final GADRequest request = GADRequest.request();
 			if (USE_TEST_DEVICES) {
 				final NSArray<?> testDevices = new NSArray<NSObject>(
-                        new NSString(GADRequest.GAD_SIMULATOR_ID));
+                        new NSString(GADRequest.GAD_SIMULATOR_ID), new NSString("3d1693def1bbec324c360ed96ca81b5a"));
 				request.setTestDevices(testDevices);
 				log.debug("Test devices: " + request.getTestDevices());
 			}
