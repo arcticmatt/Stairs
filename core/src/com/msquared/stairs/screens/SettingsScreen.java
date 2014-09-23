@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
-import com.esotericsoftware.tablelayout.Cell;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.msquared.stairs.Stairs;
 import com.msquared.stairs.profile.Profile;
 import com.msquared.stairs.utils.DefaultActorListener;
@@ -435,7 +435,7 @@ public class SettingsScreen extends AbstractScreen {
                         boolean invertOnPrefs = prefs.getBoolean("invertOn", false);
                         if (invertOnPrefs) {
                         	Cell<ImageButton> cell = table.getCell(menuImagButtonInverted);
-                        	cell.setWidget(menuImagButton);
+                        	cell.setActor(menuImagButton);
                         	invertOn = false;
                             prefs.putBoolean("invertOn", false);
                             prefs.flush();
@@ -446,7 +446,7 @@ public class SettingsScreen extends AbstractScreen {
                             invertToggle.setStyle(invertStyleOff);
                         } else {
                         	Cell<ImageButton> cell = table.getCell(menuImagButton);
-                        	cell.setWidget(menuImagButtonInverted);
+                        	cell.setActor(menuImagButtonInverted);
                         	invertOn = true;
                             prefs.putBoolean("invertOn", true);
                             prefs.flush();

@@ -247,7 +247,7 @@ public class HighScoresScreen extends AbstractScreen {
 		
 		// Medium high scores
 		table.row();
-		table.add("Medium").expandX().center().setWidgetHeight(2f);
+		table.add("Medium").expandX().center();
 		
 		String firstMediumScore = "1. " + prefs.getInteger("mediumFirst", 0);
 		Label firstMediumScoreLabel = new Label(firstMediumScore, labelStyle);
