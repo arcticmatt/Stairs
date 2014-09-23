@@ -24,119 +24,126 @@ ani14
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani47
+ani59
   rotate: false
   xy: 1, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani35
+ani47
   rotate: false
   xy: 365, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani6
+ani35
   rotate: false
   xy: 729, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani24
+ani36
+  rotate: false
+  xy: 729, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani6
   rotate: false
   xy: 1, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani28
+ani24
   rotate: false
   xy: 365, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani8
+ani66
   rotate: false
   xy: 729, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani41
+ani64
   rotate: false
   xy: 1093, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani1
+ani57
   rotate: false
   xy: 365, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani33
+ani28
   rotate: false
   xy: 729, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani39
+ani70
   rotate: false
   xy: 1093, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani5
+ani8
   rotate: false
   xy: 1457, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani19
+ani41
   rotate: false
   xy: 729, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani40
+ani68
   rotate: false
   xy: 1093, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani11
+ani58
   rotate: false
   xy: 1457, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani45
+ani1
   rotate: false
   xy: 1093, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani27
+ani33
   rotate: false
   xy: 1457, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani32
+ani67
   rotate: false
   xy: 1457, 1
   size: 362, 482
@@ -148,147 +155,154 @@ menu_ani2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ani12
+ani39
   rotate: false
   xy: 1, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani38
+ani5
   rotate: false
   xy: 1, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani15
+ani19
   rotate: false
   xy: 365, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani17
+ani69
   rotate: false
   xy: 1, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani10
+ani40
   rotate: false
   xy: 365, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani13
+ani53
   rotate: false
   xy: 729, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani22
+ani55
+  rotate: false
+  xy: 729, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani54
+  rotate: false
+  xy: 729, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani11
   rotate: false
   xy: 1, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani25
+ani45
   rotate: false
   xy: 365, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani18
+ani27
   rotate: false
   xy: 729, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani21
+ani52
   rotate: false
   xy: 1093, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani29
+ani32
   rotate: false
   xy: 365, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani3
+ani12
   rotate: false
   xy: 729, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani23
+ani38
   rotate: false
   xy: 1093, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani7
+ani61
   rotate: false
   xy: 1457, 1453
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani48
+ani15
   rotate: false
   xy: 729, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani42
+ani17
   rotate: false
   xy: 1093, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani26
+ani10
   rotate: false
   xy: 1457, 969
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani36
+ani13
   rotate: false
   xy: 1093, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani37
-  rotate: false
-  xy: 1093, 1
-  size: 362, 482
-  orig: 362, 482
-  offset: 0, 0
-  index: -1
-ani20
+ani63
   rotate: false
   xy: 1457, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani4
+ani65
   rotate: false
   xy: 1457, 1
   size: 362, 482
@@ -300,51 +314,210 @@ menu_ani3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ani43
+ani22
+  rotate: false
+  xy: 1, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani25
+  rotate: false
+  xy: 1, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani71
+  rotate: false
+  xy: 365, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani50
   rotate: false
   xy: 1, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani31
+ani18
+  rotate: false
+  xy: 365, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani21
+  rotate: false
+  xy: 729, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani29
   rotate: false
   xy: 1, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani9
+ani3
   rotate: false
   xy: 365, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani46
+ani23
+  rotate: false
+  xy: 729, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani7
+  rotate: false
+  xy: 1093, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani56
   rotate: false
   xy: 365, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani34
+ani48
   rotate: false
   xy: 729, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani16
+ani42
+  rotate: false
+  xy: 1093, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani51
+  rotate: false
+  xy: 1457, 1453
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani26
   rotate: false
   xy: 729, 1
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
   index: -1
-ani30
+ani20
   rotate: false
   xy: 1093, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani4
+  rotate: false
+  xy: 1457, 969
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani43
+  rotate: false
+  xy: 1093, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani31
+  rotate: false
+  xy: 1457, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani62
+  rotate: false
+  xy: 1457, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+
+menu_ani4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ani49
+  rotate: false
+  xy: 1, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani9
+  rotate: false
+  xy: 1, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani72
+  rotate: false
+  xy: 365, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani37
+  rotate: false
+  xy: 365, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani46
+  rotate: false
+  xy: 729, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani34
+  rotate: false
+  xy: 729, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani16
+  rotate: false
+  xy: 1093, 485
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani30
+  rotate: false
+  xy: 1093, 1
+  size: 362, 482
+  orig: 362, 482
+  offset: 0, 0
+  index: -1
+ani60
+  rotate: false
+  xy: 1457, 485
   size: 362, 482
   orig: 362, 482
   offset: 0, 0
