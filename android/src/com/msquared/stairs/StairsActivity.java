@@ -28,6 +28,7 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 	private final int HIDE_ADS = 0;
 	RelativeLayout layout;
 	public static final String TEST_ADS_LG = "95CFF973B1B840806C43234A952D1F07";
+	private static final boolean USE_TEST_DEVICES = false;
 
     protected Handler handler = new Handler() {
     	@Override
@@ -75,13 +76,18 @@ public class StairsActivity extends AndroidApplication implements IActivityReque
 		adView = new AdView(this);
 		adView.setAdSize(AdSize.BANNER);
 		adView.setAdUnitId(AD_UNIT_ID);
-		AdRequest adRequest = new AdRequest.Builder()
-        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .addTestDevice("D52FF7CF5E8C1D04CD5A8584F0737B22")
-        .addTestDevice(TEST_ADS_LG)
-        .build();
-		// Real ads
-		//adRequest = new AdRequest.Builder().build();
+		AdRequest adRequest;
+		if (USE_TEST_DEVICES) {
+			// Test ads
+			adRequest = new AdRequest.Builder()
+	        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+	        .addTestDevice("D52FF7CF5E8C1D04CD5A8584F0737B22")
+	        .addTestDevice(TEST_ADS_LG)
+	        .build();
+		} else {
+			// Real ads
+			adRequest = new AdRequest.Builder().build();
+		}
 		adView.loadAd(adRequest);
 
 		// Add the libgdx view

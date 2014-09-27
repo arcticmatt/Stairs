@@ -29,7 +29,7 @@ public class RobovmLauncher extends IOSApplication.Delegate
 	private GADBannerView adview;
 	private boolean adsInitialized = false;
 	private IOSApplication iosApplication;
-	private static final boolean USE_TEST_DEVICES = true;
+	private static final boolean USE_TEST_DEVICES = false;
 	public static final String AD_UNIT_ID = "ca-app-pub-5734601135747352/5800108025";
 	
 	protected IOSApplication createApplication() {
