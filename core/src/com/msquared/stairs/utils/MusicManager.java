@@ -46,7 +46,6 @@ public class MusicManager
      */
     public void play(String fileName, boolean main)
     {
-    	Gdx.app.log(Stairs.LOG, "Music being played");
         // check if the music is enabled
         if( ! enabled ) return;
 
@@ -73,11 +72,8 @@ public class MusicManager
     public void stop()
     {
         if( musicBeingPlayed != null ) {
-        	Gdx.app.log(Stairs.LOG, "Music being stopped");
             musicBeingPlayed.stop();
-            Gdx.app.log(Stairs.LOG, "Music stopped");
             musicBeingPlayed.dispose();
-            Gdx.app.log(Stairs.LOG, "Music disposed");
             enabled = true;
         }
     }

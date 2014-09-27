@@ -145,9 +145,6 @@ public class Stair {
 		if (blockOn) {
 			scalarHeight = 25;
 		}
-		//float scalarHeight = Math.abs((yPos - WorldRenderer.CAMERA_HEIGHT) / 50);
-		/*if (scalarHeight > 12)
-			Gdx.app.log("STAIRS", "scalarHeight = " + scalarHeight + " and yPos = " + yPos);*/
 		scalarHeight = clamp(scalarHeight, MIN_HEIGHT_SCALAR, MAX_HEIGHT_SCALAR);
 		// Set new height
 		height = (int) (startingHeight * scalarHeight);
