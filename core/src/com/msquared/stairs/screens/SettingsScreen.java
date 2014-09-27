@@ -462,65 +462,7 @@ public class SettingsScreen extends AbstractScreen {
         }
 		table.add(invertToggle).size(settingWidth, settingHeight).colspan(1)
 			.align(Align.center).padLeft(padding);
-
-        // Add insane button
-		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50 || Stairs.PAID_VERSION;
-        TextureRegionDrawable invincUp;
-        TextureRegionDrawable invincChecked;
-        if (showInvinc) {
-			invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
-			invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
-        } else {
-			invincUp = new TextureRegionDrawable(new TextureRegion(lockedTex));
-			invincChecked = new TextureRegionDrawable(new TextureRegion(lockedTex));
-        }
-        final ImageButtonStyle invincStyleOn = new ImageButtonStyle();
-        invincStyleOn.up = invincUp;
-        invincStyleOn.down = invincChecked;
-        invincStyleOn.checked = invincChecked;
-        final ImageButtonStyle invincStyleOff = new ImageButtonStyle();
-        invincStyleOff.up = invincUp;
-        invincStyleOff.down = invincUp;
-        invincStyleOff.checked = invincChecked;
-        invincToggle = new ImageButton(invincStyleOn);
-        if (prefs.getBoolean("invincOn", false)) {
-            invincToggle.setChecked(false);
-            invincToggle.setStyle(invincStyleOn);
-        } else {
-            invincToggle.setChecked(true);
-            invincToggle.setStyle(invincStyleOff);
-        }
-        if (showInvinc) {
-            invincToggle.addListener(new DefaultActorListener() {
-                @Override
-                public void touchUp(InputEvent event, float x, float y,
-                    int pointer, int button) {
-                    if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
-                        boolean invincOn = prefs.getBoolean("invincOn", false);
-                        if (invincOn) {
-                            prefs.putBoolean("invincOn", false);
-                            prefs.flush();
-                            invincToggle.setChecked(true);
-                            // Sleep for a little so that clicking really fast
-                            // doesn't cause the button to bug out
-                            sleep(200);
-                            invincToggle.setStyle(invincStyleOff);
-                        } else {
-                            prefs.putBoolean("invincOn", true);
-                            prefs.flush();
-                            invincToggle.setChecked(false);
-                            // Sleep for a little so that clicking really fast
-                            // doesn't cause the button to bug out
-                            sleep(200);
-                            invincToggle.setStyle(invincStyleOn);
-                        }
-                    }
-                }
-            });
-        }
-        table.add(invincToggle).size(settingWidth, settingHeight).colspan(1)
-				.align(Align.center);
-
+		
         // Add block button
         boolean showBlock = mediumHighScoreLevels >= 50 || mediumHighScoreClassic >= 50 || Stairs.PAID_VERSION;
         TextureRegionDrawable blockUp;
@@ -581,6 +523,64 @@ public class SettingsScreen extends AbstractScreen {
             });
         }
 		table.add(blockToggle).size(settingWidth, settingHeight).colspan(1)
+				.align(Align.center);
+
+        // Add invincible button
+		boolean showInvinc = insaneHighScoreLevels >= 50 || insaneHighScoreClassic >= 50 || Stairs.PAID_VERSION;
+        TextureRegionDrawable invincUp;
+        TextureRegionDrawable invincChecked;
+        if (showInvinc) {
+			invincUp = new TextureRegionDrawable(new TextureRegion(invincTexOn));
+			invincChecked = new TextureRegionDrawable(new TextureRegion(invincTexChecked));
+        } else {
+			invincUp = new TextureRegionDrawable(new TextureRegion(lockedTex));
+			invincChecked = new TextureRegionDrawable(new TextureRegion(lockedTex));
+        }
+        final ImageButtonStyle invincStyleOn = new ImageButtonStyle();
+        invincStyleOn.up = invincUp;
+        invincStyleOn.down = invincChecked;
+        invincStyleOn.checked = invincChecked;
+        final ImageButtonStyle invincStyleOff = new ImageButtonStyle();
+        invincStyleOff.up = invincUp;
+        invincStyleOff.down = invincUp;
+        invincStyleOff.checked = invincChecked;
+        invincToggle = new ImageButton(invincStyleOn);
+        if (prefs.getBoolean("invincOn", false)) {
+            invincToggle.setChecked(false);
+            invincToggle.setStyle(invincStyleOn);
+        } else {
+            invincToggle.setChecked(true);
+            invincToggle.setStyle(invincStyleOff);
+        }
+        if (showInvinc) {
+            invincToggle.addListener(new DefaultActorListener() {
+                @Override
+                public void touchUp(InputEvent event, float x, float y,
+                    int pointer, int button) {
+                    if (!(x < 0 || x > settingWidth || y < 0 || y > settingHeight)) {
+                        boolean invincOn = prefs.getBoolean("invincOn", false);
+                        if (invincOn) {
+                            prefs.putBoolean("invincOn", false);
+                            prefs.flush();
+                            invincToggle.setChecked(true);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            invincToggle.setStyle(invincStyleOff);
+                        } else {
+                            prefs.putBoolean("invincOn", true);
+                            prefs.flush();
+                            invincToggle.setChecked(false);
+                            // Sleep for a little so that clicking really fast
+                            // doesn't cause the button to bug out
+                            sleep(200);
+                            invincToggle.setStyle(invincStyleOn);
+                        }
+                    }
+                }
+            });
+        }
+        table.add(invincToggle).size(settingWidth, settingHeight).colspan(1)
 				.align(Align.center);
 		
         // Add dummy button
